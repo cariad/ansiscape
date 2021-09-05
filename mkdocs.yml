@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 8-bit.md
+site_name: ansiscape
+theme:
+  name: readthedocs
