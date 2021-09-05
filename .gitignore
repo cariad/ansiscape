@@ -1,2 +1,5 @@
+.coverage
 ansiscape.egg-info
+coverage.xml
 dist
+htmlcov
