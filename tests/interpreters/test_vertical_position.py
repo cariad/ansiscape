@@ -24,13 +24,40 @@ def test_claim(code: List[int], expect: int) -> None:
 @mark.parametrize(
     "code, expect",
     [
-        ([0], InterpretationDict(vertical_position=VerticalPosition.NONE)),
-        ([73], InterpretationDict(vertical_position=VerticalPosition.SUPERSCRIPT)),
-        ([74], InterpretationDict(vertical_position=VerticalPosition.SUBSCRIPT)),
-        ([75], InterpretationDict(vertical_position=VerticalPosition.NONE)),
+        (
+            [0],
+            InterpretationDict(
+                intensity=None,
+                vertical_position=VerticalPosition.NONE,
+            ),
+        ),
+        (
+            [73],
+            InterpretationDict(
+                intensity=None,
+                vertical_position=VerticalPosition.SUPERSCRIPT,
+            ),
+        ),
+        (
+            [74],
+            InterpretationDict(
+                intensity=None,
+                vertical_position=VerticalPosition.SUBSCRIPT,
+            ),
+        ),
+        (
+            [75],
+            InterpretationDict(
+                intensity=None,
+                vertical_position=VerticalPosition.NONE,
+            ),
+        ),
     ],
 )
-def test_update(code: List[int], expect: InterpretationDict) -> None:
-    interpretation = InterpretationDict(vertical_position=None)
+def test_update(
+    code: List[int],
+    expect: InterpretationDict,
+    interpretation: InterpretationDict,
+) -> None:
     VerticalPositionInterpreter().update(code, interpretation)
     assert interpretation == expect
