@@ -21,6 +21,13 @@ class InterpretationDict(TypedDict):
     intensity: Optional[Intensity]
 
     """
+    Describes the inversion of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no inversion".
+    """
+    invert: Optional[bool]
+
+    """
     Describes the italic of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no italic".

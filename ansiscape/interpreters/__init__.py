@@ -4,6 +4,7 @@ from ansiscape.interpreters.blink_speed import BlinkSpeedInterpreter
 from ansiscape.interpreters.intensity import IntensityInterpreter
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
 from ansiscape.interpreters.interpreter import Interpreter
+from ansiscape.interpreters.invert import InvertInterpreter
 from ansiscape.interpreters.italic import ItalicInterpreter
 from ansiscape.interpreters.underline import UnderlineInterpreter
 from ansiscape.interpreters.vertical_position import VerticalPositionInterpreter
@@ -11,6 +12,7 @@ from ansiscape.interpreters.vertical_position import VerticalPositionInterpreter
 interpreters: List[Interpreter] = [
     BlinkSpeedInterpreter(),
     IntensityInterpreter(),
+    InvertInterpreter(),
     ItalicInterpreter(),
     UnderlineInterpreter(),
     VerticalPositionInterpreter(),
@@ -21,6 +23,7 @@ __all__ = [
     "IntensityInterpreter",
     "InterpretationDict",
     "interpreters",
+    "InvertInterpreter",
     "ItalicInterpreter",
     "UnderlineInterpreter",
     "VerticalPositionInterpreter",

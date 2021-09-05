@@ -42,6 +42,7 @@ def make_interpretation() -> InterpretationDict:
     return InterpretationDict(
         blink_speed=None,
         intensity=None,
+        invert=None,
         italic=None,
         underline=None,
         vertical_position=None,

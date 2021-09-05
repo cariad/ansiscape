@@ -2,31 +2,28 @@ from typing import List, Optional
 
 from pytest import mark
 
-from ansiscape.interpreters import InterpretationDict, ItalicInterpreter
+from ansiscape.interpreters import InterpretationDict, InvertInterpreter
 
 
 @mark.parametrize(
     "code, expect",
     [
         ([0], 1),
-        ([2], 0),
-        ([3], 1),
-        ([4], 0),
-        ([22], 0),
-        ([23], 1),
-        ([24], 0),
+        ([1], 0),
+        ([6], 0),
+        ([7], 1),
+        ([8], 0),
     ],
 )
 def test_claim(code: List[int], expect: int) -> None:
-    assert ItalicInterpreter().claim(code) == expect
+    assert InvertInterpreter().claim(code) == expect
 
 
 @mark.parametrize(
     "code, expect",
     [
         ([0], False),
-        ([3], True),
-        ([23], False),
+        ([7], True),
     ],
 )
 def test_update(
@@ -34,12 +31,12 @@ def test_update(
     expect: Optional[bool],
     interpretation: InterpretationDict,
 ) -> None:
-    ItalicInterpreter().update(code, interpretation)
+    InvertInterpreter().update(code, interpretation)
     assert interpretation == InterpretationDict(
         blink_speed=None,
         intensity=None,
-        invert=None,
-        italic=expect,
+        invert=expect,
+        italic=None,
         underline=None,
         vertical_position=None,
     )
