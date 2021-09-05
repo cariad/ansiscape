@@ -42,6 +42,7 @@ def make_interpretation() -> InterpretationDict:
     return InterpretationDict(
         intensity=None,
         italic=None,
+        underline=None,
         vertical_position=None,
     )
 
