@@ -1,0 +1,41 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@3.0.0
+
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.9.6
+    environment:
+      PIPENV_VENV_IN_PROJECT: true
+    resource_class: small
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - pipenv-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+            - pipenv-{{ .Branch }}-
+            - pipenv-
+      - run: pipenv sync --dev
+      - save_cache:
+          key: pipenv-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - .venv
+      - run: pipenv run ./lint.sh
+      - run: pipenv run pytest
+      - codecov/upload:
+          file: coverage.xml
+      - run: pipenv run ./build.sh
+      - run: if [[ -z "${CIRCLE_TAG}" ]]; then circleci-agent step halt; fi
+      - run: pipenv run twine upload dist/*
+
+workflows:
+  default:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
