@@ -1,0 +1,4 @@
+[flake8]
+exclude = .venv,dist
+ignore = E501, W503
+max-line-length = 88
