@@ -39,6 +39,7 @@ def test_update(
     assert interpretation == InterpretationDict(
         blink_speed=None,
         intensity=None,
+        invert=None,
         italic=None,
         underline=None,
         vertical_position=expect,
