@@ -1,24 +1,23 @@
 from typing import Dict, List
 
-from ansiscape.enums import VerticalPosition
+from ansiscape.enums import Intensity
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
 from ansiscape.interpreters.interpreter import Interpreter
 
 
-class VerticalPositionInterpreter(Interpreter):
+class IntensityInterpreter(Interpreter):
     """
-    Recognises and interprets ANSI escape codes that change text vertical
-    position.
+    Recognises and interprets ANSI escape codes that change text intensity.
     """
 
     def __init__(self) -> None:
         super().__init__()
 
-        self.attributes: Dict[int, VerticalPosition] = {
-            0: VerticalPosition.NONE,
-            73: VerticalPosition.SUPERSCRIPT,
-            74: VerticalPosition.SUBSCRIPT,
-            75: VerticalPosition.NONE,
+        self.attributes: Dict[int, Intensity] = {
+            0: Intensity.NORMAL,
+            1: Intensity.BOLD,
+            2: Intensity.DIM,
+            22: Intensity.NORMAL,
         }
 
     def claim(self, code: List[int]) -> int:
@@ -30,6 +29,6 @@ class VerticalPositionInterpreter(Interpreter):
         return 1 if code[0] in self.attributes else 0
 
     def update(self, code: List[int], interpretation: InterpretationDict) -> None:
-        """Updates `interpretation` to describe the given vertical position."""
+        """Updates `interpretation` to describe the given intensity."""
 
-        interpretation["vertical_position"] = self.attributes[code[0]]
+        interpretation["intensity"] = self.attributes[code[0]]
