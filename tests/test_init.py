@@ -11,6 +11,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "",
             InterpretationDict(
                 intensity=None,
+                italic=None,
                 vertical_position=None,
             ),
         ),
@@ -18,6 +19,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "-1",
             InterpretationDict(
                 intensity=None,
+                italic=None,
                 vertical_position=None,
             ),
         ),
@@ -25,6 +27,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "-1;73",
             InterpretationDict(
                 intensity=None,
+                italic=None,
                 vertical_position=None,
             ),
         ),
@@ -32,6 +35,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "0",
             InterpretationDict(
                 intensity=Intensity.NORMAL,
+                italic=False,
                 vertical_position=VerticalPosition.NONE,
             ),
         ),
@@ -39,6 +43,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "1",
             InterpretationDict(
                 intensity=Intensity.BOLD,
+                italic=None,
                 vertical_position=None,
             ),
         ),
@@ -46,6 +51,23 @@ from ansiscape.enums import Intensity, VerticalPosition
             "2",
             InterpretationDict(
                 intensity=Intensity.DIM,
+                italic=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "3",
+            InterpretationDict(
+                intensity=None,
+                italic=True,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "23",
+            InterpretationDict(
+                intensity=None,
+                italic=False,
                 vertical_position=None,
             ),
         ),
@@ -53,6 +75,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "73",
             InterpretationDict(
                 intensity=None,
+                italic=None,
                 vertical_position=VerticalPosition.SUPERSCRIPT,
             ),
         ),
@@ -60,6 +83,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "74",
             InterpretationDict(
                 intensity=None,
+                italic=None,
                 vertical_position=VerticalPosition.SUBSCRIPT,
             ),
         ),
@@ -67,6 +91,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "75",
             InterpretationDict(
                 intensity=None,
+                italic=None,
                 vertical_position=VerticalPosition.NONE,
             ),
         ),
@@ -74,6 +99,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "73;1",
             InterpretationDict(
                 intensity=Intensity.BOLD,
+                italic=None,
                 vertical_position=VerticalPosition.SUPERSCRIPT,
             ),
         ),
@@ -81,6 +107,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "0;73",
             InterpretationDict(
                 intensity=Intensity.NORMAL,
+                italic=False,
                 vertical_position=VerticalPosition.SUPERSCRIPT,
             ),
         ),
@@ -88,6 +115,7 @@ from ansiscape.enums import Intensity, VerticalPosition
             "73;74",
             InterpretationDict(
                 intensity=None,
+                italic=None,
                 vertical_position=VerticalPosition.SUBSCRIPT,
             ),
         ),

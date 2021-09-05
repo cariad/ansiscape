@@ -14,6 +14,13 @@ class InterpretationDict(TypedDict):
     intensity: Optional[Intensity]
 
     """
+    Describes the italic of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no italic".
+    """
+    italic: Optional[bool]
+
+    """
     Describes the vertical position of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no vertical

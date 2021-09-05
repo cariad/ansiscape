@@ -1,8 +1,8 @@
 from pytest import fixture
 
-from ansiscape import InterpretationDict
+from ansiscape import InterpretationDict, make_interpretation
 
 
 @fixture
 def interpretation() -> InterpretationDict:
-    return InterpretationDict(intensity=None, vertical_position=None)
+    return make_interpretation()

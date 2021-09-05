@@ -3,7 +3,7 @@ from ansiscape.version import get_version
 
 
 def interpret(code: str) -> InterpretationDict:
-    interpretation = InterpretationDict(intensity=None, vertical_position=None)
+    interpretation = make_interpretation()
 
     if not code:
         return interpretation
@@ -36,6 +36,14 @@ def interpret(code: str) -> InterpretationDict:
             # We've reached an attribute that none of our interpreters can
             # handle. Rather than skip it and risk a mess, we'll stop early.
             return interpretation
+
+
+def make_interpretation() -> InterpretationDict:
+    return InterpretationDict(
+        intensity=None,
+        italic=None,
+        vertical_position=None,
+    )
 
 
 __all__ = ["get_version", "InterpretationDict"]
