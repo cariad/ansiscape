@@ -1,0 +1,11 @@
+[tool.black]
+exclude = '.venv'
+
+[tool.isort]
+profile = 'black'
+skip = '.venv'
+
+[tool.pytest.ini_options]
+addopts = '--cov=ansiscape --cov-branch --cov-report=html --cov-report=term-missing:skip-covered --cov-report=xml --no-cov-on-fail'
+log_cli = 1
+testpaths = 'tests'
