@@ -1,5 +1,6 @@
 nav:
   - index.md
+  - what.md
   - 8-bit.md
 site_name: ansiscape
 theme:
