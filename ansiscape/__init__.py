@@ -40,6 +40,7 @@ def interpret(code: str) -> InterpretationDict:
 
 def make_interpretation() -> InterpretationDict:
     return InterpretationDict(
+        blink_speed=None,
         intensity=None,
         italic=None,
         underline=None,

@@ -1,10 +1,17 @@
 from typing import Optional, TypedDict
 
-from ansiscape.enums import Intensity, Underline, VerticalPosition
+from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
 
 
 class InterpretationDict(TypedDict):
     """Describes an interpretation of a sequence of ANSI escape codes."""
+
+    """
+    Describes the blinking speed of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no blinking".
+    """
+    blink_speed: Optional[BlinkSpeed]
 
     """
     Describes the intensity of subsequent text.
