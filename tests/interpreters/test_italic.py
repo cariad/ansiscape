@@ -35,9 +35,10 @@ def test_update(
     interpretation: InterpretationDict,
 ) -> None:
     ItalicInterpreter().update(code, interpretation)
-    assert interpretation == {
-        "intensity": None,
-        "italic": expect,
-        "underline": None,
-        "vertical_position": None,
-    }
+    assert interpretation == InterpretationDict(
+        blink_speed=None,
+        intensity=None,
+        italic=expect,
+        underline=None,
+        vertical_position=None,
+    )

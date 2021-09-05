@@ -36,13 +36,14 @@ def test_claim(code: List[int], expect: int) -> None:
 )
 def test_update(
     code: List[int],
-    expect: Optional[bool],
+    expect: Optional[Underline],
     interpretation: InterpretationDict,
 ) -> None:
     UnderlineInterpreter().update(code, interpretation)
-    assert interpretation == {
-        "intensity": None,
-        "italic": None,
-        "underline": expect,
-        "vertical_position": None,
-    }
+    assert interpretation == InterpretationDict(
+        blink_speed=None,
+        intensity=None,
+        italic=None,
+        underline=expect,
+        vertical_position=None,
+    )
