@@ -39,5 +39,6 @@ def test_update(
     assert interpretation == {
         "intensity": None,
         "italic": None,
+        "underline": None,
         "vertical_position": expect,
     }

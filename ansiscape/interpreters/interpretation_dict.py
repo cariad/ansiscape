@@ -1,6 +1,6 @@
 from typing import Optional, TypedDict
 
-from ansiscape.enums import Intensity, VerticalPosition
+from ansiscape.enums import Intensity, Underline, VerticalPosition
 
 
 class InterpretationDict(TypedDict):
@@ -19,6 +19,13 @@ class InterpretationDict(TypedDict):
     `None` should be interpreted as "no change" rather than "no italic".
     """
     italic: Optional[bool]
+
+    """
+    Describes the underline of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no underline".
+    """
+    underline: Optional[Underline]
 
     """
     Describes the vertical position of subsequent text.
