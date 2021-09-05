@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pytest import mark
 
@@ -25,16 +25,20 @@ def test_claim(code: List[int], expect: int) -> None:
 @mark.parametrize(
     "code, expect",
     [
-        ([0], InterpretationDict(intensity=Intensity.NORMAL, vertical_position=None)),
-        ([1], InterpretationDict(intensity=Intensity.BOLD, vertical_position=None)),
-        ([2], InterpretationDict(intensity=Intensity.DIM, vertical_position=None)),
-        ([22], InterpretationDict(intensity=Intensity.NORMAL, vertical_position=None)),
+        ([0], Intensity.NORMAL),
+        ([1], Intensity.BOLD),
+        ([2], Intensity.DIM),
+        ([22], Intensity.NORMAL),
     ],
 )
 def test_update(
     code: List[int],
-    expect: InterpretationDict,
+    expect: Optional[Intensity],
     interpretation: InterpretationDict,
 ) -> None:
     IntensityInterpreter().update(code, interpretation)
-    assert interpretation == expect
+    assert interpretation == {
+        "intensity": expect,
+        "italic": None,
+        "vertical_position": None,
+    }
