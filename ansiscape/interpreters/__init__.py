@@ -11,6 +11,7 @@ from ansiscape.interpreters.interpretation_dict import InterpretationDict
 from ansiscape.interpreters.interpreter import Interpreter
 from ansiscape.interpreters.invert import InvertInterpreter
 from ansiscape.interpreters.italic import ItalicInterpreter
+from ansiscape.interpreters.overline import OverlineInterpreter
 from ansiscape.interpreters.proportional_spacing import ProportionalSpacingInterpreter
 from ansiscape.interpreters.strike import StrikeInterpreter
 from ansiscape.interpreters.underline import UnderlineInterpreter
@@ -26,6 +27,7 @@ interpreters: List[Interpreter] = [
     IntensityInterpreter(),
     InvertInterpreter(),
     ItalicInterpreter(),
+    OverlineInterpreter(),
     ProportionalSpacingInterpreter(),
     StrikeInterpreter(),
     UnderlineInterpreter(),
@@ -44,6 +46,7 @@ __all__ = [
     "interpreters",
     "InvertInterpreter",
     "ItalicInterpreter",
+    "OverlineInterpreter",
     "ProportionalSpacingInterpreter",
     "StrikeInterpreter",
     "UnderlineInterpreter",
