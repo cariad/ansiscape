@@ -225,6 +225,12 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
 
             return len(code)
 
+        if code[1] == 3:
+            raise NotImplementedError("Cyan-Magenta-Yellow schema not supported")
+
+        if code[1] == 4:
+            raise NotImplementedError("Cyan-Magenta-Yellow-Black schema not supported")
+
         if code[1] == 5:
             # 8-bit colour:
             if not 0 <= code[2] <= 255:
