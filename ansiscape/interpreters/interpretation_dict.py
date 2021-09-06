@@ -78,6 +78,13 @@ class InterpretationDict(TypedDict):
     italic: Optional[bool]
 
     """
+    Describes the overline of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no overline".
+    """
+    overline: Optional[bool]
+
+    """
     Describes the proportional spacing of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no proportional
