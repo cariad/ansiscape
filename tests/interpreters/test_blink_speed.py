@@ -3,7 +3,8 @@ from typing import List, Optional
 from pytest import mark
 
 from ansiscape.enums import BlinkSpeed
-from ansiscape.interpreters import BlinkSpeedInterpreter, InterpretationDict
+from ansiscape.interpreters import BlinkSpeedInterpreter
+from ansiscape.types import InterpretationDict
 
 
 @mark.parametrize(

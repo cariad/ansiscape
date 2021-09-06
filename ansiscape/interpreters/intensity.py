@@ -1,8 +1,8 @@
 from typing import List
 
 from ansiscape.enums import Intensity
-from ansiscape.interpreters.interpretation_dict import InterpretationDict
 from ansiscape.interpreters.interpreter import Interpreter
+from ansiscape.types import InterpretationDict
 
 
 class IntensityInterpreter(Interpreter[Intensity]):

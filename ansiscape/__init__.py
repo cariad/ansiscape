@@ -1,6 +1,7 @@
 from typing import List
 
-from ansiscape.interpreters import InterpretationDict, interpreters
+from ansiscape.interpreters import interpreters
+from ansiscape.types import InterpretationDict
 from ansiscape.version import get_version
 
 

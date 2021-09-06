@@ -2,7 +2,8 @@ from typing import List, Optional
 
 from pytest import mark
 
-from ansiscape.interpreters import InterpretationDict, StrikeInterpreter
+from ansiscape.interpreters import StrikeInterpreter
+from ansiscape.types import InterpretationDict
 
 
 @mark.parametrize(

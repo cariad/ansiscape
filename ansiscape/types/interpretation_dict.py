@@ -51,6 +51,16 @@ class InterpretationDict(TypedDict):
     """
     foreground_color: Optional[Color]
 
+    # """
+    # Describes the foreground colour of subsequent text as specific RGB values.
+
+    # This is set only if `foreground_color` is `Color.CUSTOM`.
+
+    # `None` should be interpreted as "no change" rather than "no foreground RGB
+    # colour".
+    # """
+    # foreground_rgb: Optional[RGB]
+
     """
     Describes the framing of subsequent text.
 

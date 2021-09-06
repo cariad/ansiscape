@@ -3,7 +3,8 @@ from typing import List, Optional
 from pytest import mark
 
 from ansiscape.enums import Intensity
-from ansiscape.interpreters import IntensityInterpreter, InterpretationDict
+from ansiscape.interpreters import IntensityInterpreter
+from ansiscape.types import InterpretationDict
 
 
 @mark.parametrize(

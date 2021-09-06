@@ -8,7 +8,6 @@ from ansiscape.interpreters.foreground_color import ForegroundColorInterpreter
 from ansiscape.interpreters.frame import FrameInterpreter
 from ansiscape.interpreters.ideogram import IdeogramInterpreter
 from ansiscape.interpreters.intensity import IntensityInterpreter
-from ansiscape.interpreters.interpretation_dict import InterpretationDict
 from ansiscape.interpreters.interpreter import Interpreter
 from ansiscape.interpreters.invert import InvertInterpreter
 from ansiscape.interpreters.italic import ItalicInterpreter
@@ -45,7 +44,6 @@ __all__ = [
     "FrameInterpreter",
     "IdeogramInterpreter",
     "IntensityInterpreter",
-    "InterpretationDict",
     "interpreters",
     "InvertInterpreter",
     "ItalicInterpreter",
