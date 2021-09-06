@@ -232,6 +232,79 @@ from ansiscape.types import Color, InterpretationDict
                 standard_color=StandardColor.BRIGHT_WHITE,
             ),
         ),
+        # 8-bit RGB:
+        (
+            [38, 5, 16],
+            3,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(0, 0, 0),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 5, 21],
+            3,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(0, 0, 1),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 5, 46],
+            3,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(0, 1, 0),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 5, 51],
+            3,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(0, 1, 1),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 5, 196],
+            3,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(1, 0, 0),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 5, 201],
+            3,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(1, 0, 1),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 5, 226],
+            3,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(1, 1, 0),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 5, 231],
+            3,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(1, 1, 1),
+                standard_color=None,
+            ),
+        ),
         ([39], 0, None),
         # Standard bright colours:
         ([89], 0, None),
