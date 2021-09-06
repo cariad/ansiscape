@@ -11,7 +11,7 @@ from ansiscape.types import Color, InterpretationDict
     "code, expect_claim, expect",
     [
         # Reset:
-        ([0], 1, Color(color_type=ColorType.DEFAULT, rgb=None, standard_color=None)),
+        ([0], 1, Color(color_type=ColorType.DEFAULT, rgba=None, standard_color=None)),
         # Standard colours:
         ([29], 0, None),
         (
@@ -19,7 +19,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BLACK,
             ),
         ),
@@ -28,7 +28,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.RED,
             ),
         ),
@@ -37,7 +37,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.GREEN,
             ),
         ),
@@ -46,7 +46,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.YELLOW,
             ),
         ),
@@ -55,7 +55,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BLUE,
             ),
         ),
@@ -64,7 +64,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.MAGENTA,
             ),
         ),
@@ -73,7 +73,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.CYAN,
             ),
         ),
@@ -82,17 +82,26 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.WHITE,
             ),
         ),
         # 24-bit:
         (
+            [38, 1],
+            2,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgba=(0.0, 0.0, 0.0, 0.0),
+                standard_color=None,
+            ),
+        ),
+        (
             [38, 2, 0, 128, 255],
             5,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(0.0, 0.5019607843137255, 1.0),
+                rgba=(0.0, 0.5019607843137255, 1.0, 1),
                 standard_color=None,
             ),
         ),
@@ -101,7 +110,7 @@ from ansiscape.types import Color, InterpretationDict
             6,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(1.0, 0.5019607843137255, 0.0),
+                rgba=(1.0, 0.5019607843137255, 0.0, 1),
                 standard_color=None,
             ),
         ),
@@ -110,7 +119,7 @@ from ansiscape.types import Color, InterpretationDict
             7,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(0.0, 0.5019607843137255, 1.0),
+                rgba=(0.0, 0.5019607843137255, 1.0, 1),
                 standard_color=None,
             ),
         ),
@@ -120,7 +129,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BLACK,
             ),
         ),
@@ -129,7 +138,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.RED,
             ),
         ),
@@ -138,7 +147,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.GREEN,
             ),
         ),
@@ -147,7 +156,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.YELLOW,
             ),
         ),
@@ -156,7 +165,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BLUE,
             ),
         ),
@@ -165,7 +174,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.MAGENTA,
             ),
         ),
@@ -174,7 +183,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.CYAN,
             ),
         ),
@@ -183,7 +192,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.WHITE,
             ),
         ),
@@ -193,7 +202,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_BLACK,
             ),
         ),
@@ -202,7 +211,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_RED,
             ),
         ),
@@ -211,7 +220,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_GREEN,
             ),
         ),
@@ -220,7 +229,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_YELLOW,
             ),
         ),
@@ -229,7 +238,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_BLUE,
             ),
         ),
@@ -238,7 +247,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_MAGENTA,
             ),
         ),
@@ -247,7 +256,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_CYAN,
             ),
         ),
@@ -256,7 +265,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_WHITE,
             ),
         ),
@@ -266,7 +275,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(0, 0, 0),
+                rgba=(0, 0, 0, 1),
                 standard_color=None,
             ),
         ),
@@ -275,7 +284,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(0, 0, 1),
+                rgba=(0, 0, 1, 1),
                 standard_color=None,
             ),
         ),
@@ -284,7 +293,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(0, 1, 0),
+                rgba=(0, 1, 0, 1),
                 standard_color=None,
             ),
         ),
@@ -293,7 +302,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(0, 1, 1),
+                rgba=(0, 1, 1, 1),
                 standard_color=None,
             ),
         ),
@@ -302,7 +311,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(1, 0, 0),
+                rgba=(1, 0, 0, 1),
                 standard_color=None,
             ),
         ),
@@ -311,7 +320,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(1, 0, 1),
+                rgba=(1, 0, 1, 1),
                 standard_color=None,
             ),
         ),
@@ -320,7 +329,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(1, 1, 0),
+                rgba=(1, 1, 0, 1),
                 standard_color=None,
             ),
         ),
@@ -329,7 +338,7 @@ from ansiscape.types import Color, InterpretationDict
             3,
             Color(
                 color_type=ColorType.EXTENDED,
-                rgb=(1, 1, 1),
+                rgba=(1, 1, 1, 1),
                 standard_color=None,
             ),
         ),
@@ -341,7 +350,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_BLACK,
             ),
         ),
@@ -350,7 +359,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_RED,
             ),
         ),
@@ -359,7 +368,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_GREEN,
             ),
         ),
@@ -368,7 +377,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_YELLOW,
             ),
         ),
@@ -377,7 +386,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_BLUE,
             ),
         ),
@@ -386,7 +395,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_MAGENTA,
             ),
         ),
@@ -395,7 +404,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_CYAN,
             ),
         ),
@@ -404,7 +413,7 @@ from ansiscape.types import Color, InterpretationDict
             1,
             Color(
                 color_type=ColorType.STANDARD,
-                rgb=None,
+                rgba=None,
                 standard_color=StandardColor.BRIGHT_WHITE,
             ),
         ),

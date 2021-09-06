@@ -19,7 +19,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.DEFAULT,
                     Color(
                         color_type=ColorType.DEFAULT,
-                        rgb=None,
+                        rgba=None,
                         standard_color=None,
                     ),
                 ),
@@ -27,7 +27,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BLACK,
                     ),
                 ),
@@ -35,7 +35,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.RED,
                     ),
                 ),
@@ -43,7 +43,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.GREEN,
                     ),
                 ),
@@ -51,7 +51,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.YELLOW,
                     ),
                 ),
@@ -59,7 +59,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BLUE,
                     ),
                 ),
@@ -67,7 +67,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.MAGENTA,
                     ),
                 ),
@@ -75,7 +75,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.CYAN,
                     ),
                 ),
@@ -83,7 +83,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.WHITE,
                     ),
                 ),
@@ -95,7 +95,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BRIGHT_BLACK,
                     ),
                 ),
@@ -103,7 +103,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BRIGHT_RED,
                     ),
                 ),
@@ -111,7 +111,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BRIGHT_GREEN,
                     ),
                 ),
@@ -119,7 +119,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BRIGHT_YELLOW,
                     ),
                 ),
@@ -127,7 +127,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BRIGHT_BLUE,
                     ),
                 ),
@@ -135,7 +135,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BRIGHT_MAGENTA,
                     ),
                 ),
@@ -143,7 +143,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BRIGHT_CYAN,
                     ),
                 ),
@@ -151,7 +151,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.STANDARD,
                     Color(
                         color_type=ColorType.STANDARD,
-                        rgb=None,
+                        rgba=None,
                         standard_color=StandardColor.BRIGHT_WHITE,
                     ),
                 ),
@@ -176,6 +176,18 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
             interpretation["foreground_color"] = color
             return 1
 
+        if code[1] == 0:
+            raise NotImplementedError("no implementation defined")
+
+        if code[1] == 1:
+            # Transparent:
+            interpretation["foreground_color"] = Color(
+                color_type=ColorType.EXTENDED,
+                rgba=(0.0, 0.0, 0.0, 0.0),
+                standard_color=None,
+            )
+            return 2
+
         if code[1] == 2:
             # 24-bit colour:
             #
@@ -197,7 +209,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                 #     "38;2;<r>;<g>;<b>"
                 interpretation["foreground_color"] = Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(code[2] / 255, code[3] / 255, code[4] / 255),
+                    rgba=(code[2] / 255, code[3] / 255, code[4] / 255, 1.0),
                     standard_color=None,
                 )
 
@@ -207,7 +219,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                 # We don't support colour spaces (yet).
                 interpretation["foreground_color"] = Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(code[3] / 255, code[4] / 255, code[5] / 255),
+                    rgba=(code[3] / 255, code[4] / 255, code[5] / 255, 1.0),
                     standard_color=None,
                 )
 
@@ -230,7 +242,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                 # 8-bit RGB look-up:
                 interpretation["foreground_color"] = Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=get_8_bit_rgb(code[2]),
+                    rgba=(*get_8_bit_rgb(code[2]), 1.0),
                     standard_color=None,
                 )
 

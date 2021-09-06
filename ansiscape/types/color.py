@@ -1,10 +1,10 @@
 from typing import Optional, TypedDict
 
 from ansiscape.enums import ColorType, StandardColor
-from ansiscape.types.rgb import RGB
+from ansiscape.types.rgba import RGBA
 
 
 class Color(TypedDict):
     color_type: ColorType
-    rgb: Optional[RGB]
+    rgba: Optional[RGBA]
     standard_color: Optional[StandardColor]
