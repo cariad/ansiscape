@@ -1,11 +1,11 @@
 from typing import List
 
 from ansiscape.enums import Underline
-from ansiscape.interpreters.generic_lookup_interpreter import GenericLookupInterpreter
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class UnderlineInterpreter(GenericLookupInterpreter[Underline]):
+class UnderlineInterpreter(Interpreter[Underline]):
     """
     Recognises and interprets ANSI escape codes that change text intensity.
     """
@@ -20,7 +20,16 @@ class UnderlineInterpreter(GenericLookupInterpreter[Underline]):
             }
         )
 
-    def update(self, code: List[int], interpretation: InterpretationDict) -> None:
-        """Updates `interpretation` to describe the given underline."""
+    def update(self, code: List[int], interpretation: InterpretationDict) -> int:
+        """
+        Updates `interpretation` to describe the ANSI escape code attribute at
+        the start of the list.
 
-        interpretation["underline"] = self.attributes[code[0]]
+        Returns the count of attributes that were interpreted.
+        """
+
+        try:
+            interpretation["underline"] = self.attributes[code[0]]
+            return 1
+        except KeyError:
+            return 0

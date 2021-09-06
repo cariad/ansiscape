@@ -7,36 +7,24 @@ from ansiscape.interpreters import IntensityInterpreter, InterpretationDict
 
 
 @mark.parametrize(
-    "code, expect",
+    "code, expect_claim, expect",
     [
-        ([0], 1),
-        ([1], 1),
-        ([2], 1),
-        ([3], 0),
-        ([21], 0),
-        ([22], 1),
-        ([23], 0),
-    ],
-)
-def test_claim(code: List[int], expect: int) -> None:
-    assert IntensityInterpreter().claim(code) == expect
-
-
-@mark.parametrize(
-    "code, expect",
-    [
-        ([0], Intensity.NORMAL),
-        ([1], Intensity.BOLD),
-        ([2], Intensity.DIM),
-        ([22], Intensity.NORMAL),
+        ([0], 1, Intensity.NORMAL),
+        ([1], 1, Intensity.BOLD),
+        ([2], 1, Intensity.DIM),
+        ([3], 0, None),
+        ([21], 0, None),
+        ([22], 1, Intensity.NORMAL),
+        ([23], 0, None),
     ],
 )
 def test_update(
     code: List[int],
+    expect_claim: int,
     expect: Optional[Intensity],
     interpretation: InterpretationDict,
 ) -> None:
-    IntensityInterpreter().update(code, interpretation)
+    assert IntensityInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
         blackletter=None,
         blink_speed=None,

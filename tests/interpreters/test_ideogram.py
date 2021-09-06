@@ -7,39 +7,25 @@ from ansiscape.interpreters import IdeogramInterpreter, InterpretationDict
 
 
 @mark.parametrize(
-    "code, expect",
+    "code, expect_claim, expect",
     [
-        ([0], 1),
-        ([59], 0),
-        ([60], 1),
-        ([61], 1),
-        ([62], 1),
-        ([63], 1),
-        ([64], 1),
-        ([65], 0),
-    ],
-)
-def test_claim(code: List[int], expect: int) -> None:
-    assert IdeogramInterpreter().claim(code) == expect
-
-
-@mark.parametrize(
-    "code, expect",
-    [
-        ([0], Ideogram.NONE),
-        ([60], Ideogram.LINE_UNDER_OR_RIGHT),
-        ([61], Ideogram.DOUBLE_LINE_UNDER_OR_RIGHT),
-        ([62], Ideogram.LINE_OVER_OR_LEFT),
-        ([63], Ideogram.DOUBLE_LINE_OVER_OR_LEFT),
-        ([64], Ideogram.STRESS),
+        ([0], 1, Ideogram.NONE),
+        ([59], 0, None),
+        ([60], 1, Ideogram.LINE_UNDER_OR_RIGHT),
+        ([61], 1, Ideogram.DOUBLE_LINE_UNDER_OR_RIGHT),
+        ([62], 1, Ideogram.LINE_OVER_OR_LEFT),
+        ([63], 1, Ideogram.DOUBLE_LINE_OVER_OR_LEFT),
+        ([64], 1, Ideogram.STRESS),
+        ([65], 0, None),
     ],
 )
 def test_update(
     code: List[int],
+    expect_claim: int,
     expect: Optional[Ideogram],
     interpretation: InterpretationDict,
 ) -> None:
-    IdeogramInterpreter().update(code, interpretation)
+    assert IdeogramInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
         blackletter=None,
         blink_speed=None,

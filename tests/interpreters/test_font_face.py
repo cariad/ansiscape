@@ -7,49 +7,30 @@ from ansiscape.interpreters import FontFaceInterpreter, InterpretationDict
 
 
 @mark.parametrize(
-    "code, expect",
+    "code, expect_claim, expect",
     [
-        ([0], 1),
-        ([9], 0),
-        ([10], 1),
-        ([11], 1),
-        ([12], 1),
-        ([13], 1),
-        ([14], 1),
-        ([15], 1),
-        ([16], 1),
-        ([17], 1),
-        ([18], 1),
-        ([19], 1),
-        ([20], 0),
-    ],
-)
-def test_claim(code: List[int], expect: int) -> None:
-    assert FontFaceInterpreter().claim(code) == expect
-
-
-@mark.parametrize(
-    "code, expect",
-    [
-        ([0], FontFace.DEFAULT),
-        ([10], FontFace.DEFAULT),
-        ([11], FontFace.ALTERNATIVE_0),
-        ([12], FontFace.ALTERNATIVE_1),
-        ([13], FontFace.ALTERNATIVE_2),
-        ([14], FontFace.ALTERNATIVE_3),
-        ([15], FontFace.ALTERNATIVE_4),
-        ([16], FontFace.ALTERNATIVE_5),
-        ([17], FontFace.ALTERNATIVE_6),
-        ([18], FontFace.ALTERNATIVE_7),
-        ([19], FontFace.ALTERNATIVE_8),
+        ([0], 1, FontFace.DEFAULT),
+        ([9], 0, None),
+        ([10], 1, FontFace.DEFAULT),
+        ([11], 1, FontFace.ALTERNATIVE_0),
+        ([12], 1, FontFace.ALTERNATIVE_1),
+        ([13], 1, FontFace.ALTERNATIVE_2),
+        ([14], 1, FontFace.ALTERNATIVE_3),
+        ([15], 1, FontFace.ALTERNATIVE_4),
+        ([16], 1, FontFace.ALTERNATIVE_5),
+        ([17], 1, FontFace.ALTERNATIVE_6),
+        ([18], 1, FontFace.ALTERNATIVE_7),
+        ([19], 1, FontFace.ALTERNATIVE_8),
+        ([20], 0, None),
     ],
 )
 def test_update(
     code: List[int],
+    expect_claim: int,
     expect: Optional[FontFace],
     interpretation: InterpretationDict,
 ) -> None:
-    FontFaceInterpreter().update(code, interpretation)
+    assert FontFaceInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
         blackletter=None,
         blink_speed=None,

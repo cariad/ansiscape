@@ -6,35 +6,24 @@ from ansiscape.interpreters import BlackletterInterpreter, InterpretationDict
 
 
 @mark.parametrize(
-    "code, expect",
+    "code, expect_claim, expect",
     [
-        ([0], 1),
-        ([19], 0),
-        ([20], 1),
-        ([21], 0),
-        ([22], 0),
-        ([23], 1),
-        ([24], 0),
-    ],
-)
-def test_claim(code: List[int], expect: int) -> None:
-    assert BlackletterInterpreter().claim(code) == expect
-
-
-@mark.parametrize(
-    "code, expect",
-    [
-        ([0], False),
-        ([20], True),
-        ([23], False),
+        ([0], 1, False),
+        ([19], 0, None),
+        ([20], 1, True),
+        ([21], 0, None),
+        ([22], 0, None),
+        ([23], 1, False),
+        ([24], 0, None),
     ],
 )
 def test_update(
     code: List[int],
+    expect_claim: int,
     expect: Optional[bool],
     interpretation: InterpretationDict,
 ) -> None:
-    BlackletterInterpreter().update(code, interpretation)
+    assert BlackletterInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
         blackletter=expect,
         blink_speed=None,

@@ -7,37 +7,25 @@ from ansiscape.interpreters import BlinkSpeedInterpreter, InterpretationDict
 
 
 @mark.parametrize(
-    "code, expect",
+    "code, expect_claim, expect",
     [
-        ([0], 1),
-        ([4], 0),
-        ([5], 1),
-        ([6], 1),
-        ([7], 0),
-        ([24], 0),
-        ([25], 1),
-        ([26], 0),
-    ],
-)
-def test_claim(code: List[int], expect: int) -> None:
-    assert BlinkSpeedInterpreter().claim(code) == expect
-
-
-@mark.parametrize(
-    "code, expect",
-    [
-        ([0], BlinkSpeed.NONE),
-        ([5], BlinkSpeed.SLOW),
-        ([6], BlinkSpeed.FAST),
-        ([25], BlinkSpeed.NONE),
+        ([0], 1, BlinkSpeed.NONE),
+        ([4], 0, None),
+        ([5], 1, BlinkSpeed.SLOW),
+        ([6], 1, BlinkSpeed.FAST),
+        ([7], 0, None),
+        ([24], 0, None),
+        ([25], 1, BlinkSpeed.NONE),
+        ([26], 0, None),
     ],
 )
 def test_update(
     code: List[int],
+    expect_claim: int,
     expect: Optional[BlinkSpeed],
     interpretation: InterpretationDict,
 ) -> None:
-    BlinkSpeedInterpreter().update(code, interpretation)
+    assert BlinkSpeedInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
         blackletter=None,
         blink_speed=expect,

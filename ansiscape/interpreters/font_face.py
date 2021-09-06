@@ -1,11 +1,11 @@
 from typing import List
 
 from ansiscape.enums import FontFace
-from ansiscape.interpreters.generic_lookup_interpreter import GenericLookupInterpreter
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class FontFaceInterpreter(GenericLookupInterpreter[FontFace]):
+class FontFaceInterpreter(Interpreter[FontFace]):
     """
     Recognises and interprets ANSI escape codes that change the font face of
     subsequent text.
@@ -28,7 +28,16 @@ class FontFaceInterpreter(GenericLookupInterpreter[FontFace]):
             }
         )
 
-    def update(self, code: List[int], interpretation: InterpretationDict) -> None:
-        """Updates `interpretation` to describe the given font face."""
+    def update(self, code: List[int], interpretation: InterpretationDict) -> int:
+        """
+        Updates `interpretation` to describe the ANSI escape code attribute at
+        the start of the list.
 
-        interpretation["font_face"] = self.attributes[code[0]]
+        Returns the count of attributes that were interpreted.
+        """
+
+        try:
+            interpretation["font_face"] = self.attributes[code[0]]
+            return 1
+        except KeyError:
+            return 0

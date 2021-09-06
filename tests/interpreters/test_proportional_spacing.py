@@ -6,35 +6,24 @@ from ansiscape.interpreters import InterpretationDict, ProportionalSpacingInterp
 
 
 @mark.parametrize(
-    "code, expect",
+    "code, expect_claim, expect",
     [
-        ([0], 1),
-        ([25], 0),
-        ([26], 1),
-        ([27], 0),
-        ([49], 0),
-        ([50], 1),
-        ([51], 0),
-    ],
-)
-def test_claim(code: List[int], expect: int) -> None:
-    assert ProportionalSpacingInterpreter().claim(code) == expect
-
-
-@mark.parametrize(
-    "code, expect",
-    [
-        ([0], False),
-        ([26], True),
-        ([50], False),
+        ([0], 1, False),
+        ([25], 0, None),
+        ([26], 1, True),
+        ([27], 0, None),
+        ([49], 0, None),
+        ([50], 1, False),
+        ([51], 0, None),
     ],
 )
 def test_update(
     code: List[int],
+    expect_claim: int,
     expect: Optional[bool],
     interpretation: InterpretationDict,
 ) -> None:
-    ProportionalSpacingInterpreter().update(code, interpretation)
+    assert ProportionalSpacingInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
         blackletter=None,
         blink_speed=None,

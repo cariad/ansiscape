@@ -1,11 +1,11 @@
 from typing import List
 
 from ansiscape.enums import Ideogram
-from ansiscape.interpreters.generic_lookup_interpreter import GenericLookupInterpreter
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class IdeogramInterpreter(GenericLookupInterpreter[Ideogram]):
+class IdeogramInterpreter(Interpreter[Ideogram]):
     """
     Recognises and interprets ANSI escape codes that change ideogram formatting.
     """
@@ -22,9 +22,16 @@ class IdeogramInterpreter(GenericLookupInterpreter[Ideogram]):
             }
         )
 
-    def update(self, code: List[int], interpretation: InterpretationDict) -> None:
+    def update(self, code: List[int], interpretation: InterpretationDict) -> int:
         """
-        Updates `interpretation` to describe the given ideogram formatting.
+        Updates `interpretation` to describe the ANSI escape code attribute at
+        the start of the list.
+
+        Returns the count of attributes that were interpreted.
         """
 
-        interpretation["ideogram"] = self.attributes[code[0]]
+        try:
+            interpretation["ideogram"] = self.attributes[code[0]]
+            return 1
+        except KeyError:
+            return 0

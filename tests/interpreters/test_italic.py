@@ -6,35 +6,24 @@ from ansiscape.interpreters import InterpretationDict, ItalicInterpreter
 
 
 @mark.parametrize(
-    "code, expect",
+    "code, expect_claim, expect",
     [
-        ([0], 1),
-        ([2], 0),
-        ([3], 1),
-        ([4], 0),
-        ([22], 0),
-        ([23], 1),
-        ([24], 0),
-    ],
-)
-def test_claim(code: List[int], expect: int) -> None:
-    assert ItalicInterpreter().claim(code) == expect
-
-
-@mark.parametrize(
-    "code, expect",
-    [
-        ([0], False),
-        ([3], True),
-        ([23], False),
+        ([0], 1, False),
+        ([2], 0, None),
+        ([3], 1, True),
+        ([4], 0, None),
+        ([22], 0, None),
+        ([23], 1, False),
+        ([24], 0, None),
     ],
 )
 def test_update(
     code: List[int],
+    expect_claim: int,
     expect: Optional[bool],
     interpretation: InterpretationDict,
 ) -> None:
-    ItalicInterpreter().update(code, interpretation)
+    assert ItalicInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
         blackletter=None,
         blink_speed=None,
