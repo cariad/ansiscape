@@ -87,7 +87,7 @@ from ansiscape.types import Color
                 font_face=FontFace.DEFAULT,
                 foreground_color=Color(
                     color_type=ColorType.DEFAULT,
-                    rgb=None,
+                    rgba=None,
                     standard_color=None,
                 ),
                 frame=Frame.NONE,
@@ -671,7 +671,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BLACK,
                 ),
                 frame=None,
@@ -695,7 +695,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.RED,
                 ),
                 frame=None,
@@ -719,7 +719,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.GREEN,
                 ),
                 frame=None,
@@ -743,7 +743,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.YELLOW,
                 ),
                 frame=None,
@@ -767,7 +767,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BLUE,
                 ),
                 frame=None,
@@ -791,7 +791,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.MAGENTA,
                 ),
                 frame=None,
@@ -815,7 +815,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.CYAN,
                 ),
                 frame=None,
@@ -839,8 +839,32 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.WHITE,
+                ),
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "38;1",
+            InterpretationDict(
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0.0, 0.0, 0.0, 0.0),
+                    standard_color=None,
                 ),
                 frame=None,
                 ideogram=None,
@@ -863,7 +887,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0, 0, 0),
+                    rgba=(0, 0, 0, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -887,7 +911,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(1, 0, 0),
+                    rgba=(1, 0, 0, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -911,7 +935,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0, 1, 0),
+                    rgba=(0, 1, 0, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -935,7 +959,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0, 0, 1),
+                    rgba=(0, 0, 1, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -959,7 +983,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BLACK,
                 ),
                 frame=None,
@@ -983,7 +1007,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.RED,
                 ),
                 frame=None,
@@ -1007,7 +1031,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.GREEN,
                 ),
                 frame=None,
@@ -1031,7 +1055,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.YELLOW,
                 ),
                 frame=None,
@@ -1055,7 +1079,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BLUE,
                 ),
                 frame=None,
@@ -1079,7 +1103,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.MAGENTA,
                 ),
                 frame=None,
@@ -1103,7 +1127,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.CYAN,
                 ),
                 frame=None,
@@ -1127,7 +1151,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.WHITE,
                 ),
                 frame=None,
@@ -1151,7 +1175,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_BLACK,
                 ),
                 frame=None,
@@ -1175,7 +1199,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_RED,
                 ),
                 frame=None,
@@ -1199,7 +1223,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_GREEN,
                 ),
                 frame=None,
@@ -1223,7 +1247,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_YELLOW,
                 ),
                 frame=None,
@@ -1247,7 +1271,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_BLUE,
                 ),
                 frame=None,
@@ -1271,7 +1295,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_MAGENTA,
                 ),
                 frame=None,
@@ -1295,7 +1319,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_CYAN,
                 ),
                 frame=None,
@@ -1319,7 +1343,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_WHITE,
                 ),
                 frame=None,
@@ -1343,7 +1367,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0, 0, 0),
+                    rgba=(0, 0, 0, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1367,7 +1391,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0, 0, 1),
+                    rgba=(0, 0, 1, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1391,7 +1415,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0, 1, 0),
+                    rgba=(0, 1, 0, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1415,7 +1439,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0, 1, 1),
+                    rgba=(0, 1, 1, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1439,7 +1463,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(1, 0, 0),
+                    rgba=(1, 0, 0, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1463,7 +1487,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(1, 0, 1),
+                    rgba=(1, 0, 1, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1487,7 +1511,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(1, 1, 0),
+                    rgba=(1, 1, 0, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1511,7 +1535,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(1, 1, 1),
+                    rgba=(1, 1, 1, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1535,7 +1559,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0.04, 0.04, 0.04),
+                    rgba=(0.04, 0.04, 0.04, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1559,7 +1583,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.EXTENDED,
-                    rgb=(0.96, 0.96, 0.96),
+                    rgba=(0.96, 0.96, 0.96, 1.0),
                     standard_color=None,
                 ),
                 frame=None,
@@ -1863,7 +1887,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_BLACK,
                 ),
                 frame=None,
@@ -1887,7 +1911,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_RED,
                 ),
                 frame=None,
@@ -1911,7 +1935,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_GREEN,
                 ),
                 frame=None,
@@ -1935,7 +1959,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_YELLOW,
                 ),
                 frame=None,
@@ -1959,7 +1983,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_BLUE,
                 ),
                 frame=None,
@@ -1983,7 +2007,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_MAGENTA,
                 ),
                 frame=None,
@@ -2007,7 +2031,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_CYAN,
                 ),
                 frame=None,
@@ -2031,7 +2055,7 @@ from ansiscape.types import Color
                 font_face=None,
                 foreground_color=Color(
                     color_type=ColorType.STANDARD,
-                    rgb=None,
+                    rgba=None,
                     standard_color=StandardColor.BRIGHT_WHITE,
                 ),
                 frame=None,
@@ -2075,7 +2099,7 @@ from ansiscape.types import Color
                 font_face=FontFace.DEFAULT,
                 foreground_color=Color(
                     color_type=ColorType.DEFAULT,
-                    rgb=None,
+                    rgba=None,
                     standard_color=None,
                 ),
                 frame=Frame.NONE,
