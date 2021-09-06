@@ -2,9 +2,7 @@ from enum import IntEnum, unique
 
 
 @unique
-class Color(IntEnum):
-    DEFAULT = 0
-
+class StandardColor(IntEnum):
     BLACK = 1
     RED = 2
     GREEN = 3
@@ -22,5 +20,3 @@ class Color(IntEnum):
     BRIGHT_MAGENTA = 14
     BRIGHT_CYAN = 15
     BRIGHT_WHITE = 16
-
-    CUSTOM = 17
