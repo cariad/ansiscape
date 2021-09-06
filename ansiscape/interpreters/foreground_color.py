@@ -91,6 +91,14 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                     ColorType.EXTENDED,
                     None,
                 ),
+                39: (
+                    ColorType.DEFAULT,
+                    Color(
+                        color_type=ColorType.DEFAULT,
+                        rgba=None,
+                        standard_color=None,
+                    ),
+                ),
                 90: (
                     ColorType.STANDARD,
                     Color(

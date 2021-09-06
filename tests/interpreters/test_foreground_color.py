@@ -342,7 +342,9 @@ from ansiscape.types import Color, InterpretationDict
                 standard_color=None,
             ),
         ),
-        ([39], 0, None),
+        # Default:
+        ([39], 1, Color(color_type=ColorType.DEFAULT, rgba=None, standard_color=None)),
+        ([40], 0, None),
         # Standard bright colours:
         ([89], 0, None),
         (
