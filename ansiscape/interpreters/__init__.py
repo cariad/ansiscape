@@ -2,6 +2,7 @@ from typing import List
 
 from ansiscape.interpreters.blink_speed import BlinkSpeedInterpreter
 from ansiscape.interpreters.conceal import ConcealInterpreter
+from ansiscape.interpreters.font_face import FontFaceInterpreter
 from ansiscape.interpreters.intensity import IntensityInterpreter
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
 from ansiscape.interpreters.interpreter import Interpreter
@@ -14,6 +15,7 @@ from ansiscape.interpreters.vertical_position import VerticalPositionInterpreter
 interpreters: List[Interpreter] = [
     BlinkSpeedInterpreter(),
     ConcealInterpreter(),
+    FontFaceInterpreter(),
     IntensityInterpreter(),
     InvertInterpreter(),
     ItalicInterpreter(),
@@ -25,6 +27,7 @@ interpreters: List[Interpreter] = [
 __all__ = [
     "BlinkSpeedInterpreter",
     "ConcealInterpreter",
+    "FontFaceInterpreter",
     "IntensityInterpreter",
     "InterpretationDict",
     "interpreters",
