@@ -86,6 +86,34 @@ from ansiscape.types import Color, InterpretationDict
                 standard_color=StandardColor.WHITE,
             ),
         ),
+        # 24-bit:
+        (
+            [38, 2, 0, 128, 255],
+            5,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(0.0, 0.5019607843137255, 1.0),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 2, 999, 255, 128, 0],
+            6,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(1.0, 0.5019607843137255, 0.0),
+                standard_color=None,
+            ),
+        ),
+        (
+            [38, 2, 999, 0, 128, 255, 999],
+            7,
+            Color(
+                color_type=ColorType.EXTENDED,
+                rgb=(0.0, 0.5019607843137255, 1.0),
+                standard_color=None,
+            ),
+        ),
         # 8-bit standard colours:
         (
             [38, 5, 0],
