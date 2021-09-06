@@ -3,7 +3,7 @@ from typing import List, Optional
 from pytest import mark
 
 from ansiscape.enums import ColorType, StandardColor
-from ansiscape.interpreters import ForegroundColorInterpreter
+from ansiscape.interpreters import BackgroundColorInterpreter
 from ansiscape.types import Color, InterpretationDict
 
 
@@ -13,9 +13,9 @@ from ansiscape.types import Color, InterpretationDict
         # Reset:
         ([0], 1, Color(color_type=ColorType.DEFAULT, rgba=None, standard_color=None)),
         # Standard colours:
-        ([29], 0, None),
+        ([39], 0, None),
         (
-            [30],
+            [40],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -24,7 +24,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [31],
+            [41],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -33,7 +33,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [32],
+            [42],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -42,7 +42,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [33],
+            [43],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -51,7 +51,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [34],
+            [44],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -60,7 +60,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [35],
+            [45],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -69,7 +69,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [36],
+            [46],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -78,7 +78,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [37],
+            [47],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -88,7 +88,7 @@ from ansiscape.types import Color, InterpretationDict
         ),
         # 24-bit:
         (
-            [38, 1],
+            [48, 1],
             2,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -97,7 +97,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 2, 0, 128, 255],
+            [48, 2, 0, 128, 255],
             5,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -106,7 +106,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 2, 999, 255, 128, 0],
+            [48, 2, 999, 255, 128, 0],
             6,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -115,7 +115,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 2, 999, 0, 128, 255, 999],
+            [48, 2, 999, 0, 128, 255, 999],
             7,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -125,7 +125,7 @@ from ansiscape.types import Color, InterpretationDict
         ),
         # 8-bit standard colours:
         (
-            [38, 5, 0],
+            [48, 5, 0],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -134,7 +134,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 1],
+            [48, 5, 1],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -143,7 +143,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 2],
+            [48, 5, 2],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -152,7 +152,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 3],
+            [48, 5, 3],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -161,7 +161,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 4],
+            [48, 5, 4],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -170,7 +170,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 5],
+            [48, 5, 5],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -179,7 +179,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 6],
+            [48, 5, 6],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -188,7 +188,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 7],
+            [48, 5, 7],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -198,7 +198,7 @@ from ansiscape.types import Color, InterpretationDict
         ),
         # 8-bit standard bright colours:
         (
-            [38, 5, 8],
+            [48, 5, 8],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -207,7 +207,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 9],
+            [48, 5, 9],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -216,7 +216,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 10],
+            [48, 5, 10],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -225,7 +225,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 11],
+            [48, 5, 11],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -234,7 +234,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 12],
+            [48, 5, 12],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -243,7 +243,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 13],
+            [48, 5, 13],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -252,7 +252,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 14],
+            [48, 5, 14],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -261,7 +261,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 15],
+            [48, 5, 15],
             3,
             Color(
                 color_type=ColorType.STANDARD,
@@ -271,7 +271,7 @@ from ansiscape.types import Color, InterpretationDict
         ),
         # 8-bit RGB:
         (
-            [38, 5, 16],
+            [48, 5, 16],
             3,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -280,7 +280,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 21],
+            [48, 5, 21],
             3,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -289,7 +289,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 46],
+            [48, 5, 46],
             3,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -298,7 +298,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 51],
+            [48, 5, 51],
             3,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -307,7 +307,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 196],
+            [48, 5, 196],
             3,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -316,7 +316,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 201],
+            [48, 5, 201],
             3,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -325,7 +325,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 226],
+            [48, 5, 226],
             3,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -334,7 +334,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [38, 5, 231],
+            [48, 5, 231],
             3,
             Color(
                 color_type=ColorType.EXTENDED,
@@ -343,12 +343,12 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         # Default:
-        ([39], 1, Color(color_type=ColorType.DEFAULT, rgba=None, standard_color=None)),
-        ([40], 0, None),
+        ([49], 1, Color(color_type=ColorType.DEFAULT, rgba=None, standard_color=None)),
+        ([50], 0, None),
         # Standard bright colours:
-        ([89], 0, None),
+        ([99], 0, None),
         (
-            [90],
+            [100],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -357,7 +357,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [91],
+            [101],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -366,7 +366,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [92],
+            [102],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -375,7 +375,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [93],
+            [103],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -384,7 +384,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [94],
+            [104],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -393,7 +393,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [95],
+            [105],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -402,7 +402,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [96],
+            [106],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -411,7 +411,7 @@ from ansiscape.types import Color, InterpretationDict
             ),
         ),
         (
-            [97],
+            [107],
             1,
             Color(
                 color_type=ColorType.STANDARD,
@@ -419,7 +419,7 @@ from ansiscape.types import Color, InterpretationDict
                 standard_color=StandardColor.BRIGHT_WHITE,
             ),
         ),
-        ([98], 0, None),
+        ([108], 0, None),
     ],
 )
 def test_update(
@@ -428,14 +428,14 @@ def test_update(
     expect: Optional[Color],
     interpretation: InterpretationDict,
 ) -> None:
-    assert ForegroundColorInterpreter().update(code, interpretation) == expect_claim
+    assert BackgroundColorInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
-        background_color=None,
+        background_color=expect,
         blackletter=None,
         blink_speed=None,
         conceal=None,
         font_face=None,
-        foreground_color=expect,
+        foreground_color=None,
         frame=None,
         ideogram=None,
         intensity=None,

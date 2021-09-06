@@ -16,6 +16,14 @@ class InterpretationDict(TypedDict):
     """Describes an interpretation of a sequence of ANSI escape codes."""
 
     """
+    Describes the background colour of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no background
+    colour".
+    """
+    background_color: Optional[Color]
+
+    """
     Describes the blackletter of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no blackletter".
