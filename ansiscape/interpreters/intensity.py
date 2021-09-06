@@ -1,11 +1,11 @@
 from typing import List
 
 from ansiscape.enums import Intensity
-from ansiscape.interpreters.generic_lookup_interpreter import GenericLookupInterpreter
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class IntensityInterpreter(GenericLookupInterpreter[Intensity]):
+class IntensityInterpreter(Interpreter[Intensity]):
     """
     Recognises and interprets ANSI escape codes that change text intensity.
     """
@@ -20,7 +20,16 @@ class IntensityInterpreter(GenericLookupInterpreter[Intensity]):
             }
         )
 
-    def update(self, code: List[int], interpretation: InterpretationDict) -> None:
-        """Updates `interpretation` to describe the given intensity."""
+    def update(self, code: List[int], interpretation: InterpretationDict) -> int:
+        """
+        Updates `interpretation` to describe the ANSI escape code attribute at
+        the start of the list.
 
-        interpretation["intensity"] = self.attributes[code[0]]
+        Returns the count of attributes that were interpreted.
+        """
+
+        try:
+            interpretation["intensity"] = self.attributes[code[0]]
+            return 1
+        except KeyError:
+            return 0

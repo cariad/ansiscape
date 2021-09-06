@@ -7,36 +7,24 @@ from ansiscape.interpreters import FrameInterpreter, InterpretationDict
 
 
 @mark.parametrize(
-    "code, expect",
+    "code, expect_claim, expect",
     [
-        ([0], 1),
-        ([50], 0),
-        ([51], 1),
-        ([52], 1),
-        ([53], 0),
-        ([54], 1),
-        ([55], 0),
-    ],
-)
-def test_claim(code: List[int], expect: int) -> None:
-    assert FrameInterpreter().claim(code) == expect
-
-
-@mark.parametrize(
-    "code, expect",
-    [
-        ([0], Frame.NONE),
-        ([51], Frame.FRAMED),
-        ([52], Frame.ENCIRCLED),
-        ([54], Frame.NONE),
+        ([0], 1, Frame.NONE),
+        ([50], 0, None),
+        ([51], 1, Frame.FRAMED),
+        ([52], 1, Frame.ENCIRCLED),
+        ([53], 0, None),
+        ([54], 1, Frame.NONE),
+        ([55], 0, None),
     ],
 )
 def test_update(
     code: List[int],
+    expect_claim: int,
     expect: Optional[Frame],
     interpretation: InterpretationDict,
 ) -> None:
-    FrameInterpreter().update(code, interpretation)
+    assert FrameInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
         blackletter=None,
         blink_speed=None,

@@ -1,10 +1,10 @@
 from typing import List
 
-from ansiscape.interpreters.generic_lookup_interpreter import GenericLookupInterpreter
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class ItalicInterpreter(GenericLookupInterpreter[bool]):
+class ItalicInterpreter(Interpreter[bool]):
     """
     Recognises and interprets ANSI escape codes that change text italic.
     """
@@ -18,7 +18,16 @@ class ItalicInterpreter(GenericLookupInterpreter[bool]):
             }
         )
 
-    def update(self, code: List[int], interpretation: InterpretationDict) -> None:
-        """Updates `interpretation` to describe the given italics."""
+    def update(self, code: List[int], interpretation: InterpretationDict) -> int:
+        """
+        Updates `interpretation` to describe the ANSI escape code attribute at
+        the start of the list.
 
-        interpretation["italic"] = self.attributes[code[0]]
+        Returns the count of attributes that were interpreted.
+        """
+
+        try:
+            interpretation["italic"] = self.attributes[code[0]]
+            return 1
+        except KeyError:
+            return 0

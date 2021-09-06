@@ -1,42 +1,44 @@
-from typing import Optional
+from typing import List
 
 from ansiscape.interpreters import InterpretationDict, interpreters
 from ansiscape.version import get_version
 
 
+def make_attributes(code: str) -> List[int]:
+    code = code.strip()
+    if not code:
+        return []
+    return [int(attribute) for attribute in code.split(";")]
+
+
 def interpret(code: str) -> InterpretationDict:
     interpretation = make_interpretation()
-
-    if not code:
-        return interpretation
-
-    attributes = [int(attribute) for attribute in code.split(";")]
+    remaining_attributes = make_attributes(code)
 
     while True:
-        max_claim = 0
-        min_claim: Optional[int] = None
+        if not remaining_attributes:
+            return interpretation
+
+        this_round_claimed = 0
 
         for interpreter in interpreters:
-            claim = interpreter.claim(attributes)
-            if claim == 0:
+            claim = interpreter.update(remaining_attributes, interpretation)
+            if not claim:
                 continue
-            max_claim = max(max_claim, claim)
-            min_claim = claim if min_claim is None else min(min_claim, claim)
-            interpreter.update(attributes[:claim], interpretation)
 
-        if max_claim == 0:
-            # None of our interpreters can handler this.
+            this_round_claimed = this_round_claimed or claim
+
+            if claim != this_round_claimed:
+                # Many interpreters can handle the same attribute, but they
+                # must all claim the same quantity off the head.
+                raise Exception(f"{claim}, {this_round_claimed}")
+
+        if not this_round_claimed:
+            # None of our interpreters can handle the attribute at the start of
+            # the list. Rather than skip it and risk a mess, we'll stop now.
             return interpretation
 
-        if min_claim != max_claim:
-            # Many interpreters can handle the same attribute, but they must
-            # all claim the same quantity off the head.
-            raise Exception(f"{min_claim}, {max_claim}")
-
-        attributes = attributes[max_claim:]
-        if not attributes:
-            # Successfully interpreted the entire chain.
-            return interpretation
+        remaining_attributes = remaining_attributes[this_round_claimed:]
 
 
 def make_interpretation() -> InterpretationDict:

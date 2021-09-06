@@ -1,10 +1,10 @@
 from typing import List
 
-from ansiscape.interpreters.generic_lookup_interpreter import GenericLookupInterpreter
 from ansiscape.interpreters.interpretation_dict import InterpretationDict
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class ProportionalSpacingInterpreter(GenericLookupInterpreter[bool]):
+class ProportionalSpacingInterpreter(Interpreter[bool]):
     """
     Recognises and interprets ANSI escape codes that change the proportional
     spacing of subsequent text.
@@ -19,9 +19,16 @@ class ProportionalSpacingInterpreter(GenericLookupInterpreter[bool]):
             }
         )
 
-    def update(self, code: List[int], interpretation: InterpretationDict) -> None:
+    def update(self, code: List[int], interpretation: InterpretationDict) -> int:
         """
-        Updates `interpretation` to describe the given proportional spacing.
+        Updates `interpretation` to describe the ANSI escape code attribute at
+        the start of the list.
+
+        Returns the count of attributes that were interpreted.
         """
 
-        interpretation["proportional_spacing"] = self.attributes[code[0]]
+        try:
+            interpretation["proportional_spacing"] = self.attributes[code[0]]
+            return 1
+        except KeyError:
+            return 0
