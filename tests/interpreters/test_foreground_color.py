@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from pytest import mark
 
-from ansiscape.enums import StandardColor
+from ansiscape.enums import Color
 from ansiscape.interpreters import ForegroundColorInterpreter, InterpretationDict
 
 
@@ -19,7 +19,15 @@ from ansiscape.interpreters import ForegroundColorInterpreter, InterpretationDic
         ([35], 1),
         ([36], 1),
         ([37], 1),
-        ([38], 0),
+        ([38, 5, 0], 3),
+        ([38, 5, 1], 3),
+        ([38, 5, 2], 3),
+        ([38, 5, 3], 3),
+        ([38, 5, 4], 3),
+        ([38, 5, 5], 3),
+        ([38, 5, 6], 3),
+        ([38, 5, 7], 3),
+        ([39], 0),
     ],
 )
 def test_claim(code: List[int], expect: int) -> None:
@@ -29,20 +37,28 @@ def test_claim(code: List[int], expect: int) -> None:
 @mark.parametrize(
     "code, expect",
     [
-        ([0], StandardColor.DEFAULT),
-        ([30], StandardColor.BLACK),
-        ([31], StandardColor.RED),
-        ([32], StandardColor.GREEN),
-        ([33], StandardColor.YELLOW),
-        ([34], StandardColor.BLUE),
-        ([35], StandardColor.MAGENTA),
-        ([36], StandardColor.CYAN),
-        ([37], StandardColor.WHITE),
+        ([0], Color.DEFAULT),
+        ([30], Color.BLACK),
+        ([31], Color.RED),
+        ([32], Color.GREEN),
+        ([33], Color.YELLOW),
+        ([34], Color.BLUE),
+        ([35], Color.MAGENTA),
+        ([36], Color.CYAN),
+        ([37], Color.WHITE),
+        ([38, 5, 0], Color.BLACK),
+        ([38, 5, 1], Color.RED),
+        ([38, 5, 2], Color.GREEN),
+        ([38, 5, 3], Color.YELLOW),
+        ([38, 5, 4], Color.BLUE),
+        ([38, 5, 5], Color.MAGENTA),
+        ([38, 5, 6], Color.CYAN),
+        ([38, 5, 7], Color.WHITE),
     ],
 )
 def test_update(
     code: List[int],
-    expect: Optional[StandardColor],
+    expect: Optional[Color],
     interpretation: InterpretationDict,
 ) -> None:
     ForegroundColorInterpreter().update(code, interpretation)

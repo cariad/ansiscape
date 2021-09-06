@@ -2,11 +2,11 @@ from typing import Optional, TypedDict
 
 from ansiscape.enums import (
     BlinkSpeed,
+    Color,
     FontFace,
     Frame,
     Ideogram,
     Intensity,
-    StandardColor,
     Underline,
     VerticalPosition,
 )
@@ -49,7 +49,7 @@ class InterpretationDict(TypedDict):
     `None` should be interpreted as "no change" rather than "no foreground
     colour".
     """
-    foreground_color: Optional[StandardColor]
+    foreground_color: Optional[Color]
 
     """
     Describes the framing of subsequent text.

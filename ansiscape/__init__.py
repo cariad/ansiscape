@@ -1,3 +1,5 @@
+from typing import Optional
+
 from ansiscape.interpreters import InterpretationDict, interpreters
 from ansiscape.version import get_version
 
@@ -11,27 +13,27 @@ def interpret(code: str) -> InterpretationDict:
     attributes = [int(attribute) for attribute in code.split(";")]
 
     while True:
-        max_claim_this_round = 0
-        min_claim_this_round = 1
+        max_claim = 0
+        min_claim: Optional[int] = None
 
         for interpreter in interpreters:
             claim = interpreter.claim(attributes)
             if claim == 0:
                 continue
-            max_claim_this_round = max(max_claim_this_round, claim)
-            min_claim_this_round = min(min_claim_this_round, claim)
+            max_claim = max(max_claim, claim)
+            min_claim = claim if min_claim is None else min(min_claim, claim)
             interpreter.update(attributes[:claim], interpretation)
 
-        if max_claim_this_round == 0:
+        if max_claim == 0:
             # None of our interpreters can handler this.
             return interpretation
 
-        if min_claim_this_round != max_claim_this_round:
+        if min_claim != max_claim:
             # Many interpreters can handle the same attribute, but they must
             # all claim the same quantity off the head.
-            raise Exception(f"{min_claim_this_round}, {max_claim_this_round}")
+            raise Exception(f"{min_claim}, {max_claim}")
 
-        attributes = attributes[max_claim_this_round:]
+        attributes = attributes[max_claim:]
         if not attributes:
             # Successfully interpreted the entire chain.
             return interpretation
