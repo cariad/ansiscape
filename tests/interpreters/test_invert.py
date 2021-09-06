@@ -13,6 +13,9 @@ from ansiscape.interpreters import InterpretationDict, InvertInterpreter
         ([6], 0),
         ([7], 1),
         ([8], 0),
+        ([26], 0),
+        ([27], 1),
+        ([28], 0),
     ],
 )
 def test_claim(code: List[int], expect: int) -> None:
@@ -24,6 +27,7 @@ def test_claim(code: List[int], expect: int) -> None:
     [
         ([0], False),
         ([7], True),
+        ([27], False),
     ],
 )
 def test_update(
