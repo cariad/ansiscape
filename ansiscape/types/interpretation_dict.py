@@ -124,6 +124,14 @@ class InterpretationDict(TypedDict):
     underline: Optional[Underline]
 
     """
+    Describes the underline colour of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no underline
+    colour".
+    """
+    underline_color: Optional[Color]
+
+    """
     Describes the vertical position of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no vertical

@@ -16,6 +16,7 @@ from ansiscape.interpreters.overline import OverlineInterpreter
 from ansiscape.interpreters.proportional_spacing import ProportionalSpacingInterpreter
 from ansiscape.interpreters.strike import StrikeInterpreter
 from ansiscape.interpreters.underline import UnderlineInterpreter
+from ansiscape.interpreters.underline_color import UnderlineColorInterpreter
 from ansiscape.interpreters.vertical_position import VerticalPositionInterpreter
 
 interpreters: List[Interpreter[Any]] = [
@@ -34,6 +35,7 @@ interpreters: List[Interpreter[Any]] = [
     ProportionalSpacingInterpreter(),
     StrikeInterpreter(),
     UnderlineInterpreter(),
+    UnderlineColorInterpreter(),
     VerticalPositionInterpreter(),
 ]
 
@@ -54,5 +56,6 @@ __all__ = [
     "ProportionalSpacingInterpreter",
     "StrikeInterpreter",
     "UnderlineInterpreter",
+    "UnderlineColorInterpreter",
     "VerticalPositionInterpreter",
 ]
