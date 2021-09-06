@@ -1,5 +1,6 @@
 from typing import List
 
+from ansiscape.interpreters.blackletter import BlackletterInterpreter
 from ansiscape.interpreters.blink_speed import BlinkSpeedInterpreter
 from ansiscape.interpreters.conceal import ConcealInterpreter
 from ansiscape.interpreters.font_face import FontFaceInterpreter
@@ -13,6 +14,7 @@ from ansiscape.interpreters.underline import UnderlineInterpreter
 from ansiscape.interpreters.vertical_position import VerticalPositionInterpreter
 
 interpreters: List[Interpreter] = [
+    BlackletterInterpreter(),
     BlinkSpeedInterpreter(),
     ConcealInterpreter(),
     FontFaceInterpreter(),
@@ -25,6 +27,7 @@ interpreters: List[Interpreter] = [
 ]
 
 __all__ = [
+    "BlackletterInterpreter",
     "BlinkSpeedInterpreter",
     "ConcealInterpreter",
     "FontFaceInterpreter",

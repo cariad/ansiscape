@@ -11,35 +11,35 @@ def interpret(code: str) -> InterpretationDict:
     attributes = [int(attribute) for attribute in code.split(";")]
 
     while True:
-        count = len(attributes)
-
-        if attributes[0] == 0:
-            # Make sure everyone gets this reset!
-            for interpreter in interpreters:
-                if interpreter.claim(attributes) == 1:
-                    interpreter.update(attributes, interpretation)
-            attributes = attributes[1:]
-            if not attributes:
-                return interpretation
+        max_claim_this_round = 0
+        min_claim_this_round = 1
 
         for interpreter in interpreters:
             claim = interpreter.claim(attributes)
-            if not claim:
+            if claim == 0:
                 continue
-            claimed = attributes[:claim]
-            interpreter.update(claimed, interpretation)
-            attributes = attributes[claim:]
-            if not attributes:
-                return interpretation
+            max_claim_this_round = max(max_claim_this_round, claim)
+            min_claim_this_round = min(min_claim_this_round, claim)
+            interpreter.update(attributes[:claim], interpretation)
 
-        if len(attributes) == count:
-            # We've reached an attribute that none of our interpreters can
-            # handle. Rather than skip it and risk a mess, we'll stop early.
+        if max_claim_this_round == 0:
+            # None of our interpreters can handler this.
+            return interpretation
+
+        if min_claim_this_round != max_claim_this_round:
+            # Many interpreters can handle the same attribute, but they must
+            # all claim the same quantity off the head.
+            raise Exception(f"{min_claim_this_round}, {max_claim_this_round}")
+
+        attributes = attributes[max_claim_this_round:]
+        if not attributes:
+            # Successfully interpreted the entire chain.
             return interpretation
 
 
 def make_interpretation() -> InterpretationDict:
     return InterpretationDict(
+        blackletter=None,
         blink_speed=None,
         conceal=None,
         font_face=None,
