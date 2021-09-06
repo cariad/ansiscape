@@ -14,6 +14,13 @@ class InterpretationDict(TypedDict):
     blink_speed: Optional[BlinkSpeed]
 
     """
+    Describes the concealing of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no concealing".
+    """
+    conceal: Optional[bool]
+
+    """
     Describes the intensity of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no intensity".

@@ -38,6 +38,7 @@ def test_update(
     VerticalPositionInterpreter().update(code, interpretation)
     assert interpretation == InterpretationDict(
         blink_speed=None,
+        conceal=None,
         intensity=None,
         invert=None,
         italic=None,

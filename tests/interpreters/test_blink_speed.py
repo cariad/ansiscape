@@ -40,6 +40,7 @@ def test_update(
     BlinkSpeedInterpreter().update(code, interpretation)
     assert interpretation == InterpretationDict(
         blink_speed=expect,
+        conceal=None,
         intensity=None,
         invert=None,
         italic=None,
