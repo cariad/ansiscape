@@ -472,6 +472,22 @@ from ansiscape.enums import BlinkSpeed, FontFace, Intensity, Underline, Vertical
             ),
         ),
         (
+            "27",
+            InterpretationDict(
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                intensity=None,
+                invert=False,
+                italic=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
             "28",
             InterpretationDict(
                 blackletter=None,

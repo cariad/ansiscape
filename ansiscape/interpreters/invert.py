@@ -14,6 +14,7 @@ class InvertInterpreter(GenericLookupInterpreter[bool]):
             {
                 0: False,
                 7: True,
+                27: False,
             }
         )
 
