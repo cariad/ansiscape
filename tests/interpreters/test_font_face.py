@@ -56,6 +56,7 @@ def test_update(
         conceal=None,
         font_face=expect,
         frame=None,
+        ideogram=None,
         intensity=None,
         invert=None,
         italic=None,
