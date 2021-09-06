@@ -6,6 +6,7 @@ from ansiscape.enums import (
     Frame,
     Ideogram,
     Intensity,
+    StandardColor,
     Underline,
     VerticalPosition,
 )
@@ -41,6 +42,14 @@ class InterpretationDict(TypedDict):
     `None` should be interpreted as "no change" rather than "no font face".
     """
     font_face: Optional[FontFace]
+
+    """
+    Describes the foreground colour of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no foreground
+    colour".
+    """
+    foreground_color: Optional[StandardColor]
 
     """
     Describes the framing of subsequent text.

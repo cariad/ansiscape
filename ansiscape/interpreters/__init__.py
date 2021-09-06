@@ -4,6 +4,7 @@ from ansiscape.interpreters.blackletter import BlackletterInterpreter
 from ansiscape.interpreters.blink_speed import BlinkSpeedInterpreter
 from ansiscape.interpreters.conceal import ConcealInterpreter
 from ansiscape.interpreters.font_face import FontFaceInterpreter
+from ansiscape.interpreters.foreground_color import ForegroundColorInterpreter
 from ansiscape.interpreters.frame import FrameInterpreter
 from ansiscape.interpreters.ideogram import IdeogramInterpreter
 from ansiscape.interpreters.intensity import IntensityInterpreter
@@ -22,6 +23,7 @@ interpreters: List[Interpreter] = [
     BlinkSpeedInterpreter(),
     ConcealInterpreter(),
     FontFaceInterpreter(),
+    ForegroundColorInterpreter(),
     FrameInterpreter(),
     IdeogramInterpreter(),
     IntensityInterpreter(),
@@ -39,6 +41,7 @@ __all__ = [
     "BlinkSpeedInterpreter",
     "ConcealInterpreter",
     "FontFaceInterpreter",
+    "ForegroundColorInterpreter",
     "FrameInterpreter",
     "IdeogramInterpreter",
     "IntensityInterpreter",
