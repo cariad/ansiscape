@@ -1,5 +1,6 @@
 from typing import List, Optional, Tuple
 
+from ansiscape.b8 import get_8_bit_rgb
 from ansiscape.enums import ColorType, StandardColor
 from ansiscape.interpreters.interpreter import Interpreter
 from ansiscape.types import Color, InterpretationDict
@@ -187,6 +188,13 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
             if 8 <= code[2] <= 15:
                 # Actually, it's just a standard bright colour:
                 interpretation["foreground_color"] = self.attributes[code[2] + 82][1]
+                return 3
+            if 16 <= code[2] <= 231:
+                interpretation["foreground_color"] = Color(
+                    color_type=ColorType.EXTENDED,
+                    rgb=get_8_bit_rgb(code[2]),
+                    standard_color=None,
+                )
                 return 3
 
         raise Exception("unhandled extended color")
