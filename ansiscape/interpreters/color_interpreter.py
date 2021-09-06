@@ -2,7 +2,7 @@ from abc import abstractmethod
 from typing import Dict, List, Optional, Tuple
 
 from ansiscape.b8 import get_8_bit_rgb
-from ansiscape.enums import ColorType
+from ansiscape.enums import ColorType, StandardColor
 from ansiscape.interpreters.interpreter import Interpreter
 from ansiscape.types import Color, InterpretationDict
 
@@ -15,7 +15,6 @@ class ColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]]):
     def __init__(
         self,
         attributes: Dict[int, Tuple[ColorType, Optional[Color]]],
-        color_index_offset: int,
     ) -> None:
         if 0 in attributes:
             print("WARNING: attribute[0] will be overwritten")
@@ -29,13 +28,23 @@ class ColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]]):
             ),
         )
 
-        self.color_index_offset = color_index_offset
-
         super().__init__(attributes)
 
     @abstractmethod
     def set_color(self, interpretation: InterpretationDict, color: Color) -> None:
         ...
+
+    def set_standard_color(
+        self, interpretation: InterpretationDict, color: StandardColor
+    ) -> None:
+        self.set_color(
+            interpretation,
+            Color(
+                color_type=ColorType.STANDARD,
+                rgba=None,
+                standard_color=color,
+            ),
+        )
 
     def update(self, code: List[int], interpretation: InterpretationDict) -> int:
         """
@@ -127,18 +136,65 @@ class ColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]]):
                 raise ValueError(f"argument [2] ({code[2]}) must be 0-255 inclusive")
 
             if 0 <= code[2] <= 7:
-                # Actually, it's just a standard colour:
-                c = self.attributes[code[2] + self.color_index_offset][1]
-                if not c:
-                    raise Exception()
-                self.set_color(interpretation, c)
+                if code[2] == 0:
+                    self.set_standard_color(interpretation, StandardColor.BLACK)
+                elif code[2] == 1:
+                    self.set_standard_color(interpretation, StandardColor.RED)
+                elif code[2] == 2:
+                    self.set_standard_color(interpretation, StandardColor.GREEN)
+                elif code[2] == 3:
+                    self.set_standard_color(interpretation, StandardColor.YELLOW)
+                elif code[2] == 4:
+                    self.set_standard_color(interpretation, StandardColor.BLUE)
+                elif code[2] == 5:
+                    self.set_standard_color(interpretation, StandardColor.MAGENTA)
+                elif code[2] == 6:
+                    self.set_standard_color(interpretation, StandardColor.CYAN)
+                else:
+                    self.set_standard_color(interpretation, StandardColor.WHITE)
 
             elif 8 <= code[2] <= 15:
                 # Actually, it's just a standard bright colour:
-                c = self.attributes[code[2] + self.color_index_offset + 52][1]
-                if not c:
-                    raise Exception()
-                self.set_color(interpretation, c)
+                if code[2] == 8:
+                    self.set_standard_color(
+                        interpretation,
+                        StandardColor.BRIGHT_BLACK,
+                    )
+                elif code[2] == 9:
+                    self.set_standard_color(
+                        interpretation,
+                        StandardColor.BRIGHT_RED,
+                    )
+                elif code[2] == 10:
+                    self.set_standard_color(
+                        interpretation,
+                        StandardColor.BRIGHT_GREEN,
+                    )
+                elif code[2] == 11:
+                    self.set_standard_color(
+                        interpretation,
+                        StandardColor.BRIGHT_YELLOW,
+                    )
+                elif code[2] == 12:
+                    self.set_standard_color(
+                        interpretation,
+                        StandardColor.BRIGHT_BLUE,
+                    )
+                elif code[2] == 13:
+                    self.set_standard_color(
+                        interpretation,
+                        StandardColor.BRIGHT_MAGENTA,
+                    )
+                elif code[2] == 14:
+                    self.set_standard_color(
+                        interpretation,
+                        StandardColor.BRIGHT_CYAN,
+                    )
+                else:
+                    self.set_standard_color(
+                        interpretation,
+                        StandardColor.BRIGHT_WHITE,
+                    )
 
             else:
                 # 8-bit RGB look-up:

@@ -59,6 +59,7 @@ def make_interpretation() -> InterpretationDict:
         proportional_spacing=None,
         strike=None,
         underline=None,
+        underline_color=None,
         vertical_position=None,
     )
 

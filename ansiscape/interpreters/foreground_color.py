@@ -153,7 +153,6 @@ class ForegroundColorInterpreter(ColorInterpreter):
                     ),
                 ),
             },
-            color_index_offset=30,
         )
 
     def set_color(self, interpretation: InterpretationDict, color: Color) -> None:

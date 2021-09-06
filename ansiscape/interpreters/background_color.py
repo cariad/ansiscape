@@ -150,7 +150,6 @@ class BackgroundColorInterpreter(ColorInterpreter):
                     ),
                 ),
             },
-            color_index_offset=40,
         )
 
     def set_color(self, interpretation: InterpretationDict, color: Color) -> None:

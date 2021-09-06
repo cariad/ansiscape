@@ -41,5 +41,6 @@ def test_update(
         proportional_spacing=expect,
         strike=None,
         underline=None,
+        underline_color=None,
         vertical_position=None,
     )
