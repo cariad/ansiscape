@@ -17,7 +17,8 @@ from ansiscape.types import InterpretationDict
         ([62], 1, Ideogram.LINE_OVER_OR_LEFT),
         ([63], 1, Ideogram.DOUBLE_LINE_OVER_OR_LEFT),
         ([64], 1, Ideogram.STRESS),
-        ([65], 0, None),
+        ([65], 1, Ideogram.NONE),
+        ([66], 0, None),
     ],
 )
 def test_update(

@@ -19,6 +19,7 @@ class IdeogramInterpreter(Interpreter[Ideogram]):
                 62: Ideogram.LINE_OVER_OR_LEFT,
                 63: Ideogram.DOUBLE_LINE_OVER_OR_LEFT,
                 64: Ideogram.STRESS,
+                65: Ideogram.NONE,
             }
         )
 
