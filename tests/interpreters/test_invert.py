@@ -41,6 +41,7 @@ def test_update(
         blink_speed=None,
         conceal=None,
         font_face=None,
+        foreground_color=None,
         frame=None,
         ideogram=None,
         intensity=None,

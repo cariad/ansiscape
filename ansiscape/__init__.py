@@ -43,6 +43,7 @@ def make_interpretation() -> InterpretationDict:
         blink_speed=None,
         conceal=None,
         font_face=None,
+        foreground_color=None,
         frame=None,
         ideogram=None,
         intensity=None,
