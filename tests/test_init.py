@@ -1599,6 +1599,30 @@ from ansiscape.types import Color
             ),
         ),
         (
+            "39",
+            InterpretationDict(
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=Color(
+                    color_type=ColorType.DEFAULT,
+                    rgba=None,
+                    standard_color=None,
+                ),
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
             "50",
             InterpretationDict(
                 blackletter=None,
