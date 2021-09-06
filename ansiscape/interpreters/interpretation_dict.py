@@ -1,6 +1,13 @@
 from typing import Optional, TypedDict
 
-from ansiscape.enums import BlinkSpeed, FontFace, Intensity, Underline, VerticalPosition
+from ansiscape.enums import (
+    BlinkSpeed,
+    FontFace,
+    Frame,
+    Intensity,
+    Underline,
+    VerticalPosition,
+)
 
 
 class InterpretationDict(TypedDict):
@@ -33,6 +40,13 @@ class InterpretationDict(TypedDict):
     `None` should be interpreted as "no change" rather than "no font face".
     """
     font_face: Optional[FontFace]
+
+    """
+    Describes the framing of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no framing".
+    """
+    frame: Optional[Frame]
 
     """
     Describes the intensity of subsequent text.
