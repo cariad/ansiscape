@@ -2,7 +2,6 @@ from typing import Optional, TypedDict
 
 from ansiscape.enums import (
     BlinkSpeed,
-    Color,
     FontFace,
     Frame,
     Ideogram,
@@ -10,6 +9,7 @@ from ansiscape.enums import (
     Underline,
     VerticalPosition,
 )
+from ansiscape.types.color import Color
 
 
 class InterpretationDict(TypedDict):
@@ -50,16 +50,6 @@ class InterpretationDict(TypedDict):
     colour".
     """
     foreground_color: Optional[Color]
-
-    # """
-    # Describes the foreground colour of subsequent text as specific RGB values.
-
-    # This is set only if `foreground_color` is `Color.CUSTOM`.
-
-    # `None` should be interpreted as "no change" rather than "no foreground RGB
-    # colour".
-    # """
-    # foreground_rgb: Optional[RGB]
 
     """
     Describes the framing of subsequent text.

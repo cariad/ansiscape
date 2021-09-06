@@ -1,11 +1,11 @@
-from typing import List
+from typing import List, Optional, Tuple
 
-from ansiscape.enums import Color
+from ansiscape.enums import ColorType, StandardColor
 from ansiscape.interpreters.interpreter import Interpreter
-from ansiscape.types import InterpretationDict
+from ansiscape.types import Color, InterpretationDict
 
 
-class ForegroundColorInterpreter(Interpreter[Color]):
+class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]]):
     """
     Recognises and interprets ANSI escape codes that change the foreground
     colour.
@@ -14,24 +14,146 @@ class ForegroundColorInterpreter(Interpreter[Color]):
     def __init__(self) -> None:
         super().__init__(
             {
-                0: Color.DEFAULT,
-                30: Color.BLACK,
-                31: Color.RED,
-                32: Color.GREEN,
-                33: Color.YELLOW,
-                34: Color.BLUE,
-                35: Color.MAGENTA,
-                36: Color.CYAN,
-                37: Color.WHITE,
-                38: Color.CUSTOM,
-                90: Color.BRIGHT_BLACK,
-                91: Color.BRIGHT_RED,
-                92: Color.BRIGHT_GREEN,
-                93: Color.BRIGHT_YELLOW,
-                94: Color.BRIGHT_BLUE,
-                95: Color.BRIGHT_MAGENTA,
-                96: Color.BRIGHT_CYAN,
-                97: Color.BRIGHT_WHITE,
+                0: (
+                    ColorType.DEFAULT,
+                    Color(
+                        color_type=ColorType.DEFAULT,
+                        rgb=None,
+                        standard_color=None,
+                    ),
+                ),
+                30: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BLACK,
+                    ),
+                ),
+                31: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.RED,
+                    ),
+                ),
+                32: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.GREEN,
+                    ),
+                ),
+                33: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.YELLOW,
+                    ),
+                ),
+                34: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BLUE,
+                    ),
+                ),
+                35: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.MAGENTA,
+                    ),
+                ),
+                36: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.CYAN,
+                    ),
+                ),
+                37: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.WHITE,
+                    ),
+                ),
+                38: (
+                    ColorType.EXTENDED,
+                    None,
+                ),
+                90: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BRIGHT_BLACK,
+                    ),
+                ),
+                91: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BRIGHT_RED,
+                    ),
+                ),
+                92: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BRIGHT_GREEN,
+                    ),
+                ),
+                93: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BRIGHT_YELLOW,
+                    ),
+                ),
+                94: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BRIGHT_BLUE,
+                    ),
+                ),
+                95: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BRIGHT_MAGENTA,
+                    ),
+                ),
+                96: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BRIGHT_CYAN,
+                    ),
+                ),
+                97: (
+                    ColorType.STANDARD,
+                    Color(
+                        color_type=ColorType.STANDARD,
+                        rgb=None,
+                        standard_color=StandardColor.BRIGHT_WHITE,
+                    ),
+                ),
             }
         )
 
@@ -43,37 +165,28 @@ class ForegroundColorInterpreter(Interpreter[Color]):
         Returns the count of attributes that were interpreted.
         """
 
-        if code[0] == 0:
-            # Reset:
-            interpretation["foreground_color"] = self.attributes[code[0]]
+        try:
+            color_type = self.attributes[code[0]][0]
+            color = self.attributes[code[0]][1]
+        except KeyError:
+            return 0
+
+        if color_type in [ColorType.DEFAULT, ColorType.STANDARD]:
+            interpretation["foreground_color"] = color
             return 1
 
-        if 30 <= code[0] <= 37:
-            # Standard colour:
-            interpretation["foreground_color"] = self.attributes[code[0]]
-            return 1
+        if len(code) < 3:
+            raise Exception("insufficient attributes for extended color")
 
-        if code[0] == 38:
-            # Extended colour:
-            if len(code) < 3:
-                raise Exception("insufficient attributes for extended color")
+        if code[1] == 5:
+            # 8-bit colour:
+            if 0 <= code[2] <= 7:
+                # Actually, it's just a standard colour:
+                interpretation["foreground_color"] = self.attributes[code[2] + 30][1]
+                return 3
+            if 8 <= code[2] <= 15:
+                # Actually, it's just a standard bright colour:
+                interpretation["foreground_color"] = self.attributes[code[2] + 82][1]
+                return 3
 
-            if code[1] == 5:
-                # 8-bit colour:
-                if 0 <= code[2] <= 7:
-                    # Actually, it's just a standard colour:
-                    interpretation["foreground_color"] = self.attributes[code[2] + 30]
-                    return 3
-                if 8 <= code[2] <= 15:
-                    # Actually, it's just a standard bright colour:
-                    interpretation["foreground_color"] = self.attributes[code[2] + 82]
-                    return 3
-
-            raise Exception("unhandled extended color")
-
-        if 90 <= code[0] <= 97:
-            # Standard bright colour:
-            interpretation["foreground_color"] = self.attributes[code[0]]
-            return 1
-
-        return 0
+        raise Exception("unhandled extended color")
