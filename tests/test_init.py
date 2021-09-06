@@ -3889,6 +3889,28 @@ from ansiscape.types import Color
             ),
         ),
         (
+            "64;65",
+            InterpretationDict(
+                background_color=None,
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=Ideogram.NONE,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                underline_color=None,
+                vertical_position=None,
+            ),
+        ),
+        (
             "73",
             InterpretationDict(
                 background_color=None,
