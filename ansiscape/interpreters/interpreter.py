@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Generic, List, TypeVar
 
-from ansiscape.interpreters.interpretation_dict import InterpretationDict
+from ansiscape.types import InterpretationDict
 
 TInterpretable = TypeVar("TInterpretable")
 

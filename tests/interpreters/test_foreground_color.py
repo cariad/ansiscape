@@ -3,7 +3,8 @@ from typing import List, Optional
 from pytest import mark
 
 from ansiscape.enums import Color
-from ansiscape.interpreters import ForegroundColorInterpreter, InterpretationDict
+from ansiscape.interpreters import ForegroundColorInterpreter
+from ansiscape.types import InterpretationDict
 
 
 @mark.parametrize(

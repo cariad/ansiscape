@@ -3,7 +3,8 @@ from typing import List, Optional
 from pytest import mark
 
 from ansiscape.enums import Ideogram
-from ansiscape.interpreters import IdeogramInterpreter, InterpretationDict
+from ansiscape.interpreters import IdeogramInterpreter
+from ansiscape.types import InterpretationDict
 
 
 @mark.parametrize(

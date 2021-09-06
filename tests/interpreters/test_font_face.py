@@ -3,7 +3,8 @@ from typing import List, Optional
 from pytest import mark
 
 from ansiscape.enums import FontFace
-from ansiscape.interpreters import FontFaceInterpreter, InterpretationDict
+from ansiscape.interpreters import FontFaceInterpreter
+from ansiscape.types import InterpretationDict
 
 
 @mark.parametrize(

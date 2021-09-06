@@ -3,7 +3,8 @@ from typing import List, Optional
 from pytest import mark
 
 from ansiscape.enums import VerticalPosition
-from ansiscape.interpreters import InterpretationDict, VerticalPositionInterpreter
+from ansiscape.interpreters import VerticalPositionInterpreter
+from ansiscape.types import InterpretationDict
 
 
 @mark.parametrize(

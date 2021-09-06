@@ -3,7 +3,8 @@ from typing import List, Optional
 from pytest import mark
 
 from ansiscape.enums import Frame
-from ansiscape.interpreters import FrameInterpreter, InterpretationDict
+from ansiscape.interpreters import FrameInterpreter
+from ansiscape.types import InterpretationDict
 
 
 @mark.parametrize(
