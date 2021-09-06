@@ -56,6 +56,14 @@ class InterpretationDict(TypedDict):
     italic: Optional[bool]
 
     """
+    Describes the proportional spacing of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no proportional
+    spacing".
+    """
+    proportional_spacing: Optional[bool]
+
+    """
     Describes the strikethrough of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no strikethrough".
