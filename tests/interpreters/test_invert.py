@@ -34,6 +34,7 @@ def test_update(
     InvertInterpreter().update(code, interpretation)
     assert interpretation == InterpretationDict(
         blink_speed=None,
+        conceal=None,
         intensity=None,
         invert=expect,
         italic=None,

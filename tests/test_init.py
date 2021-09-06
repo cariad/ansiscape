@@ -11,6 +11,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -22,6 +23,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "-1",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -33,6 +35,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "-1;73",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -44,6 +47,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "0",
             InterpretationDict(
                 blink_speed=BlinkSpeed.NONE,
+                conceal=False,
                 intensity=Intensity.NORMAL,
                 invert=False,
                 italic=False,
@@ -55,6 +59,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "1",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=Intensity.BOLD,
                 invert=None,
                 italic=None,
@@ -66,6 +71,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "2",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=Intensity.DIM,
                 invert=None,
                 italic=None,
@@ -77,6 +83,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "3",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=True,
@@ -88,6 +95,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "4",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -99,6 +107,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "5",
             InterpretationDict(
                 blink_speed=BlinkSpeed.SLOW,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -110,6 +119,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "6",
             InterpretationDict(
                 blink_speed=BlinkSpeed.FAST,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -121,8 +131,21 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "7",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=True,
+                italic=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "8",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=True,
+                intensity=None,
+                invert=None,
                 italic=None,
                 underline=None,
                 vertical_position=None,
@@ -132,6 +155,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "21",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -143,6 +167,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "23",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=False,
@@ -154,6 +179,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "24",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -165,6 +191,19 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "25",
             InterpretationDict(
                 blink_speed=BlinkSpeed.NONE,
+                conceal=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "28",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=False,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -176,6 +215,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "73",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -187,6 +227,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "74",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -198,6 +239,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "75",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -209,6 +251,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "73;1",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=Intensity.BOLD,
                 invert=None,
                 italic=None,
@@ -220,6 +263,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "0;73",
             InterpretationDict(
                 blink_speed=BlinkSpeed.NONE,
+                conceal=False,
                 intensity=Intensity.NORMAL,
                 invert=False,
                 italic=False,
@@ -231,6 +275,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             "73;74",
             InterpretationDict(
                 blink_speed=None,
+                conceal=None,
                 intensity=None,
                 invert=None,
                 italic=None,

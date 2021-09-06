@@ -41,6 +41,7 @@ def interpret(code: str) -> InterpretationDict:
 def make_interpretation() -> InterpretationDict:
     return InterpretationDict(
         blink_speed=None,
+        conceal=None,
         intensity=None,
         invert=None,
         italic=None,
