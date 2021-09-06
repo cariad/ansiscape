@@ -42,6 +42,13 @@ class InterpretationDict(TypedDict):
     italic: Optional[bool]
 
     """
+    Describes the strikethrough of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no strikethrough".
+    """
+    strike: Optional[bool]
+
+    """
     Describes the underline of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no underline".

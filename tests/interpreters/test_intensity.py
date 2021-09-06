@@ -43,6 +43,7 @@ def test_update(
         intensity=expect,
         invert=None,
         italic=None,
+        strike=None,
         underline=None,
         vertical_position=None,
     )
