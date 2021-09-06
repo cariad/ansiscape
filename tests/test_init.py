@@ -1,7 +1,7 @@
 from pytest import mark
 
 from ansiscape import InterpretationDict, interpret
-from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
+from ansiscape.enums import BlinkSpeed, FontFace, Intensity, Underline, VerticalPosition
 
 
 @mark.parametrize(
@@ -12,6 +12,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -25,6 +26,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -38,6 +40,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -51,6 +54,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=BlinkSpeed.NONE,
                 conceal=False,
+                font_face=FontFace.DEFAULT,
                 intensity=Intensity.NORMAL,
                 invert=False,
                 italic=False,
@@ -64,6 +68,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=Intensity.BOLD,
                 invert=None,
                 italic=None,
@@ -77,6 +82,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=Intensity.DIM,
                 invert=None,
                 italic=None,
@@ -90,6 +96,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=True,
@@ -103,6 +110,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -116,6 +124,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=BlinkSpeed.SLOW,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -129,6 +138,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=BlinkSpeed.FAST,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -142,6 +152,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=True,
                 italic=None,
@@ -155,6 +166,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=True,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -168,6 +180,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -177,10 +190,151 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             ),
         ),
         (
+            "10",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.DEFAULT,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "11",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_0,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "12",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_1,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "13",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_2,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "14",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_3,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "15",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_4,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "16",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_5,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "17",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_6,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "18",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_7,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "19",
+            InterpretationDict(
+                blink_speed=None,
+                conceal=None,
+                font_face=FontFace.ALTERNATIVE_8,
+                intensity=None,
+                invert=None,
+                italic=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
             "21",
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -194,6 +348,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=False,
@@ -207,6 +362,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -220,6 +376,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=BlinkSpeed.NONE,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -233,6 +390,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=False,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -246,6 +404,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -259,6 +418,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -272,6 +432,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -285,6 +446,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,
@@ -298,6 +460,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=Intensity.BOLD,
                 invert=None,
                 italic=None,
@@ -311,6 +474,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=BlinkSpeed.NONE,
                 conceal=False,
+                font_face=FontFace.DEFAULT,
                 intensity=Intensity.NORMAL,
                 invert=False,
                 italic=False,
@@ -324,6 +488,7 @@ from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
             InterpretationDict(
                 blink_speed=None,
                 conceal=None,
+                font_face=None,
                 intensity=None,
                 invert=None,
                 italic=None,

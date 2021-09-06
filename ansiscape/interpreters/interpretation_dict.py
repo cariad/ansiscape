@@ -1,6 +1,6 @@
 from typing import Optional, TypedDict
 
-from ansiscape.enums import BlinkSpeed, Intensity, Underline, VerticalPosition
+from ansiscape.enums import BlinkSpeed, FontFace, Intensity, Underline, VerticalPosition
 
 
 class InterpretationDict(TypedDict):
@@ -19,6 +19,13 @@ class InterpretationDict(TypedDict):
     `None` should be interpreted as "no change" rather than "no concealing".
     """
     conceal: Optional[bool]
+
+    """
+    Describes the font face of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no font face".
+    """
+    font_face: Optional[FontFace]
 
     """
     Describes the intensity of subsequent text.
