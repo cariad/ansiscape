@@ -176,25 +176,64 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
             interpretation["foreground_color"] = color
             return 1
 
-        if len(code) < 3:
-            raise Exception("insufficient attributes for extended color")
+        if code[1] == 2:
+            # 24-bit colour:
+            #
+            # At this point, the arguments are _so_ fluid that we have to assume
+            # the entire set is up for grabs, and none are intended for
+            # subsequent interpreters.
+
+            #     "38;2"
+            #     "38;2;<colour-space>"
+            #
+            # We don't support colour spaces (yet). R, G and B are optional,
+            # so this is weirdly okay. We'll just intentionally make no
+            # change.
+
+            if len(code) == 4:
+                raise Exception(f"unexpected attributes: {code}")
+
+            elif len(code) == 5:
+                #     "38;2;<r>;<g>;<b>"
+                interpretation["foreground_color"] = Color(
+                    color_type=ColorType.EXTENDED,
+                    rgb=(code[2] / 255, code[3] / 255, code[4] / 255),
+                    standard_color=None,
+                )
+
+            elif len(code) >= 6:
+                #     "38;2;<colour-space>;<r>;<g>;<b>;<more-unsupported>"
+                #
+                # We don't support colour spaces (yet).
+                interpretation["foreground_color"] = Color(
+                    color_type=ColorType.EXTENDED,
+                    rgb=(code[3] / 255, code[4] / 255, code[5] / 255),
+                    standard_color=None,
+                )
+
+            return len(code)
 
         if code[1] == 5:
             # 8-bit colour:
+            if not 0 <= code[2] <= 255:
+                raise ValueError(f"argument [2] ({code[2]}) must be 0-255 inclusive")
+
             if 0 <= code[2] <= 7:
                 # Actually, it's just a standard colour:
                 interpretation["foreground_color"] = self.attributes[code[2] + 30][1]
-                return 3
-            if 8 <= code[2] <= 15:
+
+            elif 8 <= code[2] <= 15:
                 # Actually, it's just a standard bright colour:
                 interpretation["foreground_color"] = self.attributes[code[2] + 82][1]
-                return 3
-            if 16 <= code[2] <= 255:
+
+            else:
+                # 8-bit RGB look-up:
                 interpretation["foreground_color"] = Color(
                     color_type=ColorType.EXTENDED,
                     rgb=get_8_bit_rgb(code[2]),
                     standard_color=None,
                 )
-                return 3
+
+            return 3
 
         raise Exception("unhandled extended color")
