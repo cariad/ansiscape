@@ -13,24 +13,29 @@ def interpret(code: str) -> InterpretationDict:
     while True:
         count = len(attributes)
 
-        if attributes[0] == 0:
-            # Make sure everyone gets this reset!
-            for interpreter in interpreters:
-                if interpreter.claim(attributes) == 1:
-                    interpreter.update(attributes, interpretation)
-            attributes = attributes[1:]
-            if not attributes:
-                return interpretation
+        max_claim = 0
+        min_claim = 1
 
         for interpreter in interpreters:
             claim = interpreter.claim(attributes)
-            if not claim:
+            if claim == 0:
                 continue
+            max_claim = max(max_claim, claim)
+            min_claim = min(min_claim, claim)
             claimed = attributes[:claim]
             interpreter.update(claimed, interpretation)
-            attributes = attributes[claim:]
-            if not attributes:
-                return interpretation
+
+        if max_claim == 0:
+            # We've reached an attribute that none of our interpreters can
+            # handle. Rather than skip it and risk a mess, we'll stop early.
+            return interpretation
+
+        if min_claim != max_claim:
+            raise Exception(f"{min_claim}, {max_claim}")
+
+        attributes = attributes[max_claim:]
+        if not attributes:
+            return interpretation
 
         if len(attributes) == count:
             # We've reached an attribute that none of our interpreters can
@@ -40,6 +45,7 @@ def interpret(code: str) -> InterpretationDict:
 
 def make_interpretation() -> InterpretationDict:
     return InterpretationDict(
+        blackletter=None,
         blink_speed=None,
         conceal=None,
         font_face=None,

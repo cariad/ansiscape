@@ -51,6 +51,7 @@ def test_update(
 ) -> None:
     FontFaceInterpreter().update(code, interpretation)
     assert interpretation == InterpretationDict(
+        blackletter=None,
         blink_speed=None,
         conceal=None,
         font_face=expect,

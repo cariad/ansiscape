@@ -7,6 +7,13 @@ class InterpretationDict(TypedDict):
     """Describes an interpretation of a sequence of ANSI escape codes."""
 
     """
+    Describes the blackletter of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no blackletter".
+    """
+    blackletter: Optional[bool]
+
+    """
     Describes the blinking speed of subsequent text.
 
     `None` should be interpreted as "no change" rather than "no blinking".

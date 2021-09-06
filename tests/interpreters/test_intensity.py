@@ -38,6 +38,7 @@ def test_update(
 ) -> None:
     IntensityInterpreter().update(code, interpretation)
     assert interpretation == InterpretationDict(
+        blackletter=None,
         blink_speed=None,
         conceal=None,
         font_face=None,

@@ -36,6 +36,7 @@ def test_update(
 ) -> None:
     ConcealInterpreter().update(code, interpretation)
     assert interpretation == InterpretationDict(
+        blackletter=None,
         blink_speed=None,
         conceal=expect,
         font_face=None,
