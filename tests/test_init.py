@@ -21,6 +21,7 @@ from ansiscape.types import Color
         (
             "",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -41,6 +42,7 @@ from ansiscape.types import Color
         (
             "-1",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -61,6 +63,7 @@ from ansiscape.types import Color
         (
             "-1;73",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -81,6 +84,11 @@ from ansiscape.types import Color
         (
             "0",
             InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.DEFAULT,
+                    rgba=None,
+                    standard_color=None,
+                ),
                 blackletter=False,
                 blink_speed=BlinkSpeed.NONE,
                 conceal=False,
@@ -105,6 +113,7 @@ from ansiscape.types import Color
         (
             "1",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -125,6 +134,7 @@ from ansiscape.types import Color
         (
             "2",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -145,6 +155,7 @@ from ansiscape.types import Color
         (
             "3",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -165,6 +176,7 @@ from ansiscape.types import Color
         (
             "4",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -185,6 +197,7 @@ from ansiscape.types import Color
         (
             "5",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=BlinkSpeed.SLOW,
                 conceal=None,
@@ -205,6 +218,7 @@ from ansiscape.types import Color
         (
             "6",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=BlinkSpeed.FAST,
                 conceal=None,
@@ -225,6 +239,7 @@ from ansiscape.types import Color
         (
             "7",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -245,6 +260,7 @@ from ansiscape.types import Color
         (
             "8",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=True,
@@ -265,6 +281,7 @@ from ansiscape.types import Color
         (
             "9",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -285,6 +302,7 @@ from ansiscape.types import Color
         (
             "10",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -305,6 +323,7 @@ from ansiscape.types import Color
         (
             "11",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -325,6 +344,7 @@ from ansiscape.types import Color
         (
             "12",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -345,6 +365,7 @@ from ansiscape.types import Color
         (
             "13",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -365,6 +386,7 @@ from ansiscape.types import Color
         (
             "14",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -385,6 +407,7 @@ from ansiscape.types import Color
         (
             "15",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -405,6 +428,7 @@ from ansiscape.types import Color
         (
             "16",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -425,6 +449,7 @@ from ansiscape.types import Color
         (
             "17",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -445,6 +470,7 @@ from ansiscape.types import Color
         (
             "18",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -465,6 +491,7 @@ from ansiscape.types import Color
         (
             "19",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -485,6 +512,7 @@ from ansiscape.types import Color
         (
             "20",
             InterpretationDict(
+                background_color=None,
                 blackletter=True,
                 blink_speed=None,
                 conceal=None,
@@ -505,6 +533,7 @@ from ansiscape.types import Color
         (
             "21",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -525,6 +554,7 @@ from ansiscape.types import Color
         (
             "23",
             InterpretationDict(
+                background_color=None,
                 blackletter=False,
                 blink_speed=None,
                 conceal=None,
@@ -545,6 +575,7 @@ from ansiscape.types import Color
         (
             "24",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -565,6 +596,7 @@ from ansiscape.types import Color
         (
             "25",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=BlinkSpeed.NONE,
                 conceal=None,
@@ -585,6 +617,7 @@ from ansiscape.types import Color
         (
             "26",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -605,6 +638,7 @@ from ansiscape.types import Color
         (
             "27",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -625,6 +659,7 @@ from ansiscape.types import Color
         (
             "28",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=False,
@@ -645,6 +680,7 @@ from ansiscape.types import Color
         (
             "29",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -665,6 +701,7 @@ from ansiscape.types import Color
         (
             "30",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -689,6 +726,7 @@ from ansiscape.types import Color
         (
             "31",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -713,6 +751,7 @@ from ansiscape.types import Color
         (
             "32",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -737,6 +776,7 @@ from ansiscape.types import Color
         (
             "33",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -761,6 +801,7 @@ from ansiscape.types import Color
         (
             "34",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -785,6 +826,7 @@ from ansiscape.types import Color
         (
             "35",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -809,6 +851,7 @@ from ansiscape.types import Color
         (
             "36",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -833,6 +876,7 @@ from ansiscape.types import Color
         (
             "37",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -857,6 +901,7 @@ from ansiscape.types import Color
         (
             "38;1",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -881,6 +926,7 @@ from ansiscape.types import Color
         (
             "38;2;0;0;0",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -905,6 +951,7 @@ from ansiscape.types import Color
         (
             "38;2;255;0;0",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -929,6 +976,7 @@ from ansiscape.types import Color
         (
             "38;2;0;255;0",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -953,6 +1001,7 @@ from ansiscape.types import Color
         (
             "38;2;0;0;255",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -977,6 +1026,7 @@ from ansiscape.types import Color
         (
             "38;5;0",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1001,6 +1051,7 @@ from ansiscape.types import Color
         (
             "38;5;1",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1025,6 +1076,7 @@ from ansiscape.types import Color
         (
             "38;5;2",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1049,6 +1101,7 @@ from ansiscape.types import Color
         (
             "38;5;3",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1073,6 +1126,7 @@ from ansiscape.types import Color
         (
             "38;5;4",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1097,6 +1151,7 @@ from ansiscape.types import Color
         (
             "38;5;5",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1121,6 +1176,7 @@ from ansiscape.types import Color
         (
             "38;5;6",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1145,6 +1201,7 @@ from ansiscape.types import Color
         (
             "38;5;7",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1169,6 +1226,7 @@ from ansiscape.types import Color
         (
             "38;5;8",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1193,6 +1251,7 @@ from ansiscape.types import Color
         (
             "38;5;9",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1217,6 +1276,7 @@ from ansiscape.types import Color
         (
             "38;5;10",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1241,6 +1301,7 @@ from ansiscape.types import Color
         (
             "38;5;11",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1265,6 +1326,7 @@ from ansiscape.types import Color
         (
             "38;5;12",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1289,6 +1351,7 @@ from ansiscape.types import Color
         (
             "38;5;13",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1313,6 +1376,7 @@ from ansiscape.types import Color
         (
             "38;5;14",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1337,6 +1401,7 @@ from ansiscape.types import Color
         (
             "38;5;15",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1361,6 +1426,7 @@ from ansiscape.types import Color
         (
             "38;5;16",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1385,6 +1451,7 @@ from ansiscape.types import Color
         (
             "38;5;21",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1409,6 +1476,7 @@ from ansiscape.types import Color
         (
             "38;5;46",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1433,6 +1501,7 @@ from ansiscape.types import Color
         (
             "38;5;51",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1457,6 +1526,7 @@ from ansiscape.types import Color
         (
             "38;5;196",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1481,6 +1551,7 @@ from ansiscape.types import Color
         (
             "38;5;201",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1505,6 +1576,7 @@ from ansiscape.types import Color
         (
             "38;5;226",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1529,6 +1601,7 @@ from ansiscape.types import Color
         (
             "38;5;231",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1553,6 +1626,7 @@ from ansiscape.types import Color
         (
             "38;5;232",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1577,6 +1651,7 @@ from ansiscape.types import Color
         (
             "38;5;255",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1601,6 +1676,7 @@ from ansiscape.types import Color
         (
             "39",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1623,8 +1699,1009 @@ from ansiscape.types import Color
             ),
         ),
         (
+            "40",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BLACK,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "41",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.RED,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "42",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.GREEN,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "43",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.YELLOW,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "44",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BLUE,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "45",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.MAGENTA,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "46",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.CYAN,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "47",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.WHITE,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;1",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0.0, 0.0, 0.0, 0.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;2;0;0;0",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0, 0, 0, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;2;255;0;0",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(1, 0, 0, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;2;0;255;0",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0, 1, 0, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;2;0;0;255",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0, 0, 1, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;0",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BLACK,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;1",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.RED,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;2",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.GREEN,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;3",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.YELLOW,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;4",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BLUE,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;5",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.MAGENTA,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;6",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.CYAN,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;7",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.WHITE,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;8",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BRIGHT_BLACK,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;9",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BRIGHT_RED,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;10",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BRIGHT_GREEN,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;11",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BRIGHT_YELLOW,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;12",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BRIGHT_BLUE,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;13",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BRIGHT_MAGENTA,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;14",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BRIGHT_CYAN,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;15",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.STANDARD,
+                    rgba=None,
+                    standard_color=StandardColor.BRIGHT_WHITE,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;16",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0, 0, 0, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;21",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0, 0, 1, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;46",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0, 1, 0, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;51",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0, 1, 1, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;196",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(1, 0, 0, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;201",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(1, 0, 1, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;226",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(1, 1, 0, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;231",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(1, 1, 1, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;232",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0.04, 0.04, 0.04, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "48;5;255",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.EXTENDED,
+                    rgba=(0.96, 0.96, 0.96, 1.0),
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
+            "49",
+            InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.DEFAULT,
+                    rgba=None,
+                    standard_color=None,
+                ),
+                blackletter=None,
+                blink_speed=None,
+                conceal=None,
+                font_face=None,
+                foreground_color=None,
+                frame=None,
+                ideogram=None,
+                intensity=None,
+                invert=None,
+                italic=None,
+                overline=None,
+                proportional_spacing=None,
+                strike=None,
+                underline=None,
+                vertical_position=None,
+            ),
+        ),
+        (
             "50",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1645,6 +2722,7 @@ from ansiscape.types import Color
         (
             "51",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1665,6 +2743,7 @@ from ansiscape.types import Color
         (
             "52",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1685,6 +2764,7 @@ from ansiscape.types import Color
         (
             "53",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1705,6 +2785,7 @@ from ansiscape.types import Color
         (
             "54",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1725,6 +2806,7 @@ from ansiscape.types import Color
         (
             "55",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1745,6 +2827,7 @@ from ansiscape.types import Color
         (
             "60",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1765,6 +2848,7 @@ from ansiscape.types import Color
         (
             "61",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1785,6 +2869,7 @@ from ansiscape.types import Color
         (
             "62",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1805,6 +2890,7 @@ from ansiscape.types import Color
         (
             "63",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1825,6 +2911,7 @@ from ansiscape.types import Color
         (
             "64",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1845,6 +2932,7 @@ from ansiscape.types import Color
         (
             "73",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1865,6 +2953,7 @@ from ansiscape.types import Color
         (
             "74",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1885,6 +2974,7 @@ from ansiscape.types import Color
         (
             "75",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1905,6 +2995,7 @@ from ansiscape.types import Color
         (
             "90",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1929,6 +3020,7 @@ from ansiscape.types import Color
         (
             "91",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1953,6 +3045,7 @@ from ansiscape.types import Color
         (
             "92",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -1977,6 +3070,7 @@ from ansiscape.types import Color
         (
             "93",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -2001,6 +3095,7 @@ from ansiscape.types import Color
         (
             "94",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -2025,6 +3120,7 @@ from ansiscape.types import Color
         (
             "95",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -2049,6 +3145,7 @@ from ansiscape.types import Color
         (
             "96",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -2073,6 +3170,7 @@ from ansiscape.types import Color
         (
             "97",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -2097,6 +3195,7 @@ from ansiscape.types import Color
         (
             "73;1",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,
@@ -2117,6 +3216,11 @@ from ansiscape.types import Color
         (
             "0;73",
             InterpretationDict(
+                background_color=Color(
+                    color_type=ColorType.DEFAULT,
+                    rgba=None,
+                    standard_color=None,
+                ),
                 blackletter=False,
                 blink_speed=BlinkSpeed.NONE,
                 conceal=False,
@@ -2141,6 +3245,7 @@ from ansiscape.types import Color
         (
             "73;74",
             InterpretationDict(
+                background_color=None,
                 blackletter=None,
                 blink_speed=None,
                 conceal=None,

@@ -27,6 +27,7 @@ def test_update(
 ) -> None:
     assert FrameInterpreter().update(code, interpretation) == expect_claim
     assert interpretation == InterpretationDict(
+        background_color=None,
         blackletter=None,
         blink_speed=None,
         conceal=None,
