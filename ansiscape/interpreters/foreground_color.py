@@ -23,7 +23,15 @@ class ForegroundColorInterpreter(Interpreter):
             35: Color.MAGENTA,
             36: Color.CYAN,
             37: Color.WHITE,
-            38: Color.RGB,
+            38: Color.CUSTOM,
+            90: Color.BRIGHT_BLACK,
+            91: Color.BRIGHT_RED,
+            92: Color.BRIGHT_GREEN,
+            93: Color.BRIGHT_YELLOW,
+            94: Color.BRIGHT_BLUE,
+            95: Color.BRIGHT_MAGENTA,
+            96: Color.BRIGHT_CYAN,
+            97: Color.BRIGHT_WHITE,
         }
 
     def claim(self, code: List[int]) -> int:
@@ -50,7 +58,15 @@ class ForegroundColorInterpreter(Interpreter):
                 if 0 <= code[2] <= 7:
                     # Actually, it's just a standard colour:
                     return 3
+                if 8 <= code[2] <= 15:
+                    # Actually, it's just a standard bright colour:
+                    return 3
+
             raise Exception("unhandled extended color")
+
+        if 90 <= code[0] <= 97:
+            # Standard bright colour:
+            return 1
 
         return 0
 
@@ -75,3 +91,12 @@ class ForegroundColorInterpreter(Interpreter):
                     # Actually, it's just a standard colour:
                     interpretation["foreground_color"] = self.attributes[code[2] + 30]
                     return
+                if 8 <= code[2] <= 15:
+                    # Actually, it's just a standard bright colour:
+                    interpretation["foreground_color"] = self.attributes[code[2] + 82]
+                    return
+
+        if 90 <= code[0] <= 97:
+            # Standard bright colour:
+            interpretation["foreground_color"] = self.attributes[code[0]]
+            return
