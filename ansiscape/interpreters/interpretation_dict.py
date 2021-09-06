@@ -4,6 +4,7 @@ from ansiscape.enums import (
     BlinkSpeed,
     FontFace,
     Frame,
+    Ideogram,
     Intensity,
     Underline,
     VerticalPosition,
@@ -47,6 +48,13 @@ class InterpretationDict(TypedDict):
     `None` should be interpreted as "no change" rather than "no framing".
     """
     frame: Optional[Frame]
+
+    """
+    Describes the ideogram formatting of subsequent text.
+
+    `None` should be interpreted as "no change" rather than "no ideogram".
+    """
+    ideogram: Optional[Ideogram]
 
     """
     Describes the intensity of subsequent text.
