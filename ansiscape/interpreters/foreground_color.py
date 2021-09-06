@@ -189,7 +189,7 @@ class ForegroundColorInterpreter(Interpreter[Tuple[ColorType, Optional[Color]]])
                 # Actually, it's just a standard bright colour:
                 interpretation["foreground_color"] = self.attributes[code[2] + 82][1]
                 return 3
-            if 16 <= code[2] <= 231:
+            if 16 <= code[2] <= 255:
                 interpretation["foreground_color"] = Color(
                     color_type=ColorType.EXTENDED,
                     rgb=get_8_bit_rgb(code[2]),

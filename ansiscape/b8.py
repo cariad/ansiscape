@@ -13,8 +13,12 @@ def get_8_bit_rgb(code: int) -> RGB:
     `code` is taken from the third attribute in, for example, "38;5;<code>m".
     """
 
-    if not 16 <= code <= 231:
-        raise ValueError(f'"code" ({code}) must be 16 - 231 inclusive')
+    if not 16 <= code <= 255:
+        raise ValueError(f'"code" ({code}) must be 16 - 255 inclusive')
+
+    if 232 <= code <= 255:
+        grey = (code - 231) * (1 / 25)
+        return (grey, grey, grey)
 
     for r in range(0, 6):
         for g in range(0, 6):
@@ -22,7 +26,7 @@ def get_8_bit_rgb(code: int) -> RGB:
                 if 16 + 36 * r + 6 * g + b == code:
                     return ((r * 51) / 255, (g * 51) / 255, (b * 51) / 255)
 
-    raise ValueError(f'failed to get 8_bit RGH for code "{code}"')
+    raise ValueError(f'failed to get 8-bit RGB for code "{code}"')
 
 
 def make_8_bit_rgb_visualization_html() -> str:
