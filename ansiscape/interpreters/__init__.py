@@ -1,61 +1,120 @@
-from typing import Any, List
+from typing import Any, Dict, List
 
-from ansiscape.interpreters.background_color import BackgroundColorInterpreter
-from ansiscape.interpreters.blackletter import BlackletterInterpreter
-from ansiscape.interpreters.blink_speed import BlinkSpeedInterpreter
-from ansiscape.interpreters.conceal import ConcealInterpreter
-from ansiscape.interpreters.font_face import FontFaceInterpreter
-from ansiscape.interpreters.foreground_color import ForegroundColorInterpreter
-from ansiscape.interpreters.frame import FrameInterpreter
-from ansiscape.interpreters.ideogram import IdeogramInterpreter
-from ansiscape.interpreters.intensity import IntensityInterpreter
-from ansiscape.interpreters.interpreter import Interpreter
-from ansiscape.interpreters.invert import InvertInterpreter
-from ansiscape.interpreters.italic import ItalicInterpreter
-from ansiscape.interpreters.overline import OverlineInterpreter
-from ansiscape.interpreters.proportional_spacing import ProportionalSpacingInterpreter
-from ansiscape.interpreters.strike import StrikeInterpreter
-from ansiscape.interpreters.underline import UnderlineInterpreter
-from ansiscape.interpreters.underline_color import UnderlineColorInterpreter
-from ansiscape.interpreters.vertical_position import VerticalPositionInterpreter
+from ansiscape.enums import (
+    Blink,
+    Font,
+    Frame,
+    Ideogram,
+    SelectGraphicRendition,
+    StandardColor,
+    Underline,
+    Weight,
+)
+from ansiscape.interpreters.background import BackgroundValue
+from ansiscape.interpreters.blink import BlinkValue
+from ansiscape.interpreters.conceal import ConcealValue
+from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.interpreters.font import FontValue
+from ansiscape.interpreters.foreground import ForegroundValue
+from ansiscape.interpreters.fraktur import FrakturValue
+from ansiscape.interpreters.frame import FrameValue
+from ansiscape.interpreters.ideogram import IdeogramValue
+from ansiscape.interpreters.invert import InvertValue
+from ansiscape.interpreters.italic import ItalicValue
+from ansiscape.interpreters.overline import OverlineValue
+from ansiscape.interpreters.proportional_spacing import ProportionalSpacingValue
+from ansiscape.interpreters.strike import StrikeValue
+from ansiscape.interpreters.underline import UnderlineValue
+from ansiscape.interpreters.weight import WeightValue
 
-interpreters: List[Interpreter[Any]] = [
-    BackgroundColorInterpreter(),
-    BlackletterInterpreter(),
-    BlinkSpeedInterpreter(),
-    ConcealInterpreter(),
-    FontFaceInterpreter(),
-    ForegroundColorInterpreter(),
-    FrameInterpreter(),
-    IdeogramInterpreter(),
-    IntensityInterpreter(),
-    InvertInterpreter(),
-    ItalicInterpreter(),
-    OverlineInterpreter(),
-    ProportionalSpacingInterpreter(),
-    StrikeInterpreter(),
-    UnderlineInterpreter(),
-    UnderlineColorInterpreter(),
-    VerticalPositionInterpreter(),
-]
-
-__all__ = [
-    "BackgroundColorInterpreter",
-    "BlackletterInterpreter",
-    "BlinkSpeedInterpreter",
-    "ConcealInterpreter",
-    "FontFaceInterpreter",
-    "ForegroundColorInterpreter",
-    "FrameInterpreter",
-    "IdeogramInterpreter",
-    "IntensityInterpreter",
-    "interpreters",
-    "InvertInterpreter",
-    "ItalicInterpreter",
-    "OverlineInterpreter",
-    "ProportionalSpacingInterpreter",
-    "StrikeInterpreter",
-    "UnderlineInterpreter",
-    "UnderlineColorInterpreter",
-    "VerticalPositionInterpreter",
-]
+interpretations: Dict[SelectGraphicRendition, List[DictValue[Any]]] = {
+    SelectGraphicRendition.DEFAULT: [
+        BackgroundValue(False),
+        BlinkValue(Blink.NONE),
+        ConcealValue(False),
+        FontValue(Font.DEFAULT),
+        ForegroundValue(False),
+        FrakturValue(False),
+        FrameValue(Frame.NONE),
+        IdeogramValue(Ideogram.NONE),
+        InvertValue(False),
+        ItalicValue(False),
+        OverlineValue(False),
+        ProportionalSpacingValue(False),
+        StrikeValue(False),
+        UnderlineValue(Underline.NONE),
+        WeightValue(Weight.NORMAL),
+    ],
+    SelectGraphicRendition.BACKGROUND_BLACK: [BackgroundValue(StandardColor.BLACK)],
+    SelectGraphicRendition.BACKGROUND_BLUE: [BackgroundValue(StandardColor.BLUE)],
+    SelectGraphicRendition.BACKGROUND_CYAN: [BackgroundValue(StandardColor.CYAN)],
+    SelectGraphicRendition.BACKGROUND_DEFAULT: [BackgroundValue(False)],
+    SelectGraphicRendition.BACKGROUND_GREEN: [BackgroundValue(StandardColor.GREEN)],
+    SelectGraphicRendition.BACKGROUND_MAGENTA: [BackgroundValue(StandardColor.MAGENTA)],
+    SelectGraphicRendition.BACKGROUND_RGB: [BackgroundValue()],
+    SelectGraphicRendition.BACKGROUND_RED: [BackgroundValue(StandardColor.RED)],
+    SelectGraphicRendition.BACKGROUND_WHITE: [BackgroundValue(StandardColor.WHITE)],
+    SelectGraphicRendition.BACKGROUND_YELLOW: [BackgroundValue(StandardColor.YELLOW)],
+    SelectGraphicRendition.BLINK_FAST: [BlinkValue(Blink.FAST)],
+    SelectGraphicRendition.BLINK_NONE: [BlinkValue(Blink.NONE)],
+    SelectGraphicRendition.BLINK_SLOW: [BlinkValue(Blink.SLOW)],
+    SelectGraphicRendition.CONCEAL_OFF: [ConcealValue(False)],
+    SelectGraphicRendition.CONCEAL_ON: [ConcealValue(True)],
+    SelectGraphicRendition.FONT_ALT_0: [FontValue(Font.ALT_0)],
+    SelectGraphicRendition.FONT_ALT_1: [FontValue(Font.ALT_1)],
+    SelectGraphicRendition.FONT_ALT_2: [FontValue(Font.ALT_2)],
+    SelectGraphicRendition.FONT_ALT_3: [FontValue(Font.ALT_3)],
+    SelectGraphicRendition.FONT_ALT_4: [FontValue(Font.ALT_4)],
+    SelectGraphicRendition.FONT_ALT_5: [FontValue(Font.ALT_5)],
+    SelectGraphicRendition.FONT_ALT_6: [FontValue(Font.ALT_6)],
+    SelectGraphicRendition.FONT_ALT_7: [FontValue(Font.ALT_7)],
+    SelectGraphicRendition.FONT_ALT_8: [FontValue(Font.ALT_8)],
+    SelectGraphicRendition.FONT_DEFAULT: [FontValue(Font.DEFAULT)],
+    SelectGraphicRendition.FOREGROUND_BLACK: [ForegroundValue(StandardColor.BLACK)],
+    SelectGraphicRendition.FOREGROUND_BLUE: [ForegroundValue(StandardColor.BLUE)],
+    SelectGraphicRendition.FOREGROUND_CYAN: [ForegroundValue(StandardColor.CYAN)],
+    SelectGraphicRendition.FOREGROUND_DEFAULT: [ForegroundValue(False)],
+    SelectGraphicRendition.FOREGROUND_GREEN: [ForegroundValue(StandardColor.GREEN)],
+    SelectGraphicRendition.FOREGROUND_MAGENTA: [ForegroundValue(StandardColor.MAGENTA)],
+    SelectGraphicRendition.FOREGROUND_RGB: [ForegroundValue()],
+    SelectGraphicRendition.FOREGROUND_RED: [ForegroundValue(StandardColor.RED)],
+    SelectGraphicRendition.FOREGROUND_WHITE: [ForegroundValue(StandardColor.WHITE)],
+    SelectGraphicRendition.FOREGROUND_YELLOW: [ForegroundValue(StandardColor.YELLOW)],
+    SelectGraphicRendition.FRAKTUR_ON: [FrakturValue(True)],
+    SelectGraphicRendition.FRAME_CIRCLE: [FrameValue(Frame.ENCIRCLED)],
+    SelectGraphicRendition.FRAME_FRAME: [FrameValue(Frame.FRAMED)],
+    SelectGraphicRendition.FRAME_OFF: [FrameValue(Frame.NONE)],
+    SelectGraphicRendition.IDEOGRAM_DOUBLE_LINE_OVER_OR_LEFT: [
+        IdeogramValue(Ideogram.DOUBLE_LINE_OVER_OR_LEFT)
+    ],
+    SelectGraphicRendition.IDEOGRAM_DOUBLE_LINE_UNDER_OR_RIGHT: [
+        IdeogramValue(Ideogram.DOUBLE_LINE_UNDER_OR_RIGHT)
+    ],
+    SelectGraphicRendition.IDEOGRAM_LINE_OVER_OR_LEFT: [
+        IdeogramValue(Ideogram.LINE_OVER_OR_LEFT)
+    ],
+    SelectGraphicRendition.IDEOGRAM_LINE_UNDER_OR_RIGHT: [
+        IdeogramValue(Ideogram.LINE_UNDER_OR_RIGHT)
+    ],
+    SelectGraphicRendition.IDEOGRAM_NONE: [IdeogramValue(Ideogram.NONE)],
+    SelectGraphicRendition.IDEOGRAM_STRESS: [IdeogramValue(Ideogram.STRESS)],
+    SelectGraphicRendition.INVERT_OFF: [InvertValue(False)],
+    SelectGraphicRendition.INVERT_ON: [InvertValue(True)],
+    SelectGraphicRendition.ITALIC_AND_FRAKTUR_OFF: [
+        FrakturValue(False),
+        ItalicValue(False),
+    ],
+    SelectGraphicRendition.ITALIC_ON: [ItalicValue(True)],
+    SelectGraphicRendition.OVERLINE_OFF: [OverlineValue(False)],
+    SelectGraphicRendition.OVERLINE_ON: [OverlineValue(True)],
+    SelectGraphicRendition.PROPORTIONAL_SPACING_OFF: [ProportionalSpacingValue(False)],
+    SelectGraphicRendition.PROPORTIONAL_SPACING_ON: [ProportionalSpacingValue(True)],
+    SelectGraphicRendition.STRIKE_OFF: [StrikeValue(False)],
+    SelectGraphicRendition.STRIKE_ON: [StrikeValue(True)],
+    SelectGraphicRendition.UNDERLINE_NONE: [UnderlineValue(Underline.NONE)],
+    SelectGraphicRendition.UNDERLINE_SINGLE: [UnderlineValue(Underline.SINGLE)],
+    SelectGraphicRendition.UNDERLINE_DOUBLE: [UnderlineValue(Underline.DOUBLE)],
+    SelectGraphicRendition.WEIGHT_HEAVY: [WeightValue(Weight.HEAVY)],
+    SelectGraphicRendition.WEIGHT_LIGHT: [WeightValue(Weight.LIGHT)],
+    SelectGraphicRendition.WEIGHT_NORMAL: [WeightValue(Weight.NORMAL)],
+}
