@@ -1,4 +1,5 @@
 from ansiscape.enums.blink import Blink
+from ansiscape.enums.color_scheme import ColorScheme
 from ansiscape.enums.font import Font
 from ansiscape.enums.frame import Frame
 from ansiscape.enums.ideogram import Ideogram
@@ -11,6 +12,7 @@ from ansiscape.enums.weight import Weight
 
 __all__ = [
     "Blink",
+    "ColorScheme",
     "Font",
     "Frame",
     "Ideogram",
