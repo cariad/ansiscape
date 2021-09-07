@@ -3,15 +3,15 @@ from typing import List, Optional, Tuple
 from ansiscape.b8 import get_8_bit_rgb
 from ansiscape.enums import InterpretationKey, StandardColor
 from ansiscape.interpreters.dict_value import DictValue
-from ansiscape.types import Color2
+from ansiscape.types import Color
 
 
-class ColorValue(DictValue[Color2]):
-    def __init__(self, key: InterpretationKey, force: Optional[Color2] = None) -> None:
+class ColorValue(DictValue[Color]):
+    def __init__(self, key: InterpretationKey, force: Optional[Color] = None) -> None:
         super().__init__(key)
         self._force = force
 
-    def value(self, code: List[int]) -> Tuple[Optional[Color2], int]:
+    def value(self, code: List[int]) -> Tuple[Optional[Color], int]:
         if self._force is not None:
             return self._force, 0
 
