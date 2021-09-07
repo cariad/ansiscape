@@ -1,3 +1,4 @@
+*.pyc
 .coverage
 ansiscape.egg-info
 coverage.xml
