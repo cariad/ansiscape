@@ -1,4 +1,4 @@
-from ansiscape.enums.blink_speed import BlinkSpeed
+from ansiscape.enums.blink import Blink
 from ansiscape.enums.font import Font
 from ansiscape.enums.frame import Frame
 from ansiscape.enums.ideogram import Ideogram
@@ -10,7 +10,7 @@ from ansiscape.enums.vertical_position import VerticalPosition
 from ansiscape.enums.weight import Weight
 
 __all__ = [
-    "BlinkSpeed",
+    "Blink",
     "Font",
     "Frame",
     "Ideogram",
