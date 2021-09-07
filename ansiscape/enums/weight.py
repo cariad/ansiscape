@@ -2,7 +2,7 @@ from enum import IntEnum, unique
 
 
 @unique
-class Intensity(IntEnum):
+class Weight(IntEnum):
+    LIGHT = -1
     NORMAL = 0
-    DIM = 1
-    BOLD = 2
+    HEAVY = 1
