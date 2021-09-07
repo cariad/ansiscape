@@ -1,13 +1,13 @@
 from typing import Optional, TypedDict
 
 from ansiscape.enums import (
-    BlinkSpeed,
-    FontFace,
+    Blink,
+    Font,
     Frame,
     Ideogram,
-    Intensity,
     Underline,
     VerticalPosition,
+    Weight,
 )
 from ansiscape.types.color import Color
 
@@ -35,7 +35,7 @@ class InterpretationDict(TypedDict):
 
     `None` should be interpreted as "no change" rather than "no blinking".
     """
-    blink_speed: Optional[BlinkSpeed]
+    blink: Optional[Blink]
 
     """
     Describes the concealing of subsequent text.
@@ -49,7 +49,7 @@ class InterpretationDict(TypedDict):
 
     `None` should be interpreted as "no change" rather than "no font face".
     """
-    font_face: Optional[FontFace]
+    font_face: Optional[Font]
 
     """
     Describes the foreground colour of subsequent text.
@@ -78,7 +78,7 @@ class InterpretationDict(TypedDict):
 
     `None` should be interpreted as "no change" rather than "no intensity".
     """
-    intensity: Optional[Intensity]
+    intensity: Optional[Weight]
 
     """
     Describes the inversion of subsequent text.
