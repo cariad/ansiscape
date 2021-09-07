@@ -10,5 +10,5 @@ class SingleValue(DictValue[TInterpretationValue]):
         super().__init__(key)
         self._value = value
 
-    def value(self, code: List[int]) -> Tuple[Optional[TInterpretationValue], int]:
+    def value(self, attrs: List[int]) -> Tuple[Optional[TInterpretationValue], int]:
         return self._value, 0

@@ -10,5 +10,5 @@ class DictValue(ABC, Generic[TInterpretationValue]):
         self.key = key
 
     @abstractmethod
-    def value(self, code: List[int]) -> Tuple[Optional[TInterpretationValue], int]:
+    def value(self, attrs: List[int]) -> Tuple[Optional[TInterpretationValue], int]:
         ...

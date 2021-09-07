@@ -1,13 +1,44 @@
 from pathlib import Path
 
-from pytest import mark, raises
+from pytest import mark
 
-from ansiscape.b8 import get_8_bit_rgb, make_8_bit_rgb_visualization_html
+from ansiscape.color.eight_bit import (
+    get_8_bit_named_color,
+    get_8_bit_rgb_color,
+    get_8_bit_rgb_grey,
+    get_8_bit_rgb_visualization_html,
+)
+from ansiscape.enums.standard_color import StandardColor
 from ansiscape.types import RGB
 
 
 @mark.parametrize(
-    "code, expect",
+    "attr, expect",
+    [
+        (0, StandardColor.BLACK),
+        (1, StandardColor.RED),
+        (2, StandardColor.GREEN),
+        (3, StandardColor.YELLOW),
+        (4, StandardColor.BLUE),
+        (5, StandardColor.MAGENTA),
+        (6, StandardColor.CYAN),
+        (7, StandardColor.WHITE),
+        (8, StandardColor.BRIGHT_BLACK),
+        (9, StandardColor.BRIGHT_RED),
+        (10, StandardColor.BRIGHT_GREEN),
+        (11, StandardColor.BRIGHT_YELLOW),
+        (12, StandardColor.BRIGHT_BLUE),
+        (13, StandardColor.BRIGHT_MAGENTA),
+        (14, StandardColor.BRIGHT_CYAN),
+        (15, StandardColor.BRIGHT_WHITE),
+    ],
+)
+def test_get_8_bit_named_color(attr: int, expect: StandardColor) -> None:
+    assert get_8_bit_named_color(attr) == expect
+
+
+@mark.parametrize(
+    "attr, expect",
     [
         (16, (0.0, 0.0, 0.0)),
         (17, (0.0, 0.0, 0.2)),
@@ -225,6 +256,15 @@ from ansiscape.types import RGB
         (229, (1.0, 1.0, 0.6)),
         (230, (1.0, 1.0, 0.8)),
         (231, (1.0, 1.0, 1.0)),
+    ],
+)
+def test_get_8_bit_color(attr: int, expect: RGB) -> None:
+    assert get_8_bit_rgb_color(attr) == expect
+
+
+@mark.parametrize(
+    "attr, expect",
+    [
         (232, (0.04, 0.04, 0.04)),
         (233, (0.08, 0.08, 0.08)),
         (234, (0.12, 0.12, 0.12)),
@@ -251,16 +291,10 @@ from ansiscape.types import RGB
         (255, (0.96, 0.96, 0.96)),
     ],
 )
-def test_get_8_bit_rgb(code: int, expect: RGB) -> None:
-    assert get_8_bit_rgb(code) == expect
-
-
-@mark.parametrize("code", [15, 256])
-def test_get_8_bit_rgb__out_of_range(code: int) -> None:
-    with raises(ValueError):
-        get_8_bit_rgb(code)
+def test_get_8_bit_rgb_grey(attr: int, expect: RGB) -> None:
+    assert get_8_bit_rgb_grey(attr) == expect
 
 
 def test_make_8_bit_rgb_visualization_html() -> None:
     with open(Path() / "tests" / "8_bit_rgb_visualization.html") as gold:
-        assert make_8_bit_rgb_visualization_html() == gold.read().strip()
+        assert get_8_bit_rgb_visualization_html() == gold.read().strip()
