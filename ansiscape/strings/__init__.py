@@ -1,3 +1,4 @@
+from ansiscape.strings.blink import BlinkFast, BlinkSlow
 from ansiscape.strings.colors import (
     Black,
     BlackBackground,
@@ -37,6 +38,8 @@ from ansiscape.strings.sequence import Sequence
 __all__ = [
     "Black",
     "BlackBackground",
+    "BlinkFast",
+    "BlinkSlow",
     "Blue",
     "BlueBackground",
     "BrightBlack",
