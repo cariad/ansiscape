@@ -1,4 +1,5 @@
 from ansiscape.strings.blink import BlinkFast, BlinkSlow
+from ansiscape.strings.calligraphy import Blackletter, Italic
 from ansiscape.strings.colors import (
     Black,
     BlackBackground,
@@ -61,6 +62,7 @@ __all__ = [
     "AlternateFont8",
     "Black",
     "BlackBackground",
+    "Blackletter",
     "BlinkFast",
     "BlinkSlow",
     "Blue",
@@ -86,6 +88,7 @@ __all__ = [
     "CyanBackground",
     "Green",
     "Invert",
+    "Italic",
     "GreenBackground",
     "Magenta",
     "MagentaBackground",
