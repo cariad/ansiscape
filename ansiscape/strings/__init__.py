@@ -34,11 +34,31 @@ from ansiscape.strings.colors import (
     YellowBackground,
 )
 from ansiscape.strings.conceal import Conceal
+from ansiscape.strings.font import (
+    AlternateFont0,
+    AlternateFont1,
+    AlternateFont2,
+    AlternateFont3,
+    AlternateFont4,
+    AlternateFont5,
+    AlternateFont6,
+    AlternateFont7,
+    AlternateFont8,
+)
 from ansiscape.strings.invert import Invert
 from ansiscape.strings.sequence import Sequence
 from ansiscape.strings.strike import Strike
 
 __all__ = [
+    "AlternateFont0",
+    "AlternateFont1",
+    "AlternateFont2",
+    "AlternateFont3",
+    "AlternateFont4",
+    "AlternateFont5",
+    "AlternateFont6",
+    "AlternateFont7",
+    "AlternateFont8",
     "Black",
     "BlackBackground",
     "BlinkFast",
