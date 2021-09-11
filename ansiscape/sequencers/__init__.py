@@ -44,6 +44,9 @@ def to_string(*args: Union[str, InterpretationDict]) -> str:
         if isinstance(arg, str):
             wip += arg
         else:
+            if not arg:
+                # Don't add empty dictionaries.
+                continue
             seq = sequence(interpretation=arg, history=history)
             wip += seq
             history.append(arg)
