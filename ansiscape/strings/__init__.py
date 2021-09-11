@@ -47,6 +47,13 @@ from ansiscape.strings.font import (
     AlternateFont8,
 )
 from ansiscape.strings.frame import Box, Circle
+from ansiscape.strings.ideogram import (
+    DoubleLineOverOrLeft,
+    DoubleLineUnderOrRight,
+    SingleLineOverOrLeft,
+    SingleLineUnderOrRight,
+    Stress,
+)
 from ansiscape.strings.invert import Invert
 from ansiscape.strings.overline import Overline
 from ansiscape.strings.proportional_spacing import ProportionalSpacing
@@ -93,6 +100,8 @@ __all__ = [
     "Conceal",
     "Cyan",
     "CyanBackground",
+    "DoubleLineOverOrLeft",
+    "DoubleLineUnderOrRight",
     "DoubleUnderline",
     "Green",
     "Heavy",
@@ -107,7 +116,10 @@ __all__ = [
     "Red",
     "RedBackground",
     "Sequence",
+    "SingleLineOverOrLeft",
+    "SingleLineUnderOrRight",
     "SingleUnderline",
+    "Stress",
     "Strike",
     "White",
     "WhiteBackground",
