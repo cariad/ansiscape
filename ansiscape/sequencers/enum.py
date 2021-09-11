@@ -8,7 +8,7 @@ from ansiscape.types import SequencerResult
 class EnumSequencer(Sequencer[TValue]):
     @abstractproperty
     def lookup(self) -> Dict[Optional[TValue], SequencerResult]:
-        ...
+        """Gets the lookup dictionary."""
 
     def resolve(self, value: Optional[TValue]) -> SequencerResult:
         """Resolves a value into a sequencer result."""

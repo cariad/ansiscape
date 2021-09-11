@@ -9,7 +9,7 @@ from ansiscape.types.color import Color
 class Foreground(StringWithCodes):
     @abstractproperty
     def color(self) -> Color:
-        ...
+        """Gets the colour."""
 
     @property
     def prefix(self) -> InterpretationDict:

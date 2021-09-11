@@ -8,7 +8,7 @@ from ansiscape.types import InterpretationDict
 class FrameStringWithCodes(StringWithCodes):
     @abstractproperty
     def frame(self) -> Frame:
-        ...
+        """Gets the frame."""
 
     @property
     def prefix(self) -> InterpretationDict:

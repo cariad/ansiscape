@@ -8,7 +8,7 @@ from ansiscape.types import InterpretationDict
 class CalligraphyStringWithCodes(StringWithCodes):
     @abstractproperty
     def calligraphy(self) -> Calligraphy:
-        ...
+        """Gets the calligraphy."""
 
     @property
     def prefix(self) -> InterpretationDict:

@@ -9,7 +9,7 @@ from ansiscape.types import InterpretationDict
 class BlinkStringWithCodes(StringWithCodes):
     @abstractproperty
     def blink(self) -> Blink:
-        ...
+        """Gets the blink speed."""
 
     @property
     def prefix(self) -> InterpretationDict:

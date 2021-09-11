@@ -11,11 +11,11 @@ class StringWithCodes(ABC):
 
     @abstractproperty
     def prefix(self) -> InterpretationDict:
-        ...
+        """Gets the state to prefix this text with."""
 
     @abstractproperty
     def suffix(self) -> InterpretationDict:
-        ...
+        """Gets the state to suffix this text with."""
 
     @property
     def args(self) -> List[Union[str, InterpretationDict]]:

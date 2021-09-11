@@ -8,7 +8,7 @@ from ansiscape.types import InterpretationDict
 class AlternateFont(StringWithCodes):
     @abstractproperty
     def font(self) -> Font:
-        ...
+        """Gets the font."""
 
     @property
     def prefix(self) -> InterpretationDict:

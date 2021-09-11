@@ -11,4 +11,4 @@ class DictValue(ABC, Generic[TInterpretationValue]):
 
     @abstractmethod
     def value(self, attrs: Attributes) -> Tuple[Optional[TInterpretationValue], int]:
-        ...
+        """Gets the interpreted value and quantity of attributes claimed."""

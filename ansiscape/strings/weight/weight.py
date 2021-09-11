@@ -8,7 +8,7 @@ from ansiscape.types import InterpretationDict
 class WeightStringWithCodes(StringWithCodes):
     @abstractproperty
     def weight(self) -> Weight:
-        ...
+        """Gets the weight."""
 
     @property
     def prefix(self) -> InterpretationDict:

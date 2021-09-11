@@ -8,7 +8,7 @@ from ansiscape.types import InterpretationDict
 class IdeogramStringWithCodes(StringWithCodes):
     @abstractproperty
     def ideogram(self) -> Ideogram:
-        ...
+        """Gets the ideogram."""
 
     @property
     def prefix(self) -> InterpretationDict:

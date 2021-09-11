@@ -8,7 +8,7 @@ from ansiscape.types import InterpretationDict
 class UnderlineStringWithCodes(StringWithCodes):
     @abstractproperty
     def underline(self) -> Underline:
-        ...
+        """Gets the underline."""
 
     @property
     def prefix(self) -> InterpretationDict:
