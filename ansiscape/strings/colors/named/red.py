@@ -1,9 +1,9 @@
 from ansiscape.enums import StandardColor
-from ansiscape.strings.foreground import Foreground
+from ansiscape.strings.colors.foreground import Foreground
 from ansiscape.types import Color
 
 
-class Black(Foreground):
+class Red(Foreground):
     @property
     def color(self) -> Color:
-        return StandardColor.BLACK
+        return StandardColor.RED

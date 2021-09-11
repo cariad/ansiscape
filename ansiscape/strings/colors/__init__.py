@@ -1,6 +1,14 @@
-from ansiscape.strings.colors import (
+from ansiscape.strings.colors.named import (
     Black,
     Blue,
+    Cyan,
+    Green,
+    Magenta,
+    Red,
+    White,
+    Yellow,
+)
+from ansiscape.strings.colors.named_bright import (
     BrightBlack,
     BrightBlue,
     BrightCyan,
@@ -9,14 +17,7 @@ from ansiscape.strings.colors import (
     BrightRed,
     BrightWhite,
     BrightYellow,
-    Cyan,
-    Green,
-    Magenta,
-    Red,
-    White,
-    Yellow,
 )
-from ansiscape.strings.sequence import Sequence
 
 __all__ = [
     "Black",
@@ -33,7 +34,6 @@ __all__ = [
     "Green",
     "Magenta",
     "Red",
-    "Sequence",
     "White",
     "Yellow",
 ]
