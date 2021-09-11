@@ -36,6 +36,7 @@ from ansiscape.strings.colors import (
 from ansiscape.strings.conceal import Conceal
 from ansiscape.strings.invert import Invert
 from ansiscape.strings.sequence import Sequence
+from ansiscape.strings.strike import Strike
 
 __all__ = [
     "Black",
@@ -71,6 +72,7 @@ __all__ = [
     "Red",
     "RedBackground",
     "Sequence",
+    "Strike",
     "White",
     "WhiteBackground",
     "Yellow",
