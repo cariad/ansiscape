@@ -54,7 +54,7 @@ class SelectGraphicRendition(IntEnum):
     BACKGROUND_RGB = 48
     BACKGROUND_DEFAULT = 49
     PROPORTIONAL_SPACING_OFF = 50
-    FRAME_FRAME = 51
+    FRAME_BOX = 51
     FRAME_CIRCLE = 52
     OVERLINE_ON = 53
     FRAME_OFF = 54

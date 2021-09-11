@@ -46,7 +46,9 @@ from ansiscape.strings.font import (
     AlternateFont7,
     AlternateFont8,
 )
+from ansiscape.strings.frame import Box, Circle
 from ansiscape.strings.invert import Invert
+from ansiscape.strings.overline import Overline
 from ansiscape.strings.proportional_spacing import ProportionalSpacing
 from ansiscape.strings.sequence import Sequence
 from ansiscape.strings.strike import Strike
@@ -70,6 +72,7 @@ __all__ = [
     "BlinkSlow",
     "Blue",
     "BlueBackground",
+    "Box",
     "BrightBlack",
     "BrightBlackBackground",
     "BrightBlue",
@@ -86,6 +89,7 @@ __all__ = [
     "BrightWhiteBackground",
     "BrightYellow",
     "BrightYellowBackground",
+    "Circle",
     "Conceal",
     "Cyan",
     "CyanBackground",
@@ -98,6 +102,7 @@ __all__ = [
     "Light",
     "Magenta",
     "MagentaBackground",
+    "Overline",
     "ProportionalSpacing",
     "Red",
     "RedBackground",

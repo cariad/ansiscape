@@ -79,7 +79,7 @@ from ansiscape.types import InterpretationDict
         (
             [
                 "This is ",
-                InterpretationDict(frame=Frame.FRAMED),
+                InterpretationDict(frame=Frame.BOX),
                 "framed",
                 InterpretationDict(frame=InterpretationSpecial.REVERT),
                 ".",

@@ -83,8 +83,8 @@ interpretations: Dict[SelectGraphicRendition, List[DictValue[Any]]] = {
     SelectGraphicRendition.FOREGROUND_RED: [ForegroundValue(StandardColor.RED)],
     SelectGraphicRendition.FOREGROUND_WHITE: [ForegroundValue(StandardColor.WHITE)],
     SelectGraphicRendition.FOREGROUND_YELLOW: [ForegroundValue(StandardColor.YELLOW)],
-    SelectGraphicRendition.FRAME_CIRCLE: [FrameValue(Frame.ENCIRCLED)],
-    SelectGraphicRendition.FRAME_FRAME: [FrameValue(Frame.FRAMED)],
+    SelectGraphicRendition.FRAME_CIRCLE: [FrameValue(Frame.CIRCLE)],
+    SelectGraphicRendition.FRAME_BOX: [FrameValue(Frame.BOX)],
     SelectGraphicRendition.FRAME_OFF: [FrameValue(Frame.NONE)],
     SelectGraphicRendition.IDEOGRAM_DOUBLE_LINE_OVER_OR_LEFT: [
         IdeogramValue(Ideogram.DOUBLE_LINE_OVER_OR_LEFT)
