@@ -20,11 +20,11 @@ class IdeogramSequencer(EnumSequencer[Ideogram]):
             Ideogram.DOUBLE_LINE_UNDER_OR_RIGHT: SequencerResult(
                 sgr=SelectGraphicRendition.IDEOGRAM_DOUBLE_LINE_UNDER_OR_RIGHT
             ),
-            Ideogram.LINE_OVER_OR_LEFT: SequencerResult(
-                sgr=SelectGraphicRendition.IDEOGRAM_LINE_OVER_OR_LEFT
+            Ideogram.SINGLE_LINE_OVER_OR_LEFT: SequencerResult(
+                sgr=SelectGraphicRendition.IDEOGRAM_SINGLE_LINE_OVER_OR_LEFT
             ),
-            Ideogram.LINE_UNDER_OR_RIGHT: SequencerResult(
-                sgr=SelectGraphicRendition.IDEOGRAM_LINE_UNDER_OR_RIGHT
+            Ideogram.SINGLE_LINE_UNDER_OR_RIGHT: SequencerResult(
+                sgr=SelectGraphicRendition.IDEOGRAM_SINGLE_LINE_UNDER_OR_RIGHT
             ),
             Ideogram.STRESS: SequencerResult(
                 sgr=SelectGraphicRendition.IDEOGRAM_STRESS

@@ -3,6 +3,7 @@ from typing import Any, Dict
 from ansiscape.enums import SelectGraphicRendition
 from ansiscape.interpreters import interpretations
 from ansiscape.types import Attributes
+from ansiscape.types.interpretation_dict import InterpretationDict
 
 
 def make_attributes(sequence: str) -> Attributes:
@@ -16,6 +17,52 @@ def make_attributes(sequence: str) -> Attributes:
     if not code:
         return []
     return [int(attribute) for attribute in code.split(";")]
+
+
+def interpret(sequence: str) -> InterpretationDict:
+    d = interpret_as_any(sequence)
+    i: InterpretationDict = {}
+
+    if background := d.get("background", None):
+        i["background"] = background
+
+    if blink := d.get("blink", None):
+        i["blink"] = blink
+
+    if calligraphy := d.get("calligraphy", None):
+        i["calligraphy"] = calligraphy
+
+    if conceal := d.get("conceal", None):
+        i["conceal"] = conceal
+
+    if font := d.get("font", None):
+        i["font"] = font
+
+    if foreground := d.get("foreground", None):
+        i["foreground"] = foreground
+
+    if frame := d.get("frame", None):
+        i["frame"] = frame
+
+    if ideogram := d.get("ideogram", None):
+        i["ideogram"] = ideogram
+
+    if weight := d.get("weight", None):
+        i["weight"] = weight
+
+    if invert := d.get("invert", None):
+        i["invert"] = invert
+    if overline := d.get("overline", None):
+        i["overline"] = overline
+
+    if proportional_spacing := d.get("proportional_spacing", None):
+        i["proportional_spacing"] = proportional_spacing
+    if strike := d.get("strike", None):
+        i["strike"] = strike
+    if underline := d.get("underline", None):
+        i["underline"] = underline
+
+    return i
 
 
 def interpret_as_any(sequence: str) -> Dict[str, Any]:

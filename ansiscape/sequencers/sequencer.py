@@ -10,7 +10,7 @@ TValue = TypeVar("TValue")
 class Sequencer(ABC, Generic[TValue]):
     @abstractproperty
     def key(self) -> InterpretationKey:
-        ...
+        """Gets the dictionary key."""
 
     def sequence(self, stack: List[InterpretationDict]) -> SequencerResult:
         """
@@ -63,8 +63,6 @@ class Sequencer(ABC, Generic[TValue]):
             return None
 
         if isinstance(value, InterpretationSpecial):
-            if value == InterpretationSpecial.REVERT:
-                return self.reversion(stack)
-            raise ValueError()
+            return self.reversion(stack)
 
         return cast(TValue, value)

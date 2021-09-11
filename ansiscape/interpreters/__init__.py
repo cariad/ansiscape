@@ -83,8 +83,8 @@ interpretations: Dict[SelectGraphicRendition, List[DictValue[Any]]] = {
     SelectGraphicRendition.FOREGROUND_RED: [ForegroundValue(StandardColor.RED)],
     SelectGraphicRendition.FOREGROUND_WHITE: [ForegroundValue(StandardColor.WHITE)],
     SelectGraphicRendition.FOREGROUND_YELLOW: [ForegroundValue(StandardColor.YELLOW)],
-    SelectGraphicRendition.FRAME_CIRCLE: [FrameValue(Frame.ENCIRCLED)],
-    SelectGraphicRendition.FRAME_FRAME: [FrameValue(Frame.FRAMED)],
+    SelectGraphicRendition.FRAME_CIRCLE: [FrameValue(Frame.CIRCLE)],
+    SelectGraphicRendition.FRAME_BOX: [FrameValue(Frame.BOX)],
     SelectGraphicRendition.FRAME_OFF: [FrameValue(Frame.NONE)],
     SelectGraphicRendition.IDEOGRAM_DOUBLE_LINE_OVER_OR_LEFT: [
         IdeogramValue(Ideogram.DOUBLE_LINE_OVER_OR_LEFT)
@@ -92,11 +92,11 @@ interpretations: Dict[SelectGraphicRendition, List[DictValue[Any]]] = {
     SelectGraphicRendition.IDEOGRAM_DOUBLE_LINE_UNDER_OR_RIGHT: [
         IdeogramValue(Ideogram.DOUBLE_LINE_UNDER_OR_RIGHT)
     ],
-    SelectGraphicRendition.IDEOGRAM_LINE_OVER_OR_LEFT: [
-        IdeogramValue(Ideogram.LINE_OVER_OR_LEFT)
+    SelectGraphicRendition.IDEOGRAM_SINGLE_LINE_OVER_OR_LEFT: [
+        IdeogramValue(Ideogram.SINGLE_LINE_OVER_OR_LEFT)
     ],
-    SelectGraphicRendition.IDEOGRAM_LINE_UNDER_OR_RIGHT: [
-        IdeogramValue(Ideogram.LINE_UNDER_OR_RIGHT)
+    SelectGraphicRendition.IDEOGRAM_SINGLE_LINE_UNDER_OR_RIGHT: [
+        IdeogramValue(Ideogram.SINGLE_LINE_UNDER_OR_RIGHT)
     ],
     SelectGraphicRendition.IDEOGRAM_NONE: [IdeogramValue(Ideogram.NONE)],
     SelectGraphicRendition.IDEOGRAM_STRESS: [IdeogramValue(Ideogram.STRESS)],
