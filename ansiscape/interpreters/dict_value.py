@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import Generic, List, Optional, Tuple
+from typing import Generic, Optional, Tuple
 
 from ansiscape.enums import InterpretationKey
-from ansiscape.types import TInterpretationValue
+from ansiscape.types import Attributes, TInterpretationValue
 
 
 class DictValue(ABC, Generic[TInterpretationValue]):
@@ -10,5 +10,5 @@ class DictValue(ABC, Generic[TInterpretationValue]):
         self.key = key
 
     @abstractmethod
-    def value(self, attrs: List[int]) -> Tuple[Optional[TInterpretationValue], int]:
+    def value(self, attrs: Attributes) -> Tuple[Optional[TInterpretationValue], int]:
         ...

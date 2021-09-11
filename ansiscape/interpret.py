@@ -1,10 +1,11 @@
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 from ansiscape.enums import SelectGraphicRendition
 from ansiscape.interpreters import interpretations
+from ansiscape.types import Attributes
 
 
-def make_attributes(sequence: str) -> List[int]:
+def make_attributes(sequence: str) -> Attributes:
     """
     Splits a sequence into a list of attributes.
 
