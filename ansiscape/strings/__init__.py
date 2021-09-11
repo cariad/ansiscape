@@ -47,6 +47,7 @@ from ansiscape.strings.font import (
     AlternateFont8,
 )
 from ansiscape.strings.invert import Invert
+from ansiscape.strings.proportional_spacing import ProportionalSpacing
 from ansiscape.strings.sequence import Sequence
 from ansiscape.strings.strike import Strike
 from ansiscape.strings.underline import DoubleUnderline, SingleUnderline
@@ -97,6 +98,7 @@ __all__ = [
     "Light",
     "Magenta",
     "MagentaBackground",
+    "ProportionalSpacing",
     "Red",
     "RedBackground",
     "Sequence",
