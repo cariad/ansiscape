@@ -33,6 +33,7 @@ from ansiscape.strings.colors import (
     Yellow,
     YellowBackground,
 )
+from ansiscape.strings.invert import Invert
 from ansiscape.strings.sequence import Sequence
 
 __all__ = [
@@ -61,6 +62,7 @@ __all__ = [
     "Cyan",
     "CyanBackground",
     "Green",
+    "Invert",
     "GreenBackground",
     "Magenta",
     "MagentaBackground",

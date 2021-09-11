@@ -53,6 +53,7 @@ setup(
         "ansiscape.strings.colors.foreground",
         "ansiscape.strings.colors.foreground.named",
         "ansiscape.strings.colors.foreground.named_bright",
+        "ansiscape.strings.blink",
         "ansiscape.version",
     ],
     package_data={
@@ -68,6 +69,7 @@ setup(
         "ansiscape.strings.colors.foreground": ["py.typed"],
         "ansiscape.strings.colors.foreground.named": ["py.typed"],
         "ansiscape.strings.colors.foreground.named_bright": ["py.typed"],
+        "ansiscape.strings.blink": ["py.typed"],
     },
     python_requires=">=3.8",
     url="https://github.com/cariad/ansiscape",
