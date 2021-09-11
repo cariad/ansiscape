@@ -2,9 +2,16 @@ from typing import Any, Dict
 
 from pytest import mark
 
-from ansiscape.enums import Blink, Font, StandardColor, Underline, Weight
-from ansiscape.enums.frame import Frame
-from ansiscape.enums.ideogram import Ideogram
+from ansiscape.enums import (
+    Blink,
+    Calligraphy,
+    Font,
+    Frame,
+    Ideogram,
+    StandardColor,
+    Underline,
+    Weight,
+)
 from ansiscape.interpret import interpret_as_any
 
 
@@ -15,14 +22,13 @@ from ansiscape.interpret import interpret_as_any
             "0",
             {
                 "blink": Blink.NONE,
+                "calligraphy": Calligraphy.NONE,
                 "foreground": False,
                 "background": False,
-                "italic": False,
                 "conceal": False,
                 "font": Font.DEFAULT,
                 "underline": Underline.NONE,
                 "weight": Weight.NORMAL,
-                "fraktur": False,
                 "strike": False,
                 "invert": False,
                 "proportional_spacing": False,
@@ -33,7 +39,7 @@ from ansiscape.interpret import interpret_as_any
         ),
         ("1", {"weight": Weight.HEAVY}),
         ("2", {"weight": Weight.LIGHT}),
-        ("3", {"italic": True}),
+        ("3", {"calligraphy": Calligraphy.ITALIC}),
         ("4", {"underline": Underline.SINGLE}),
         ("5", {"blink": Blink.SLOW}),
         ("6", {"blink": Blink.FAST}),
@@ -50,10 +56,10 @@ from ansiscape.interpret import interpret_as_any
         ("17", {"font": Font.ALT_6}),
         ("18", {"font": Font.ALT_7}),
         ("19", {"font": Font.ALT_8}),
-        ("20", {"fraktur": True}),
+        ("20", {"calligraphy": Calligraphy.BLACKLETTER}),
         ("21", {"underline": Underline.DOUBLE}),
         ("22", {"weight": Weight.NORMAL}),
-        ("23", {"fraktur": False, "italic": False}),
+        ("23", {"calligraphy": Calligraphy.NONE}),
         ("24", {"underline": Underline.NONE}),
         ("25", {"blink": Blink.NONE}),
         ("26", {"proportional_spacing": True}),
@@ -93,7 +99,7 @@ from ansiscape.interpret import interpret_as_any
         ("64", {"ideogram": Ideogram.STRESS}),
         ("65", {"ideogram": Ideogram.NONE}),
         ("1;2", {"weight": Weight.LIGHT}),
-        ("1;3", {"italic": True, "weight": Weight.HEAVY}),
+        ("1;3", {"calligraphy": Calligraphy.ITALIC, "weight": Weight.HEAVY}),
     ],
 )
 def test_interpret_as_any(code: str, expect: Dict[str, Any]) -> None:

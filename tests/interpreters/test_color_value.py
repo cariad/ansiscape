@@ -1,11 +1,11 @@
-from typing import List, Optional, Tuple
+from typing import Optional, Tuple
 
 from pytest import mark, raises
 
 from ansiscape.enums import InterpretationKey, StandardColor
 from ansiscape.exceptions import AttributeError
 from ansiscape.interpreters.color_value import ColorValue
-from ansiscape.types import Color
+from ansiscape.types import Attributes, Color
 
 
 @mark.parametrize(
@@ -23,7 +23,7 @@ from ansiscape.types import Color
         ([5, 232], ((0.04, 0.04, 0.04, 1.0), 2)),
     ],
 )
-def test_value(attrs: List[int], expect: Tuple[Optional[Color], int]) -> None:
+def test_value(attrs: Attributes, expect: Tuple[Optional[Color], int]) -> None:
     cv = ColorValue(InterpretationKey.FOREGROUND)
     assert cv.value(attrs) == expect
 
@@ -36,7 +36,7 @@ def test_value(attrs: List[int], expect: Tuple[Optional[Color], int]) -> None:
         ([4], "Cyan-Magenta-Yellow-Black not supported (attributes=[4])"),
     ],
 )
-def test_value__invalid(attrs: List[int], expect: str) -> None:
+def test_value__invalid(attrs: Attributes, expect: str) -> None:
     with raises(AttributeError) as ex:
         ColorValue(InterpretationKey.FOREGROUND).value(attrs)
     assert str(ex.value) == expect

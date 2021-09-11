@@ -1,6 +1,6 @@
-from typing import Literal, Union
+from typing import Union
 
-from ansiscape.enums import StandardColor
+from ansiscape.enums import ColorSpecial, StandardColor
 from ansiscape.types.rgba import RGBA
 
-Color = Union[StandardColor, RGBA, Literal[False]]
+Color = Union[ColorSpecial, RGBA, StandardColor]

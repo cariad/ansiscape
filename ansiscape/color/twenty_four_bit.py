@@ -1,10 +1,10 @@
-from typing import List, Optional
+from typing import Optional
 
 from ansiscape.exceptions import AttributeError
-from ansiscape.types import RGB
+from ansiscape.types import RGB, Attributes
 
 
-def interpret_24_bit_rgb(attrs: List[int]) -> Optional[RGB]:
+def interpret_24_bit_rgb(attrs: Attributes) -> Optional[RGB]:
     """
     Attempts to interpret a 24-bit RGB colour from a sequence of attributes.
 

@@ -1,8 +1,8 @@
-from typing import List, Optional, Tuple
+from typing import Optional, Tuple
 
 from ansiscape.enums import InterpretationKey
 from ansiscape.interpreters.dict_value import DictValue
-from ansiscape.types import TInterpretationValue
+from ansiscape.types import Attributes, TInterpretationValue
 
 
 class SingleValue(DictValue[TInterpretationValue]):
@@ -10,5 +10,5 @@ class SingleValue(DictValue[TInterpretationValue]):
         super().__init__(key)
         self._value = value
 
-    def value(self, attrs: List[int]) -> Tuple[Optional[TInterpretationValue], int]:
+    def value(self, attrs: Attributes) -> Tuple[Optional[TInterpretationValue], int]:
         return self._value, 0
