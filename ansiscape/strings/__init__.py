@@ -50,6 +50,7 @@ from ansiscape.strings.invert import Invert
 from ansiscape.strings.sequence import Sequence
 from ansiscape.strings.strike import Strike
 from ansiscape.strings.underline import DoubleUnderline, SingleUnderline
+from ansiscape.strings.weight import Heavy, Light
 
 __all__ = [
     "AlternateFont0",
@@ -89,9 +90,11 @@ __all__ = [
     "CyanBackground",
     "DoubleUnderline",
     "Green",
+    "Heavy",
     "Invert",
     "Italic",
     "GreenBackground",
+    "Light",
     "Magenta",
     "MagentaBackground",
     "Red",
