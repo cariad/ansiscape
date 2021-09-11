@@ -1,11 +1,11 @@
 from abc import abstractproperty
 
 from ansiscape.enums import InterpretationSpecial, Weight
-from ansiscape.strings.string_with_codes import StringWithCodes
+from ansiscape.strings.sequence import Sequence
 from ansiscape.types import InterpretationDict
 
 
-class WeightStringWithCodes(StringWithCodes):
+class WeightStringWithCodes(Sequence):
     @abstractproperty
     def weight(self) -> Weight:
         """Gets the weight."""

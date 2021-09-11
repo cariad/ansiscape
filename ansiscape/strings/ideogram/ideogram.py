@@ -1,11 +1,11 @@
 from abc import abstractproperty
 
 from ansiscape.enums import Ideogram, InterpretationSpecial
-from ansiscape.strings.string_with_codes import StringWithCodes
+from ansiscape.strings.sequence import Sequence
 from ansiscape.types import InterpretationDict
 
 
-class IdeogramStringWithCodes(StringWithCodes):
+class IdeogramStringWithCodes(Sequence):
     @abstractproperty
     def ideogram(self) -> Ideogram:
         """Gets the ideogram."""

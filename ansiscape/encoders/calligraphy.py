@@ -1,7 +1,7 @@
 from typing import Optional
 
+from ansiscape.encoders.sequencer import Sequencer
 from ansiscape.enums import Calligraphy, InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers.sequencer import Sequencer
 from ansiscape.types import SequencerResult
 
 

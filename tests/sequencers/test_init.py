@@ -2,14 +2,18 @@ from typing import List, Union
 
 from pytest import mark
 
-from ansiscape.enums import InterpretationSpecial, StandardColor, Weight
-from ansiscape.enums.blink import Blink
-from ansiscape.enums.calligraphy import Calligraphy
-from ansiscape.enums.font import Font
-from ansiscape.enums.frame import Frame
-from ansiscape.enums.ideogram import Ideogram
-from ansiscape.enums.underline import Underline
-from ansiscape.sequencers import to_string
+from ansiscape.encode import encode
+from ansiscape.enums import (
+    Blink,
+    Calligraphy,
+    Font,
+    Frame,
+    Ideogram,
+    InterpretationSpecial,
+    StandardColor,
+    Underline,
+    Weight,
+)
 from ansiscape.types import InterpretationDict
 
 
@@ -208,5 +212,5 @@ from ansiscape.types import InterpretationDict
         ),
     ],
 )
-def test_to_string(args: List[Union[str, InterpretationDict]], expect: str) -> None:
-    assert to_string(*args) == expect
+def test_encode(args: List[Union[str, InterpretationDict]], expect: str) -> None:
+    assert encode(*args) == expect

@@ -1,11 +1,11 @@
 from abc import abstractproperty
 
 from ansiscape.enums import Frame, InterpretationSpecial
-from ansiscape.strings.string_with_codes import StringWithCodes
+from ansiscape.strings.sequence import Sequence
 from ansiscape.types import InterpretationDict
 
 
-class FrameStringWithCodes(StringWithCodes):
+class FrameStringWithCodes(Sequence):
     @abstractproperty
     def frame(self) -> Frame:
         """Gets the frame."""

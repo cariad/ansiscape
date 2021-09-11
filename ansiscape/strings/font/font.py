@@ -1,11 +1,11 @@
 from abc import abstractproperty
 
 from ansiscape.enums import Font, InterpretationSpecial
-from ansiscape.strings.string_with_codes import StringWithCodes
+from ansiscape.strings.sequence import Sequence
 from ansiscape.types import InterpretationDict
 
 
-class AlternateFont(StringWithCodes):
+class AlternateFont(Sequence):
     @abstractproperty
     def font(self) -> Font:
         """Gets the font."""

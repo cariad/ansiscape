@@ -1,8 +1,8 @@
 from math import floor
 from typing import Optional
 
+from ansiscape.encoders.sequencer import Sequencer
 from ansiscape.enums import ColorScheme, SelectGraphicRendition, StandardColor
-from ansiscape.sequencers.sequencer import Sequencer
 from ansiscape.types import Color, SequencerResult
 
 

@@ -2,8 +2,8 @@ from typing import Optional
 
 from pytest import mark
 
+from ansiscape.encoders import FrameSequencer
 from ansiscape.enums import Frame, InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers import FrameSequencer
 from ansiscape.types.sequencer_result import SequencerResult
 
 

@@ -2,8 +2,8 @@ from typing import Optional
 
 from pytest import mark
 
+from ansiscape.encoders import StrikeSequencer
 from ansiscape.enums import InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers import StrikeSequencer
 from ansiscape.types.sequencer_result import SequencerResult
 
 

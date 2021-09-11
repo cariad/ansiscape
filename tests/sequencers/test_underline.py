@@ -2,8 +2,8 @@ from typing import Optional
 
 from pytest import mark
 
+from ansiscape.encoders import UnderlineSequencer
 from ansiscape.enums import InterpretationKey, SelectGraphicRendition, Underline
-from ansiscape.sequencers import UnderlineSequencer
 from ansiscape.types.sequencer_result import SequencerResult
 
 

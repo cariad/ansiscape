@@ -2,13 +2,13 @@ from typing import Optional
 
 from pytest import mark
 
+from ansiscape.encoders.background import BackgroundSequencer
 from ansiscape.enums import (
     ColorSpecial,
     InterpretationKey,
     SelectGraphicRendition,
     StandardColor,
 )
-from ansiscape.sequencers import BackgroundSequencer
 from ansiscape.types.color import Color
 from ansiscape.types.sequencer_result import SequencerResult
 

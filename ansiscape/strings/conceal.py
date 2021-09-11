@@ -1,9 +1,9 @@
 from ansiscape.enums import InterpretationSpecial
-from ansiscape.strings.string_with_codes import StringWithCodes
+from ansiscape.strings.sequence import Sequence
 from ansiscape.types import InterpretationDict
 
 
-class Conceal(StringWithCodes):
+class Conceal(Sequence):
     @property
     def prefix(self) -> InterpretationDict:
         return InterpretationDict(conceal=True)

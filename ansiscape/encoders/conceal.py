@@ -1,5 +1,5 @@
+from ansiscape.encoders.bool import BoolSequencer
 from ansiscape.enums import InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers.bool import BoolSequencer
 
 
 class ConcealSequencer(BoolSequencer):

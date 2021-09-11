@@ -1,11 +1,11 @@
 from abc import abstractproperty
 
 from ansiscape.enums import Calligraphy, InterpretationSpecial
-from ansiscape.strings.string_with_codes import StringWithCodes
+from ansiscape.strings.sequence import Sequence
 from ansiscape.types import InterpretationDict
 
 
-class CalligraphyStringWithCodes(StringWithCodes):
+class CalligraphyStringWithCodes(Sequence):
     @abstractproperty
     def calligraphy(self) -> Calligraphy:
         """Gets the calligraphy."""

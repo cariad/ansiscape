@@ -1,11 +1,11 @@
 from abc import abstractproperty
 
 from ansiscape.enums import InterpretationSpecial, Underline
-from ansiscape.strings.string_with_codes import StringWithCodes
+from ansiscape.strings.sequence import Sequence
 from ansiscape.types import InterpretationDict
 
 
-class UnderlineStringWithCodes(StringWithCodes):
+class UnderlineStringWithCodes(Sequence):
     @abstractproperty
     def underline(self) -> Underline:
         """Gets the underline."""

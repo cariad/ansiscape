@@ -1,8 +1,8 @@
 from abc import abstractproperty
 from typing import Optional
 
+from ansiscape.encoders.sequencer import Sequencer
 from ansiscape.enums import SelectGraphicRendition
-from ansiscape.sequencers.sequencer import Sequencer
 from ansiscape.types import SequencerResult
 
 

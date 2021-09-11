@@ -1,7 +1,7 @@
 from abc import abstractproperty
 from typing import Dict, Optional
 
-from ansiscape.sequencers.sequencer import Sequencer, TValue
+from ansiscape.encoders.sequencer import Sequencer, TValue
 from ansiscape.types import SequencerResult
 
 

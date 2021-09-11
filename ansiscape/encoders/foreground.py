@@ -1,5 +1,5 @@
+from ansiscape.encoders.color import ColorSequencer
 from ansiscape.enums import InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers.color import ColorSequencer
 
 
 class ForegroundSequencer(ColorSequencer):

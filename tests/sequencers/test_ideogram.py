@@ -2,8 +2,8 @@ from typing import Optional
 
 from pytest import mark
 
+from ansiscape.encoders import IdeogramSequencer
 from ansiscape.enums import Ideogram, InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers import IdeogramSequencer
 from ansiscape.types.sequencer_result import SequencerResult
 
 

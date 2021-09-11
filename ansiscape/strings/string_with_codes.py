@@ -1,34 +1,34 @@
-from abc import ABC, abstractproperty
-from typing import List, Union
+# from abc import ABC, abstractproperty
+# from typing import List, Union
 
-from ansiscape.sequencers import to_string
-from ansiscape.types import InterpretationDict
+# from ansiscape.encode import encode
+# from ansiscape.types import InterpretationDict
 
 
-class StringWithCodes(ABC):
-    def __init__(self, *part: Union[str, "StringWithCodes"]) -> None:
-        self.parts = part
+# class StringWithCodes(ABC):
+#     def __init__(self, *part: Union[str, "StringWithCodes"]) -> None:
+#         self.parts = part
 
-    @abstractproperty
-    def prefix(self) -> InterpretationDict:
-        """Gets the state to prefix this text with."""
+#     @abstractproperty
+#     def prefix(self) -> InterpretationDict:
+#         """Gets the state to prefix this text with."""
 
-    @abstractproperty
-    def suffix(self) -> InterpretationDict:
-        """Gets the state to suffix this text with."""
+#     @abstractproperty
+#     def suffix(self) -> InterpretationDict:
+#         """Gets the state to suffix this text with."""
 
-    @property
-    def args(self) -> List[Union[str, InterpretationDict]]:
-        args: List[Union[str, InterpretationDict]] = [self.prefix]
+#     @property
+#     def args(self) -> List[Union[str, InterpretationDict]]:
+#         args: List[Union[str, InterpretationDict]] = [self.prefix]
 
-        for part in self.parts:
-            if isinstance(part, str):
-                args.append(part)
-            else:
-                args.extend(part.args)
+#         for part in self.parts:
+#             if isinstance(part, str):
+#                 args.append(part)
+#             else:
+#                 args.extend(part.args)
 
-        args.append(self.suffix)
-        return args
+#         args.append(self.suffix)
+#         return args
 
-    def __str__(self) -> str:
-        return to_string(*self.args)
+#     def __str__(self) -> str:
+#         return encode(*self.args)

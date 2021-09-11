@@ -36,15 +36,15 @@ from ansiscape.strings.colors import (
 )
 from ansiscape.strings.conceal import Conceal
 from ansiscape.strings.font import (
-    AlternateFont0,
-    AlternateFont1,
-    AlternateFont2,
-    AlternateFont3,
-    AlternateFont4,
-    AlternateFont5,
-    AlternateFont6,
-    AlternateFont7,
-    AlternateFont8,
+    AlternativeFont0,
+    AlternativeFont1,
+    AlternativeFont2,
+    AlternativeFont3,
+    AlternativeFont4,
+    AlternativeFont5,
+    AlternativeFont6,
+    AlternativeFont7,
+    AlternativeFont8,
 )
 from ansiscape.strings.frame import Box, Circle
 from ansiscape.strings.ideogram import (
@@ -63,15 +63,15 @@ from ansiscape.strings.underline import DoubleUnderline, SingleUnderline
 from ansiscape.strings.weight import Heavy, Light
 
 __all__ = [
-    "AlternateFont0",
-    "AlternateFont1",
-    "AlternateFont2",
-    "AlternateFont3",
-    "AlternateFont4",
-    "AlternateFont5",
-    "AlternateFont6",
-    "AlternateFont7",
-    "AlternateFont8",
+    "AlternativeFont0",
+    "AlternativeFont1",
+    "AlternativeFont2",
+    "AlternativeFont3",
+    "AlternativeFont4",
+    "AlternativeFont5",
+    "AlternativeFont6",
+    "AlternativeFont7",
+    "AlternativeFont8",
     "Black",
     "BlackBackground",
     "Blackletter",

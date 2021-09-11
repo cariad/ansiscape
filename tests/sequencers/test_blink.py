@@ -2,8 +2,8 @@ from typing import Optional
 
 from pytest import mark
 
+from ansiscape.encoders import BlinkSequencer
 from ansiscape.enums import Blink, InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers import BlinkSequencer
 from ansiscape.types.sequencer_result import SequencerResult
 
 

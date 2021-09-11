@@ -2,8 +2,8 @@ from typing import Optional
 
 from pytest import mark
 
+from ansiscape.encoders import WeightSequencer
 from ansiscape.enums import InterpretationKey, SelectGraphicRendition, Weight
-from ansiscape.sequencers import WeightSequencer
 from ansiscape.types.sequencer_result import SequencerResult
 
 

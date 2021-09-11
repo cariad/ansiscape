@@ -2,8 +2,8 @@ from typing import Optional
 
 from pytest import mark
 
+from ansiscape.encoders import FontSequencer
 from ansiscape.enums import Font, InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers import FontSequencer
 from ansiscape.types.sequencer_result import SequencerResult
 
 

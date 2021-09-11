@@ -1,7 +1,7 @@
 from typing import Dict, Optional
 
+from ansiscape.encoders.enum import EnumSequencer
 from ansiscape.enums import Frame, InterpretationKey, SelectGraphicRendition
-from ansiscape.sequencers.enum import EnumSequencer
 from ansiscape.types import SequencerResult
 
 
