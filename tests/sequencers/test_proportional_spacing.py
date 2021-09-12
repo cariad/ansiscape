@@ -1,23 +1,23 @@
-from typing import Optional
+# from typing import Optional
 
-from pytest import mark
+# from pytest import mark
 
-from ansiscape.encoders import ProportionalSpacingSequencer
-from ansiscape.enums import InterpretationKey, SelectGraphicRendition
-from ansiscape.types.sequencer_result import SequencerResult
-
-
-def test_key() -> None:
-    assert ProportionalSpacingSequencer().key == InterpretationKey.PROPORTIONAL_SPACING
+# from ansiscape.encoders import ProportionalSpacingSequencer
+# from ansiscape.enums import InterpretationKey, SelectGraphicRendition
+# from ansiscape.types.sequencer_result import SequencerResult
 
 
-@mark.parametrize(
-    "proportional_spacing, expect",
-    [
-        (None, SequencerResult(sgr=SelectGraphicRendition.PROPORTIONAL_SPACING_OFF)),
-        (True, SequencerResult(sgr=SelectGraphicRendition.PROPORTIONAL_SPACING_ON)),
-        (False, SequencerResult(sgr=SelectGraphicRendition.PROPORTIONAL_SPACING_OFF)),
-    ],
-)
-def test_resolve(proportional_spacing: Optional[bool], expect: SequencerResult) -> None:
-    assert ProportionalSpacingSequencer().resolve(proportional_spacing) == expect
+# def test_key() -> None:
+#     assert ProportionalSpacingSequencer().key == InterpretationKey.PROPORTIONAL_SPACING
+
+
+# @mark.parametrize(
+#     "proportional_spacing, expect",
+#     [
+#         (None, SequencerResult(sgr=SelectGraphicRendition.PROPORTIONAL_SPACING_OFF)),
+#         (True, SequencerResult(sgr=SelectGraphicRendition.PROPORTIONAL_SPACING_ON)),
+#         (False, SequencerResult(sgr=SelectGraphicRendition.PROPORTIONAL_SPACING_OFF)),
+#     ],
+# )
+# def test_resolve(proportional_spacing: Optional[bool], expect: SequencerResult) -> None:
+#     assert ProportionalSpacingSequencer().resolve(proportional_spacing) == expect

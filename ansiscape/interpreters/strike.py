@@ -1,7 +1,15 @@
 from ansiscape.enums import InterpretationKey
-from ansiscape.interpreters.single_value import SingleValue
+from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
+from ansiscape.interpreters.dict_value import DictValue
 
 
-class StrikeValue(SingleValue[bool]):
-    def __init__(self, value: bool) -> None:
-        super().__init__(InterpretationKey.STRIKE, value)
+class StrikeValue(DictValue[bool]):
+    def __init__(self) -> None:
+        super().__init__(
+            key=InterpretationKey.STRIKE,
+            lookup={
+                SelectGraphicRendition.DEFAULT: False,
+                SelectGraphicRendition.STRIKE_ON: True,
+                SelectGraphicRendition.STRIKE_OFF: False,
+            },
+        )

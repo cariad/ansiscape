@@ -89,7 +89,7 @@ def interpret_as_any(sequence: str) -> Dict[str, Any]:
             return wip
 
         for handler in handlers:
-            value, claim = handler.value(remaining_attributes[1:])
+            value, claim = handler.from_attributes(remaining_attributes)
             wip[handler.key.value] = value
             claim += 1  # Include the header that we didn't pass down
             this_round_claimed = this_round_claimed or claim

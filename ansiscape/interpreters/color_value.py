@@ -1,22 +1,32 @@
-from typing import Optional, Tuple
+from typing import Dict, Tuple
 
 from ansiscape.color import get_8_bit_color, get_color_scheme, interpret_24_bit_rgb
-from ansiscape.enums import ColorScheme, InterpretationKey
-from ansiscape.enums.standard_color import StandardColor
+from ansiscape.enums import (
+    ColorScheme,
+    InterpretationKey,
+    SelectGraphicRendition,
+    StandardColor,
+)
 from ansiscape.exceptions import AttributeError
 from ansiscape.interpreters.dict_value import DictValue
 from ansiscape.types import Attributes, Color
+from ansiscape.types.sequencer_result import SequencerResult
 
 
 class ColorValue(DictValue[Color]):
-    def __init__(self, key: InterpretationKey, force: Optional[Color] = None) -> None:
-        super().__init__(key)
-        self._force = force
+    def __init__(
+        self,
+        key: InterpretationKey,
+        lookup: Dict[SelectGraphicRendition, Color],
+        rgb: SelectGraphicRendition,
+    ) -> None:
+        super().__init__(key, lookup)
+        self.rgb = rgb
 
-    def value(self, attrs: Attributes) -> Tuple[Optional[Color], int]:
-        if self._force is not None:
-            return self._force, 0
-
+    def from_extended_attributes(
+        self,
+        attrs: Attributes,
+    ) -> Tuple[Color, int]:
         scheme = get_color_scheme(attrs[0])
 
         if scheme == ColorScheme.IMPLEMENTATION_DEFINED:
@@ -37,7 +47,7 @@ class ColorValue(DictValue[Color]):
                     interpreted_rbg[2],
                     1,
                 ), len(attrs)
-            return None, len(attrs)
+            raise ValueError()
 
         if scheme == ColorScheme.CMY:
             raise AttributeError("Cyan-Magenta-Yellow not supported", attrs)
@@ -49,3 +59,11 @@ class ColorValue(DictValue[Color]):
         if isinstance(eight_bit_color, StandardColor):
             return eight_bit_color, 2
         return (eight_bit_color[0], eight_bit_color[1], eight_bit_color[2], 1), 2
+
+    def get_extended_code(self, value: Color) -> SequencerResult:
+        if isinstance(value, StandardColor):
+            return SequencerResult(
+                sgr=self.rgb,
+                additional=[ColorScheme.EIGHT_BIT.value, value.value],
+            )
+        raise NotImplementedError()
