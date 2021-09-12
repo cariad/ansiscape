@@ -8,9 +8,9 @@ from ansiscape.enums import (
 from ansiscape.sequence import Sequence
 from ansiscape.types import (
     Attributes,
-    BaseSequence,
     InterpretationDict,
     InterpreterProtocol,
+    SequenceProtocol,
     SequencerResult,
     TInterpretableValue,
 )
@@ -59,7 +59,7 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
         raise NotImplementedError()
 
     def make_sequence(
-        self, value: TInterpretableValue, *parts: Union[str, BaseSequence]
+        self, value: TInterpretableValue, *parts: Union[str, SequenceProtocol]
     ) -> Sequence:
         return Sequence(
             *parts,
@@ -70,8 +70,8 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
     def make_sequence_from_attributes(
         self,
         attrs: Attributes,
-        *parts: Union[str, BaseSequence],
-    ) -> BaseSequence:
+        *parts: Union[str, SequenceProtocol],
+    ) -> SequenceProtocol:
         value = self.from_attributes(attrs)
         return self.make_sequence(value[0], *parts)
 

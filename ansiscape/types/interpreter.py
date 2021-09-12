@@ -8,7 +8,7 @@ from ansiscape.enums.interpretation_key import InterpretationKey
 
 # from ansiscape.sequence import Sequence
 from ansiscape.types.attributes import Attributes
-from ansiscape.types.base_sequence import BaseSequence
+from ansiscape.types.base_sequence import SequenceProtocol
 from ansiscape.types.interpretation_dict import InterpretationDict
 from ansiscape.types.interpretation_value import TInterpretableValue
 from ansiscape.types.sequencer_result import SequencerResult
@@ -45,15 +45,15 @@ class InterpreterProtocol(Protocol, Generic[TInterpretableValue]):
     #     raise NotImplementedError()
 
     def make_sequence(
-        self, value: TInterpretableValue, *parts: Union[str, BaseSequence]
-    ) -> BaseSequence:
+        self, value: TInterpretableValue, *parts: Union[str, SequenceProtocol]
+    ) -> SequenceProtocol:
         ...
 
     def make_sequence_from_attributes(
         self,
         attrs: Attributes,
-        *parts: Union[str, BaseSequence],
-    ) -> BaseSequence:
+        *parts: Union[str, SequenceProtocol],
+    ) -> SequenceProtocol:
         ...
 
     # def make_interpretation(

@@ -11,13 +11,13 @@ from ansiscape.enums import (
     Weight,
 )
 from ansiscape.handlers import get_interpreter
-from ansiscape.types import Attributes, BaseSequence, Color, InterpretationDict
+from ansiscape.types import Attributes, Color, InterpretationDict, SequenceProtocol
 
 
-class Sequence(BaseSequence):
+class Sequence(SequenceProtocol):
     def __init__(
         self,
-        *parts: Union[str, BaseSequence],
+        *parts: Union[str, SequenceProtocol],
         prefix: Optional[InterpretationDict] = None,
         suffix: Optional[InterpretationDict] = None,
     ) -> None:

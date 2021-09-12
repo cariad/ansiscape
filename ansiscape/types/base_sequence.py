@@ -1,10 +1,9 @@
-from abc import ABC, abstractproperty
-from typing import List, Union
+from typing import List, Protocol, Union
 
 from ansiscape.types.interpretation_dict import InterpretationDict
 
 
-class BaseSequence(ABC):
-    @abstractproperty
+class SequenceProtocol(Protocol):
+    @property
     def args(self) -> List[Union[str, InterpretationDict]]:
         ...
