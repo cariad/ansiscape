@@ -1,4 +1,4 @@
-# What are ANSI escape codes?
+string_with_codes import StringWithCodes# What are ANSI escape codes?
 
 ## Introduction
 

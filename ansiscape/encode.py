@@ -2,7 +2,6 @@ from typing import List, Union
 
 from ansiscape.encoders import get_encoder
 from ansiscape.enums import InterpretationKey
-from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
 from ansiscape.types import Attributes, InterpretationDict
 
 
@@ -13,49 +12,49 @@ def encode(*parts: Union[str, InterpretationDict]) -> str:
     """
 
     wip = ""
-    history: List[InterpretationDict] = []
+    stack: List[InterpretationDict] = []
     for arg in parts:
+        if isinstance(arg, str):
+            wip += arg
+            continue
 
-        if isinstance(arg, dict) and not arg:
+        if not arg:
             # Don't add empty dictionaries.
             continue
 
-        if isinstance(arg, str):
-            wip += arg
-        else:
-            wip += sequence(interpretation=arg, history=history)
-            history.append(arg)
+        stack.append(arg)
+        wip += encode_escape_sequence(stack)
 
     return wip
 
 
-def sequence(
-    interpretation: InterpretationDict,
-    history: List[InterpretationDict],
-) -> str:
-    sequences: List[Attributes] = [[]]
+def encode_escape_sequence(stack: List[InterpretationDict]) -> str:
+    """
+    Encodes the interpretation at the top of the stack into an embeddable escape
+    code.
 
-    for key in interpretation:
-        if interpretation.get(key, None) is None:
+    The lower stack will be read only if the interpration at the top prescribes
+    a reversion.
+    """
+
+    sequences: List[Attributes] = [[]]
+    interpretation = stack[-1]
+
+    for key in InterpretationKey:
+        if interpretation.get(key.value, None) is None:
             continue
 
-        interpretation_key = InterpretationKey(key)
-        sequencer = get_encoder(interpretation_key)
-        stack = [*history, interpretation]
-        result = sequencer.sequence(stack)
+        # Intentionally send a copy of the stack because inner reversion
+        # resolution will pop:
+        result = get_encoder(key).sequence([*stack])
 
-        sgr = result.get("sgr", SelectGraphicRendition.DEFAULT)
-        additional = result.get("additional", None) or []
-
-        seq: List[int] = [sgr.value, *additional]
+        sequence = [result["sgr"].value]
+        if additional := result.get("additional", None):
+            sequence.extend(additional)
 
         if result.get("must_isolate", False):
-            sequences.append(seq)
+            sequences.append(sequence)
         else:
-            sequences[0].extend(seq)
+            sequences[0].extend(sequence)
 
-    return "".join([sequence_attributes(attrs) for attrs in sequences])
-
-
-def sequence_attributes(attrs: Attributes) -> str:
-    return f"\033[{';'.join([str(attr) for attr in attrs])}m"
+    return "".join([f"\033[{';'.join([str(a) for a in s])}m" for s in sequences])

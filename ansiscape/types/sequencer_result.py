@@ -4,7 +4,10 @@ from ansiscape.enums import SelectGraphicRendition
 from ansiscape.types.attributes import Attributes
 
 
-class SequencerResult(TypedDict, total=False):
+class SelectGraphicRenditionResult(TypedDict):
     sgr: SelectGraphicRendition
+
+
+class SequencerResult(SelectGraphicRenditionResult, total=False):
     additional: Optional[Attributes]
     must_isolate: Optional[bool]
