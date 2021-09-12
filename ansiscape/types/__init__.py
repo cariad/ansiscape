@@ -5,7 +5,7 @@ from ansiscape.enums import InterpretationKey, SelectGraphicRendition
 from ansiscape.types.attributes import Attributes
 from ansiscape.types.color import Color
 from ansiscape.types.interpretation_dict import InterpretationDict
-from ansiscape.types.interpretation_value import TInterpretationValue
+from ansiscape.types.interpretation_value import TInterpretableValue
 from ansiscape.types.rgb import RGB
 from ansiscape.types.rgba import RGBA
 from ansiscape.types.sequencer_result import SequencerResult
@@ -17,7 +17,7 @@ class BaseSequence(ABC):
         ...
 
 
-class Interpreter(ABC, Generic[TInterpretationValue]):
+class Interpreter(ABC, Generic[TInterpretableValue]):
     @abstractproperty
     def key(self) -> InterpretationKey:
         ...
@@ -31,12 +31,12 @@ class Interpreter(ABC, Generic[TInterpretationValue]):
         ...
 
     @abstractmethod
-    def to_code(self, value: TInterpretationValue) -> SequencerResult:
+    def to_code(self, value: TInterpretableValue) -> SequencerResult:
         ...
 
     def make_sequence(
         self,
-        value: TInterpretationValue,
+        value: TInterpretableValue,
         *parts: Union[str, BaseSequence],
     ) -> BaseSequence:
         ...
@@ -49,11 +49,6 @@ class Interpreter(ABC, Generic[TInterpretationValue]):
         ...
 
 
-# Generic[TInterpretationValue]
-
-# EncoderGetter = Callable[[InterpretationKey], Encoder[Any]]
-
-
 __all__ = [
     "Attributes",
     "Color",
@@ -61,5 +56,5 @@ __all__ = [
     "RGB",
     "RGBA",
     "SequencerResult",
-    "TInterpretationValue",
+    "TInterpretableValue",
 ]

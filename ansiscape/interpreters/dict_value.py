@@ -12,15 +12,15 @@ from ansiscape.types import (
     InterpretationDict,
     Interpreter,
     SequencerResult,
-    TInterpretationValue,
+    TInterpretableValue,
 )
 
 
-class DictValue(Interpreter[TInterpretationValue]):
+class DictValue(Interpreter[TInterpretableValue]):
     def __init__(
         self,
         key: InterpretationKey,
-        lookup: Dict[SelectGraphicRendition, TInterpretationValue],
+        lookup: Dict[SelectGraphicRendition, TInterpretableValue],
     ) -> None:
         self._key = key
         self.lookup = lookup
@@ -36,7 +36,7 @@ class DictValue(Interpreter[TInterpretationValue]):
     def from_attributes(
         self,
         attrs: Attributes,
-    ) -> Tuple[TInterpretationValue, int]:
+    ) -> Tuple[TInterpretableValue, int]:
         """Gets the interpreted value and quantity of attributes claimed."""
 
         if not attrs:
@@ -54,12 +54,12 @@ class DictValue(Interpreter[TInterpretationValue]):
     def from_extended_attributes(
         self,
         attrs: Attributes,
-    ) -> Tuple[TInterpretationValue, int]:
+    ) -> Tuple[TInterpretableValue, int]:
         """Override to implement."""
         raise NotImplementedError()
 
     def make_sequence(
-        self, value: TInterpretationValue, *parts: Union[str, BaseSequence]
+        self, value: TInterpretableValue, *parts: Union[str, BaseSequence]
     ) -> Sequence:
         return Sequence(
             *parts,
@@ -77,11 +77,11 @@ class DictValue(Interpreter[TInterpretationValue]):
 
     def make_interpretation(
         self,
-        value: Union[TInterpretationValue, InterpretationSpecial],
+        value: Union[TInterpretableValue, InterpretationSpecial],
     ) -> InterpretationDict:
         return cast(InterpretationDict, {self.key.value: value})
 
-    def to_code(self, value: TInterpretationValue) -> SequencerResult:
+    def to_code(self, value: TInterpretableValue) -> SequencerResult:
         """Resolves a value into a sequencer result."""
 
         for sgr in self.lookup:
@@ -93,7 +93,7 @@ class DictValue(Interpreter[TInterpretationValue]):
 
         return self.get_extended_code(value)
 
-    def get_extended_code(self, value: TInterpretationValue) -> SequencerResult:
+    def get_extended_code(self, value: TInterpretableValue) -> SequencerResult:
         raise NotImplementedError()
 
     @property
@@ -126,7 +126,7 @@ class DictValue(Interpreter[TInterpretationValue]):
     def reversion(
         self,
         stack: List[InterpretationDict],
-    ) -> Optional[TInterpretationValue]:
+    ) -> Optional[TInterpretableValue]:
         """
         Gets the value in the lower stack that completes a reversion prescribed
         by the top of the stack.
@@ -146,7 +146,7 @@ class DictValue(Interpreter[TInterpretationValue]):
                 return result
         return None
 
-    def value(self, stack: List[InterpretationDict]) -> Optional[TInterpretationValue]:
+    def value(self, stack: List[InterpretationDict]) -> Optional[TInterpretableValue]:
         """
         Gets the best value for this type from the interpretation at the top of
         the stack.
@@ -169,4 +169,4 @@ class DictValue(Interpreter[TInterpretationValue]):
         if isinstance(value, InterpretationSpecial):
             return self.reversion(stack)
 
-        return cast(TInterpretationValue, value)
+        return cast(TInterpretableValue, value)

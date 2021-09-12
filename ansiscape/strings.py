@@ -43,6 +43,11 @@ def alternative_font_8(*parts: Part) -> BaseSequence:
     return make_sequence(SelectGraphicRendition.FONT_ALT_8, *parts)
 
 
+def background(color: Color, *parts: Part) -> BaseSequence:
+    i = get_color_interpreter(InterpretationKey.BACKGROUND)
+    return i.make_sequence(color, *parts)
+
+
 def black(*parts: Part) -> BaseSequence:
     return make_sequence(SelectGraphicRendition.FOREGROUND_BLACK, *parts)
 
@@ -64,67 +69,67 @@ def blue_background(*parts: Part) -> BaseSequence:
 
 
 def bright_black(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.BRIGHT_BLACK, *parts)
+    return foreground(StandardColor.BRIGHT_BLACK, *parts)
 
 
 def bright_black_background(*parts: Part) -> BaseSequence:
-    return make_background(StandardColor.BRIGHT_BLACK, *parts)
+    return background(StandardColor.BRIGHT_BLACK, *parts)
 
 
 def bright_blue(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.BRIGHT_BLUE, *parts)
+    return foreground(StandardColor.BRIGHT_BLUE, *parts)
 
 
 def bright_blue_background(*parts: Part) -> BaseSequence:
-    return make_background(StandardColor.BRIGHT_BLUE, *parts)
+    return background(StandardColor.BRIGHT_BLUE, *parts)
 
 
 def bright_cyan(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.BRIGHT_CYAN, *parts)
+    return foreground(StandardColor.BRIGHT_CYAN, *parts)
 
 
 def bright_cyan_background(*parts: Part) -> BaseSequence:
-    return make_background(StandardColor.BRIGHT_CYAN, *parts)
+    return background(StandardColor.BRIGHT_CYAN, *parts)
 
 
 def bright_green(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.BRIGHT_GREEN, *parts)
+    return foreground(StandardColor.BRIGHT_GREEN, *parts)
 
 
 def bright_green_background(*parts: Part) -> BaseSequence:
-    return make_background(StandardColor.BRIGHT_GREEN, *parts)
+    return background(StandardColor.BRIGHT_GREEN, *parts)
 
 
 def bright_magenta(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.BRIGHT_MAGENTA, *parts)
+    return foreground(StandardColor.BRIGHT_MAGENTA, *parts)
 
 
 def bright_magenta_background(*parts: Part) -> BaseSequence:
-    return make_background(StandardColor.BRIGHT_MAGENTA, *parts)
+    return background(StandardColor.BRIGHT_MAGENTA, *parts)
 
 
 def bright_red(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.BRIGHT_RED, *parts)
+    return foreground(StandardColor.BRIGHT_RED, *parts)
 
 
 def bright_red_background(*parts: Part) -> BaseSequence:
-    return make_background(StandardColor.BRIGHT_RED, *parts)
+    return background(StandardColor.BRIGHT_RED, *parts)
 
 
 def bright_white(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.BRIGHT_WHITE, *parts)
+    return foreground(StandardColor.BRIGHT_WHITE, *parts)
 
 
 def bright_white_background(*parts: Part) -> BaseSequence:
-    return make_background(StandardColor.BRIGHT_WHITE, *parts)
+    return background(StandardColor.BRIGHT_WHITE, *parts)
 
 
 def bright_yellow(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.BRIGHT_YELLOW, *parts)
+    return foreground(StandardColor.BRIGHT_YELLOW, *parts)
 
 
 def bright_yellow_background(*parts: Part) -> BaseSequence:
-    return make_background(StandardColor.BRIGHT_YELLOW, *parts)
+    return background(StandardColor.BRIGHT_YELLOW, *parts)
 
 
 def circle(*parts: Part) -> BaseSequence:
@@ -136,7 +141,7 @@ def conceal(*parts: Part) -> BaseSequence:
 
 
 def cyan(*parts: Part) -> BaseSequence:
-    return make_foreground(StandardColor.CYAN, *parts)
+    return foreground(StandardColor.CYAN, *parts)
 
 
 def cyan_background(*parts: Part) -> BaseSequence:
@@ -161,6 +166,11 @@ def double_underline(*parts: Part) -> BaseSequence:
 
 def fast_blink(*parts: Part) -> BaseSequence:
     return make_sequence(SelectGraphicRendition.BLINK_FAST, *parts)
+
+
+def foreground(color: Color, *parts: Part) -> BaseSequence:
+    i = get_color_interpreter(InterpretationKey.FOREGROUND)
+    return i.make_sequence(color, *parts)
 
 
 def frame(*parts: Part) -> BaseSequence:
@@ -199,6 +209,11 @@ def magenta_background(*parts: Part) -> BaseSequence:
     return make_sequence(SelectGraphicRendition.BACKGROUND_MAGENTA, *parts)
 
 
+def make_sequence(sgr: SelectGraphicRendition, *parts: Part) -> BaseSequence:
+    i = get_interpreter_for_sgr(sgr)
+    return i.make_sequence_from_attributes([sgr.value], *parts)
+
+
 def overline(*parts: Part) -> BaseSequence:
     return make_sequence(SelectGraphicRendition.OVERLINE_ON, *parts)
 
@@ -217,13 +232,15 @@ def red_background(*parts: Part) -> BaseSequence:
 
 def single_line_under_or_right(*parts: Part) -> BaseSequence:
     return make_sequence(
-        SelectGraphicRendition.IDEOGRAM_SINGLE_LINE_UNDER_OR_RIGHT, *parts
+        SelectGraphicRendition.IDEOGRAM_SINGLE_LINE_UNDER_OR_RIGHT,
+        *parts,
     )
 
 
 def single_line_over_or_left(*parts: Part) -> BaseSequence:
     return make_sequence(
-        SelectGraphicRendition.IDEOGRAM_SINGLE_LINE_OVER_OR_LEFT, *parts
+        SelectGraphicRendition.IDEOGRAM_SINGLE_LINE_OVER_OR_LEFT,
+        *parts,
     )
 
 
@@ -257,21 +274,3 @@ def yellow(*parts: Part) -> BaseSequence:
 
 def yellow_background(*parts: Part) -> BaseSequence:
     return make_sequence(SelectGraphicRendition.BACKGROUND_YELLOW, *parts)
-
-
-def make_sequence(sgr: SelectGraphicRendition, *parts: Part) -> BaseSequence:
-    return get_interpreter_for_sgr(sgr).make_sequence_from_attributes(
-        [sgr.value], *parts
-    )
-
-
-def make_background(color: Color, *parts: Part) -> BaseSequence:
-    return get_color_interpreter(InterpretationKey.BACKGROUND).make_sequence(
-        color, *parts
-    )
-
-
-def make_foreground(color: Color, *parts: Part) -> BaseSequence:
-    return get_color_interpreter(InterpretationKey.FOREGROUND).make_sequence(
-        color, *parts
-    )

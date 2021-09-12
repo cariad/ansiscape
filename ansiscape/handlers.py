@@ -8,7 +8,6 @@ for_sgr: Dict[SelectGraphicRendition, List[Interpreter[Any]]] = {}
 
 
 def register_interpreter(interpreter: Interpreter[Any]) -> None:
-    print(f"Registering interpreter: {interpreter}")
     interpreters[interpreter.key] = interpreter
     for sgr in interpreter.supported_codes:
         if sgr not in for_sgr:

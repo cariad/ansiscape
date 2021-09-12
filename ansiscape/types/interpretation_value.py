@@ -1,8 +1,19 @@
-from typing import Optional, TypeVar, Union
+from typing import TypeVar, Union
 
+from ansiscape.enums import Blink, Calligraphy, Font, Frame, Ideogram, Underline, Weight
 from ansiscape.types.color import Color
 
-TInterpretationValue = TypeVar(
-    "TInterpretationValue",
-    bound=Union[bool, int, Optional[Color]],
+TInterpretableValue = TypeVar(
+    "TInterpretableValue",
+    bound=Union[
+        bool,
+        Blink,
+        Calligraphy,
+        Color,
+        Font,
+        Frame,
+        Ideogram,
+        Underline,
+        Weight,
+    ],
 )
