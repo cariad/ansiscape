@@ -1,9 +1,8 @@
-from ansiscape.enums import InterpretationKey, Underline
-from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
-from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.enums import InterpretationKey, SelectGraphicRendition, Underline
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class UnderlineValue(DictValue[Underline]):
+class UnderlineValue(Interpreter[Underline]):
     def __init__(self) -> None:
         super().__init__(
             key=InterpretationKey.UNDERLINE,

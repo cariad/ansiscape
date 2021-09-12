@@ -1,9 +1,8 @@
-from ansiscape.enums import InterpretationKey
-from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
-from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.enums import InterpretationKey, SelectGraphicRendition
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class ProportionalSpacingValue(DictValue[bool]):
+class ProportionalSpacingValue(Interpreter[bool]):
     def __init__(self) -> None:
         super().__init__(
             key=InterpretationKey.PROPORTIONAL_SPACING,

@@ -1,9 +1,8 @@
-from ansiscape.enums import InterpretationKey, Weight
-from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
-from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.enums import InterpretationKey, SelectGraphicRendition, Weight
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class WeightValue(DictValue[Weight]):
+class WeightValue(Interpreter[Weight]):
     def __init__(self) -> None:
         super().__init__(
             key=InterpretationKey.WEIGHT,

@@ -1,7 +1,9 @@
 from typing import Any, Dict
 
 from ansiscape.enums import SelectGraphicRendition
-from ansiscape.interpreters import interpretations
+from ansiscape.handlers import get_interpreters_for_sgr
+
+# from ansiscape.interpreters import interpretations
 from ansiscape.types import Attributes
 from ansiscape.types.interpretation_dict import InterpretationDict
 
@@ -82,15 +84,16 @@ def interpret_as_any(sequence: str) -> Dict[str, Any]:
 
         this_round_claimed = 0
 
-        head_code = SelectGraphicRendition(remaining_attributes[0])
-        handlers = interpretations[head_code]
+        sgr = SelectGraphicRendition(remaining_attributes[0])
+        interpreters = get_interpreters_for_sgr(sgr)
+        # handlers = interpretations[sgr]
 
-        if not handlers:
-            return wip
+        # if not handlers:
+        #     return wip
 
-        for handler in handlers:
-            value, claim = handler.from_attributes(remaining_attributes)
-            wip[handler.key.value] = value
+        for interpreter in interpreters:
+            value, claim = interpreter.from_attributes(remaining_attributes)
+            wip[interpreter.key.value] = value
             claim += 1  # Include the header that we didn't pass down
             this_round_claimed = this_round_claimed or claim
             if claim != this_round_claimed:

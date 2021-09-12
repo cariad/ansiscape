@@ -1,4 +1,4 @@
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 
 from ansiscape.enums import (
     ColorScheme,
@@ -7,11 +7,11 @@ from ansiscape.enums import (
     StandardColor,
 )
 from ansiscape.exceptions import AttributeError
-from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.interpreters.interpreter import Interpreter
 from ansiscape.types import RGB, Attributes, Color, SequencerResult
 
 
-class ColorValue(DictValue[Color]):
+class ColorValue(Interpreter[Color]):
     def __init__(
         self,
         key: InterpretationKey,
@@ -20,6 +20,10 @@ class ColorValue(DictValue[Color]):
     ) -> None:
         super().__init__(key, lookup)
         self.rgb = rgb
+
+    @property
+    def supported_codes(self) -> List[SelectGraphicRendition]:
+        return [*super().supported_codes, self.rgb]
 
     def from_extended_attributes(self, attrs: Attributes) -> Tuple[Color, int]:
         scheme = ColorScheme(attrs[0])

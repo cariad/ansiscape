@@ -1,9 +1,8 @@
-from ansiscape.enums import Frame, InterpretationKey
-from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
-from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.enums import Frame, InterpretationKey, SelectGraphicRendition
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class FrameValue(DictValue[Frame]):
+class FrameValue(Interpreter[Frame]):
     def __init__(self) -> None:
         super().__init__(
             key=InterpretationKey.FRAME,

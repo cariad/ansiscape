@@ -1,9 +1,8 @@
-from ansiscape.enums import Font, InterpretationKey
-from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
-from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.enums import Font, InterpretationKey, SelectGraphicRendition
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class FontValue(DictValue[Font]):
+class FontValue(Interpreter[Font]):
     def __init__(self) -> None:
         super().__init__(
             key=InterpretationKey.FONT,

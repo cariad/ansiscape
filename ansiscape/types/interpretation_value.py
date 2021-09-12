@@ -17,3 +17,20 @@ TInterpretableValue = TypeVar(
         Weight,
     ],
 )
+
+
+TCovariantInterpretableValue = TypeVar(
+    "TCovariantInterpretableValue",
+    bound=Union[
+        bool,
+        Blink,
+        Calligraphy,
+        Color,
+        Font,
+        Frame,
+        Ideogram,
+        Underline,
+        Weight,
+    ],
+    covariant=True,
+)

@@ -1,9 +1,8 @@
-from ansiscape.enums import Ideogram, InterpretationKey
-from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
-from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.enums import Ideogram, InterpretationKey, SelectGraphicRendition
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class IdeogramValue(DictValue[Ideogram]):
+class IdeogramValue(Interpreter[Ideogram]):
     def __init__(self) -> None:
         super().__init__(
             key=InterpretationKey.IDEOGRAM,

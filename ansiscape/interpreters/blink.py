@@ -1,9 +1,8 @@
-from ansiscape.enums import Blink, InterpretationKey
-from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
-from ansiscape.interpreters.dict_value import DictValue
+from ansiscape.enums import Blink, InterpretationKey, SelectGraphicRendition
+from ansiscape.interpreters.interpreter import Interpreter
 
 
-class BlinkValue(DictValue[Blink]):
+class BlinkValue(Interpreter[Blink]):
     def __init__(self) -> None:
         super().__init__(
             key=InterpretationKey.BLINK,
