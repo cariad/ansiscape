@@ -1,7 +1,6 @@
 from pytest import mark
 
-from ansiscape import strings as s
-from ansiscape.sequence import Sequence
+import ansiscape as s
 
 
 @mark.parametrize(
@@ -70,7 +69,7 @@ from ansiscape.sequence import Sequence
         (s.yellow_background("foo"), "\033[43mfoo\033[49m"),
     ],
 )
-def test_sequence(sequence: Sequence, expect: str) -> None:
+def test_sequence(sequence: s.Sequence, expect: str) -> None:
     assert str(sequence) == expect
 
 
@@ -78,16 +77,16 @@ def test_sequence(sequence: Sequence, expect: str) -> None:
     "sequence, expect",
     [
         (
-            Sequence("Here's some ", s.red("red"), "!"),
+            s.Sequence("Here's some ", s.red("red"), "!"),
             "Here's some \033[31mred\033[39m!",
         ),
         (
-            Sequence(
+            s.Sequence(
                 "Here's some ", s.red("red and ", s.yellow("yellow"), " too"), "!"
             ),
             "Here's some \033[31mred and \033[33myellow\033[31m too\033[39m!",
         ),
     ],
 )
-def test_compound_sequences(sequence: Sequence, expect: str) -> None:
+def test_compound_sequences(sequence: s.Sequence, expect: str) -> None:
     assert str(sequence) == expect

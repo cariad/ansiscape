@@ -1,4 +1,4 @@
-from typing import TypedDict, Union
+from typing import Any, Dict, TypedDict, Union, cast
 
 from ansiscape.enums import (
     Blink,
@@ -10,6 +10,7 @@ from ansiscape.enums import (
     Underline,
     Weight,
 )
+from ansiscape.enums.interpretation_key import InterpretationKey
 from ansiscape.types.color import Color
 
 
@@ -116,3 +117,28 @@ class InterpretationDict(TypedDict, total=False):
     `None` should be interpreted as "no change" rather than "no underline".
     """
     underline: Union[Underline, InterpretationSpecial]
+
+
+def merge_interpretation(
+    a: InterpretationDict, b: InterpretationDict
+) -> InterpretationDict:
+    c: Dict[str, Any] = {}
+    # any_a = cast(Dict[str, Any], a)
+    # any_b = cast(Dict[str, Any], b)
+
+    for key in InterpretationKey:
+        av = a.get(key.value, None)
+        bv = b.get(key.value, None)
+
+        if av is None and bv is None:
+            continue
+
+        # if av is InterpretationSpecial and bv is not None and bv is not InterpretationSpecial:
+        #     c[key.value] = bv
+        #     continue
+
+        if bv is not None:
+            c[key.value] = bv
+            continue
+
+    return cast(InterpretationDict, c)

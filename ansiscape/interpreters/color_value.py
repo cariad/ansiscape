@@ -1,3 +1,4 @@
+from math import floor
 from typing import Dict, List, Tuple
 
 from ansiscape.enums import (
@@ -64,6 +65,18 @@ class ColorValue(Interpreter[Color]):
                 sgr=self.rgb,
                 additional=[ColorScheme.EIGHT_BIT.value, value.value],
             )
+
+        if isinstance(value, tuple):
+            return SequencerResult(
+                sgr=self.rgb,
+                additional=[
+                    ColorScheme.RGB.value,
+                    floor(value[0] * 255),
+                    floor(value[1] * 255),
+                    floor(value[2] * 255),
+                ],
+            )
+
         raise NotImplementedError()
 
     @staticmethod

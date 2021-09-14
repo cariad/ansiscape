@@ -1,65 +1,95 @@
-from typing import List, Optional, Union
+from typing import Any, Iterator, List, Optional, Tuple, Union
 
-from ansiscape.enums import (
-    Calligraphy,
-    Font,
-    Frame,
-    Ideogram,
-    InterpretationKey,
-    InterpretationSpecial,
-    Underline,
-    Weight,
-)
+from ansiscape.enums import InterpretationKey
 from ansiscape.handlers import get_interpreter
-from ansiscape.types import Attributes, Color, InterpretationDict, SequenceProtocol
+from ansiscape.types import (
+    Attributes,
+    InterpretationDict,
+    SequencePart,
+    SequenceProtocol,
+)
 
 
 class Sequence(SequenceProtocol):
     def __init__(
         self,
-        *parts: Union[str, SequenceProtocol],
+        *parts: SequencePart,
         prefix: Optional[InterpretationDict] = None,
         suffix: Optional[InterpretationDict] = None,
     ) -> None:
-        self.prefix = prefix or InterpretationDict()
-        self.suffix = suffix or InterpretationDict()
         self.parts = parts
+        if prefix is not None:
+            self.parts = (prefix, *self.parts)
+        if suffix is not None:
+            self.parts = (*self.parts, suffix)
+
+    def __add__(self, other: Any) -> "SequenceProtocol":
+        if isinstance(other, str):
+            return Sequence(*(*self.parts, other))
+
+        parts: Tuple[SequencePart, ...] = ()
+
+        # if isinstance(other, Sequence):
+        #     join=merge_interpretation(self.suffix, other.prefix)
+        #     parts = (*self.parts, join, *other.parts)
+
+        if not parts:
+            parts = (*self.parts, *other.parts)
+
+        return Sequence(*parts)
 
     @property
-    def args(self) -> List[Union[str, InterpretationDict]]:
-        args: List[Union[str, InterpretationDict]] = [self.prefix]
+    def args(self) -> List[SequencePart]:
+        args: List[SequencePart] = []
 
         for part in self.parts:
-            if isinstance(part, str):
+            if isinstance(part, str) or isinstance(part, dict):
                 args.append(part)
             else:
                 args.extend(part.args)
 
-        args.append(self.suffix)
         return args
 
     def __str__(self) -> str:
-        return self.encode(*self.args)
+        return self.encode()
 
-    def encode(self, *parts: Union[str, InterpretationDict]) -> str:
+    @property
+    def children(self) -> Iterator[Union[str, InterpretationDict]]:
         """
-        Encodes a series of strings and formatting interpretations into a single
-        string with embedded escape codes.
+        Yields all the child strings and interpretations. Intentionally does not
+        yield child sequences, but their strings and interpretations instead.
+        """
+
+        for arg in self.args:
+            if isinstance(arg, str):
+                yield arg
+
+            elif isinstance(arg, dict):
+                yield arg
+
+            elif arg:
+                for child in arg.children:
+                    if child:
+                        yield child
+
+    def encode(self) -> str:
+        """
+        Encodes the sequence into a single string with embedded escape codes.
         """
 
         wip = ""
         stack: List[InterpretationDict] = []
-        for arg in parts:
-            if isinstance(arg, str):
-                wip += arg
-                continue
+        for child in self.children:
+            if isinstance(child, str):
+                wip += child
 
-            if not arg:
-                # Don't add empty dictionaries.
+            else:
+                if not child:
+                    # Don't add empty dictionaries.
+                    continue
+                stack.append(child)
+                wip += self.encode_escape_sequence(stack)
                 continue
-
-            stack.append(arg)
-            wip += self.encode_escape_sequence(stack)
 
         return wip
 
@@ -71,8 +101,6 @@ class Sequence(SequenceProtocol):
         The lower stack will be read only if the interpration at the top prescribes
         a reversion.
         """
-
-        print("encoding:", stack)
 
         sequences: List[Attributes] = [[]]
         interpretation = stack[-1]
@@ -94,79 +122,4 @@ class Sequence(SequenceProtocol):
             else:
                 sequences[0].extend(sequence)
         code = "".join([f"\033[{';'.join([str(a) for a in s])}m" for s in sequences])
-        print("encode_escape_sequence():", code[1:])
         return code
-
-
-class ForegroundSequence(Sequence):
-    def __init__(self, color: Color, *parts: Union[str, "Sequence"]) -> None:
-        super().__init__(
-            *parts,
-            prefix=InterpretationDict(foreground=color),
-            suffix=InterpretationDict(foreground=InterpretationSpecial.REVERT),
-        )
-
-
-class BackgroundSequence(Sequence):
-    def __init__(self, color: Color, *parts: Union[str, "Sequence"]) -> None:
-        super().__init__(
-            *parts,
-            prefix=InterpretationDict(background=color),
-            suffix=InterpretationDict(background=InterpretationSpecial.REVERT),
-        )
-
-
-class AlternativeFontSequence(Sequence):
-    def __init__(self, font: Font, *parts: Union[str, "Sequence"]) -> None:
-        super().__init__(
-            *parts,
-            prefix=InterpretationDict(font=font),
-            suffix=InterpretationDict(font=InterpretationSpecial.REVERT),
-        )
-
-
-class CalligraphySequence(Sequence):
-    def __init__(
-        self, calligraphy: Calligraphy, *parts: Union[str, "Sequence"]
-    ) -> None:
-        super().__init__(
-            *parts,
-            prefix=InterpretationDict(calligraphy=calligraphy),
-            suffix=InterpretationDict(calligraphy=InterpretationSpecial.REVERT),
-        )
-
-
-class WeightSequence(Sequence):
-    def __init__(self, weight: Weight, *parts: Union[str, "Sequence"]) -> None:
-        super().__init__(
-            *parts,
-            prefix=InterpretationDict(weight=weight),
-            suffix=InterpretationDict(weight=InterpretationSpecial.REVERT),
-        )
-
-
-class IdeogramSequence(Sequence):
-    def __init__(self, ideogram: Ideogram, *parts: Union[str, "Sequence"]) -> None:
-        super().__init__(
-            *parts,
-            prefix=InterpretationDict(ideogram=ideogram),
-            suffix=InterpretationDict(ideogram=InterpretationSpecial.REVERT),
-        )
-
-
-class FrameSequence(Sequence):
-    def __init__(self, frame: Frame, *parts: Union[str, "Sequence"]) -> None:
-        super().__init__(
-            *parts,
-            prefix=InterpretationDict(frame=frame),
-            suffix=InterpretationDict(frame=InterpretationSpecial.REVERT),
-        )
-
-
-class UnderlineSequence(Sequence):
-    def __init__(self, underline: Underline, *parts: Union[str, "Sequence"]) -> None:
-        super().__init__(
-            *parts,
-            prefix=InterpretationDict(underline=underline),
-            suffix=InterpretationDict(underline=InterpretationSpecial.REVERT),
-        )

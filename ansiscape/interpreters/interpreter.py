@@ -10,6 +10,7 @@ from ansiscape.types import (
     Attributes,
     InterpretationDict,
     InterpreterProtocol,
+    SequencePart,
     SequenceProtocol,
     SequencerResult,
     TInterpretableValue,
@@ -45,7 +46,6 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
         try:
             sgr = SelectGraphicRendition(attrs[0])
         except Exception:
-            print("attrs:", attrs[0])
             raise
         if sgr in self.lookup:
             return self.lookup[sgr], 0
@@ -59,7 +59,7 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
         raise NotImplementedError()
 
     def make_sequence(
-        self, value: TInterpretableValue, *parts: Union[str, SequenceProtocol]
+        self, value: TInterpretableValue, *parts: SequencePart
     ) -> Sequence:
         return Sequence(
             *parts,
@@ -70,7 +70,7 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
     def make_sequence_from_attributes(
         self,
         attrs: Attributes,
-        *parts: Union[str, SequenceProtocol],
+        *parts: SequencePart,
     ) -> SequenceProtocol:
         value = self.from_attributes(attrs)
         return self.make_sequence(value[0], *parts)
@@ -99,7 +99,6 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
     @property
     def off(self) -> SelectGraphicRendition:
         off_value = self.lookup[SelectGraphicRendition.DEFAULT]
-        print("off_value:", off_value)
         for sgr in self.lookup:
             if sgr == SelectGraphicRendition.DEFAULT:
                 continue
@@ -109,8 +108,8 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
             if type(self.lookup[sgr]) != type(off_value):
                 continue
 
-            print("off:", sgr)
             return sgr
+
         raise ValueError("no off")
 
     def sequence(self, stack: List[InterpretationDict]) -> SequencerResult:
@@ -134,6 +133,13 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
 
         count = 0
         while stack:
+            top = stack[-1]
+            value = top.get(self.key.value, None)
+            if isinstance(value, InterpretationSpecial):
+                stack.pop()
+                count -= 1
+                continue
+
             result = self.value(stack)
             if result is None:
                 # The interpretation at the top of the stack didn't concern us.
@@ -159,7 +165,6 @@ class Interpreter(InterpreterProtocol[TInterpretableValue]):
         """
 
         value = stack.pop().get(self.key.value, None)
-        print("value:", value)
 
         if value is None:
             # The interpretation at the top of the stack doesn't describe a

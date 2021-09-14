@@ -44,13 +44,17 @@ setup(
     packages=[
         "ansiscape",
         "ansiscape.enums",
+        "ansiscape.exceptions",
         "ansiscape.interpreters",
+        "ansiscape.types",
         "ansiscape.version",
     ],
     package_data={
         "ansiscape": ["py.typed"],
         "ansiscape.enums": ["py.typed"],
+        "ansiscape.exceptions": ["py.typed"],
         "ansiscape.interpreters": ["py.typed"],
+        "ansiscape.types": ["py.typed"],
         "ansiscape.version": ["py.typed"],
     },
     python_requires=">=3.8",
