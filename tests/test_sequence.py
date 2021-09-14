@@ -4,7 +4,7 @@ from ansiscape.types import InterpretationDict
 
 
 def test_add() -> None:
-    assert (red("foo") + yellow("bar")).args == [
+    assert (red("foo") + yellow("bar")).parts == [
         InterpretationDict(foreground=StandardColor.RED),
         "foo",
         InterpretationDict(foreground=InterpretationSpecial.REVERT),

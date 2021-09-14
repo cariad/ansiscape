@@ -235,11 +235,8 @@ def red_background(*parts: SequencePart) -> SequenceProtocol:
     return make_sequence(SelectGraphicRendition.BACKGROUND_RED, *parts)
 
 
-def s(*parts: SequencePart) -> SequenceProtocol:
+def sequence(*parts: SequencePart) -> SequenceProtocol:
     return Sequence(*parts)
-
-
-sequence = s
 
 
 def single_line_under_or_right(*parts: SequencePart) -> SequenceProtocol:

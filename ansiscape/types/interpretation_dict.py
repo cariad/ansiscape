@@ -1,4 +1,4 @@
-from typing import Any, Dict, TypedDict, Union, cast
+from typing import Any, Dict, Optional, TypedDict, Union, cast
 
 from ansiscape.enums import (
     Blink,
@@ -119,26 +119,57 @@ class InterpretationDict(TypedDict, total=False):
     underline: Union[Underline, InterpretationSpecial]
 
 
-def merge_interpretation(
-    a: InterpretationDict, b: InterpretationDict
-) -> InterpretationDict:
+# def merge_interpretation(
+#     a: InterpretationDict, b: InterpretationDict
+# ) -> InterpretationDict:
+#     c: Dict[str, Any] = {}
+#     # any_a = cast(Dict[str, Any], a)
+#     # any_b = cast(Dict[str, Any], b)
+
+#     for key in InterpretationKey:
+#         av = a.get(key.value, None)
+#         bv = b.get(key.value, None)
+
+#         if av is None and bv is None:
+#             continue
+
+#         # if av is InterpretationSpecial and bv is not None and bv is not InterpretationSpecial:
+#         #     c[key.value] = bv
+#         #     continue
+
+#         if bv is not None:
+#             c[key.value] = bv
+#             continue
+
+#     return cast(InterpretationDict, c)
+
+
+def try_merge(
+    a: InterpretationDict,
+    b: InterpretationDict,
+) -> Optional[InterpretationDict]:
     c: Dict[str, Any] = {}
-    # any_a = cast(Dict[str, Any], a)
-    # any_b = cast(Dict[str, Any], b)
 
     for key in InterpretationKey:
         av = a.get(key.value, None)
         bv = b.get(key.value, None)
 
-        if av is None and bv is None:
-            continue
+        if av is None:
+            if bv is None:
+                # Both sides are None, so don't add the key.
+                pass
+            else:
+                # Only B has a value, so keep B
+                c[key.value] = bv
 
-        # if av is InterpretationSpecial and bv is not None and bv is not InterpretationSpecial:
-        #     c[key.value] = bv
-        #     continue
-
-        if bv is not None:
-            c[key.value] = bv
-            continue
+        else:
+            if bv is None:
+                # Only A has a value, so keep B
+                c[key.value] = av
+            else:
+                # We never want to merge two values into the same dictionary
+                # because then we won't be able to revert the latter. Since both
+                # dictionaries have a value for this key, we can't merge them.
+                return None
 
     return cast(InterpretationDict, c)
