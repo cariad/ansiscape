@@ -3,7 +3,7 @@ from typing import Any, Dict, List
 from ansiscape.enums import InterpretationKey, SelectGraphicRendition
 from ansiscape.types import Color, InterpreterProtocol
 
-interpreters: Dict[InterpretationKey, InterpreterProtocol[Any]] = {}
+interpreters: Dict[str, InterpreterProtocol[Any]] = {}
 for_sgr: Dict[SelectGraphicRendition, List[InterpreterProtocol[Any]]] = {}
 
 
@@ -15,12 +15,12 @@ def register_interpreter(interpreter: InterpreterProtocol[Any]) -> None:
         for_sgr[sgr].append(interpreter)
 
 
-def get_interpreter(key: InterpretationKey) -> InterpreterProtocol[Any]:
+def get_interpreter(key: str) -> InterpreterProtocol[Any]:
     return interpreters[key]
 
 
 def get_color_interpreter(key: InterpretationKey) -> InterpreterProtocol[Color]:
-    return interpreters[key]
+    return interpreters[key.value]
 
 
 def get_interpreters_for_sgr(

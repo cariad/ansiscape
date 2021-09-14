@@ -6,7 +6,7 @@ from ansiscape.types.sequencer_result import SequencerResult
 
 
 def test_key() -> None:
-    assert CalligraphyValue().key == InterpretationKey.CALLIGRAPHY
+    assert CalligraphyValue().key == InterpretationKey.CALLIGRAPHY.value
 
 
 @mark.parametrize(

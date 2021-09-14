@@ -6,7 +6,7 @@ from ansiscape.types.sequencer_result import SequencerResult
 
 
 def test_key() -> None:
-    assert ConcealValue().key == InterpretationKey.CONCEAL
+    assert ConcealValue().key == InterpretationKey.CONCEAL.value
 
 
 @mark.parametrize(

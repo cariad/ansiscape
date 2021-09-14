@@ -15,7 +15,7 @@ from ansiscape.example import make_example
 def test_example() -> None:
     example = make_example()
 
-    assert example.parts == [
+    assert list(example.parts) == [
         {
             "underline": Underline.DOUBLE,
             "weight": Weight.HEAVY,
@@ -249,7 +249,7 @@ def test_example() -> None:
         {"background": StandardColor.BRIGHT_WHITE},
         "bright white",
         {"background": InterpretationSpecial.REVERT},
-        " background.\n\nHere's some foreground RGB:\n" "\n",
+        " background.\n\nHere's some foreground RGB:\n\n",
         {"foreground": (0.0, 0.0, 0.0, 1)},
         "X",
         {"foreground": InterpretationSpecial.REVERT},
@@ -3392,7 +3392,7 @@ def test_example() -> None:
         {"foreground": (0.9, 0.9, 0.9, 1)},
         "X",
         {"foreground": InterpretationSpecial.REVERT},
-        "\n\nAnd some background RGB:\n" "\n",
+        "\n\nAnd some background RGB:\n\n",
         {"background": (0.0, 0.0, 0.0, 1)},
         " ",
         {"background": InterpretationSpecial.REVERT},

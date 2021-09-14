@@ -6,7 +6,7 @@ from ansiscape.types.sequencer_result import SequencerResult
 
 
 def test_key() -> None:
-    assert BlinkValue().key == InterpretationKey.BLINK
+    assert BlinkValue().key == InterpretationKey.BLINK.value
 
 
 @mark.parametrize(

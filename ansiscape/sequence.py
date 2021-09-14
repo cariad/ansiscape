@@ -1,6 +1,7 @@
-from typing import Any, List, Optional, Tuple, Union
+from typing import Iterator, List, Union, cast
 
 from ansiscape.enums import InterpretationKey
+from ansiscape.enums.interpretation_special import InterpretationSpecial
 from ansiscape.handlers import get_interpreter
 from ansiscape.types import (
     Attributes,
@@ -9,123 +10,73 @@ from ansiscape.types import (
     SequenceProtocol,
     try_merge,
 )
+from ansiscape.types.interpretation_dict import UntypedInterpretation
 
 
 class Sequence(SequenceProtocol):
-    def __init__(
-        self,
-        *parts: SequencePart,
-        prefix: Optional[InterpretationDict] = None,
-        suffix: Optional[InterpretationDict] = None,
-    ) -> None:
+    def __init__(self, *parts: SequencePart) -> None:
+        self.__parts = parts
 
-        # `self._parts` will never contain a Sequence; only that Sequence's
-        # strings and interpretations.
-        self._parts: List[Union[str, InterpretationDict]] = []
-        self.extend([prefix, *parts, suffix])
-
-
-    def __add__(self, other: Any) -> "SequenceProtocol":
-        copy = Sequence(*self.parts)
-
-        if isinstance(other, str):
-            copy.append(other)
-        else:
-            copy.extend_sequence(other.parts)
-
-        return copy
-
-    def extend(self, parts: List[Union[SequencePart, None]]) -> None:
-        for part in parts:
-            if part is None:
-                continue
-            self.append(part)
-
-
-    def extend_sequence(self, parts: List[Union[str, InterpretationDict]]) -> None:
-        for part in parts:
-            self.append(part)
-
-
-
-
-    def append(self, part: SequencePart) -> None:
-        prev = self._parts[-1] if self._parts else None
-
-        # print("appending:", prev, part)
-
-        # If the part we're about to append and the previously-added part
-        # are both dictionaries then try to merge them:
-        if isinstance(part, dict):
-            if isinstance(prev, dict):
-                join = try_merge(prev, part)
-                if join is None:
-                    # If the join fails then just include the part as-is:
-                    self._parts.append(part)
-                else:
-                    # If the join succeeds then replace the previous part and
-                    # skip the current one:
-                    # print("joined: ", prev, part, join)
-                    self._parts[-1] = join
-
-            elif part:
-                self._parts.append(part)
-
-        elif isinstance(part, Sequence):
-            self.extend_sequence(part.parts)
-
-        elif isinstance(part, str):
-            if isinstance(prev, str):
-                self._parts[-1] = prev + part
-            elif part:
-                self._parts.append(part)
-
-        else:
-            NotImplementedError(f"unhandled part type: {type(part)} ({part})")
+    def extend(self, *parts: SequencePart) -> SequenceProtocol:
+        self.__parts = (*self.__parts, *parts)
+        return self
 
     @property
-    def parts(self) -> List[Union[str, InterpretationDict]]:
+    def flatten(self) -> Iterator[Union[str, InterpretationDict]]:
+        """
+        Gets a flat (but not reduced) list of all parts and children's parts.
+        """
+
+        index = 0
+        count = len(self.__parts)
+        while index < count:
+            part = self.__parts[index]
+            if isinstance(part, SequenceProtocol):
+                for sub in part.parts:
+                    yield sub
+            else:
+                yield part
+            index += 1
+
+    @property
+    def parts(self) -> Iterator[Union[str, InterpretationDict]]:
         """
         Gets all the child strings and interpretations. Intentionally does not
         get child sequences, but their strings and interpretations instead.
         """
-        return self._parts
 
+        str_wip = ""
+        dict_wip: UntypedInterpretation = {}
 
+        for part in self.flatten:
 
-    # @property
-    # def args(self) -> List[SequencePart]:
-    #     args: List[SequencePart] = []
+            if isinstance(part, str):
+                if len(dict_wip) > 0:
+                    yield dict_wip  # type: ignore
+                    dict_wip = {}
+                str_wip += part
 
-    #     for part in self.parts:
-    #         if isinstance(part, str) or isinstance(part, dict):
-    #             args.append(part)
-    #         else:
-    #             args.extend(part.args)
+            else:
+                if len(str_wip) > 0:
+                    yield str_wip
+                    str_wip = ""
 
-    #     return args
+                merged = try_merge(dict_wip, part)  # type: ignore
+
+                if merged is None:
+                    yield dict_wip  # type: ignore
+                    dict_wip = part  # type: ignore
+                else:
+                    dict_wip = merged
+
+        if dict_wip:
+            yield cast(InterpretationDict, dict_wip)
+        if str_wip:
+            yield str_wip
 
     def __str__(self) -> str:
+        print("encoding...")
         return self.encode()
-
-    # @property
-    # def children(self) -> Iterator[Union[str, InterpretationDict]]:
-    #     """
-    #     Yields all the child strings and interpretations. Intentionally does not
-    #     yield child sequences, but their strings and interpretations instead.
-    #     """
-
-    #     for arg in self.args:
-    #         if isinstance(arg, str):
-    #             yield arg
-
-    #         elif isinstance(arg, dict):
-    #             yield arg
-
-    #         elif arg:
-    #             for child in arg.children:
-    #                 if child:
-    #                     yield child
 
     def encode(self) -> str:
         """
@@ -133,19 +84,25 @@ class Sequence(SequenceProtocol):
         """
 
         wip = ""
-        stack: List[InterpretationDict] = []
+        stack: List[UntypedInterpretation] = []
         for part in self.parts:
             if isinstance(part, str):
                 wip += part
 
             else:
-                stack.append(part)
-                wip += self.encode_escape_sequence(stack)
+                # `part` is a typed dictionary, but we intentionally ignore
+                # typing for performance down here.
+                stack.append(part)  # type: ignore
+                wip += self.encode_escape_sequence(stack=stack, index=len(stack) - 1)
                 continue
 
         return wip
 
-    def encode_escape_sequence(self, stack: List[InterpretationDict]) -> str:
+    def encode_escape_sequence(
+        self,
+        stack: List[UntypedInterpretation],
+        index: int,
+    ) -> str:
         """
         Encodes the interpretation at the top of the stack into an embeddable escape
         code.
@@ -155,15 +112,25 @@ class Sequence(SequenceProtocol):
         """
 
         sequences: List[Attributes] = [[]]
-        interpretation = stack[-1]
+        interpretation = stack[index]
 
         for key in InterpretationKey:
-            if interpretation.get(key.value, None) is None:
+            key_str = str(key.value)
+
+            if key_str not in interpretation:
                 continue
 
-            # Intentionally send a copy of the stack because inner reversion
-            # resolution will pop:
-            result = get_interpreter(key).sequence([*stack])
+            value = interpretation[key_str]
+
+            if value is None:
+                continue
+
+            interpreter = get_interpreter(key_str)
+
+            if not isinstance(value, InterpretationSpecial):
+                result = interpreter.to_code(value)
+            else:
+                result = interpreter.find_reversion(stack=stack, index=index)
 
             sequence = [result["sgr"].value]
             if additional := result.get("additional", None):

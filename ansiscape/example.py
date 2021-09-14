@@ -17,10 +17,11 @@ def make_example() -> SequenceProtocol:
             r = (1 / square) * row
             g = (1 / square) * block
             b = (1 / square) * (column - (square * block))
-            foreground_rgb += a.foreground((r, g, b, 1), "X")
-            background_rgb += a.background((r, g, b, 1), " ")
-        foreground_rgb += "\n"
-        background_rgb += "\n"
+            foreground_rgb.extend(a.foreground((r, g, b, 1), "X"))
+            background_rgb.extend(a.background((r, g, b, 1), " "))
+
+        foreground_rgb.extend("\n")
+        background_rgb.extend("\n")
 
     return a.sequence(
         a.heavy(a.double_underline("ansiscape")),

@@ -93,7 +93,7 @@ def interpret_as_any(sequence: str) -> Dict[str, Any]:
 
         for interpreter in interpreters:
             value, claim = interpreter.from_attributes(remaining_attributes)
-            wip[interpreter.key.value] = value
+            wip[interpreter.key] = value
             claim += 1  # Include the header that we didn't pass down
             this_round_claimed = this_round_claimed or claim
             if claim != this_round_claimed:
