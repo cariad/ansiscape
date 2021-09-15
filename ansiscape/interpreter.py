@@ -3,7 +3,7 @@ from typing import Dict, List, Tuple, Union, cast
 
 from ansiscape.enums import (
     InterpretationKey,
-    InterpretationSpecial,
+    MetaInterpretation,
     SelectGraphicRendition,
 )
 from ansiscape.sequence import Sequence
@@ -67,7 +67,7 @@ class Interpreter(InterpreterType[TInterpretableValue]):
 
             # "type()" is faster than "isinstance()", but doesn't accommodate
             # inherited types.
-            if type(value) is InterpretationSpecial:
+            if type(value) is MetaInterpretation:
                 # We're nested inside another reversion.
                 reversion_count -= 1
                 continue
@@ -150,7 +150,7 @@ class Interpreter(InterpreterType[TInterpretableValue]):
         return Sequence(
             cast(Interpretation, {self.key: value}),
             *parts,
-            cast(Interpretation, {self.key: InterpretationSpecial.REVERT}),
+            cast(Interpretation, {self.key: MetaInterpretation.REVERT}),
         )
 
     @property

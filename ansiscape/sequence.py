@@ -1,8 +1,7 @@
 from re import finditer
 from typing import Iterator, List, Optional, Union
 
-from ansiscape.enums import InterpretationKey
-from ansiscape.enums.interpretation_special import InterpretationSpecial
+from ansiscape.enums import InterpretationKey, MetaInterpretation
 from ansiscape.handlers import get_interpreter, get_interpreter_for_sgr_int
 from ansiscape.types import Attributes, Interpretation, SequencePart, SequenceType
 
@@ -74,7 +73,7 @@ class Sequence(SequenceType):
 
             interpreter = get_interpreter(key_str)
 
-            if not isinstance(value, InterpretationSpecial):
+            if not isinstance(value, MetaInterpretation):
                 result = interpreter.to_code(value)
             else:
                 result = interpreter.find_reversion(stack=stack, index=index)

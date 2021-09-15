@@ -3,13 +3,7 @@ from typing import List, Tuple
 from pytest import mark
 
 from ansiscape import Sequence, red, yellow
-from ansiscape.enums import (
-    Blink,
-    Calligraphy,
-    InterpretationSpecial,
-    NamedColor,
-    Weight,
-)
+from ansiscape.enums import Blink, Calligraphy, MetaInterpretation, NamedColor, Weight
 from ansiscape.types import Interpretation, SequencePart
 
 
@@ -20,7 +14,7 @@ def test_extend() -> None:
     assert r.parts == [
         Interpretation(foreground=NamedColor.RED),
         "foo",
-        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=MetaInterpretation.REVERT),
         y,
     ]
 
@@ -29,7 +23,7 @@ def test_encoded() -> None:
     sequence = Sequence(
         Interpretation(foreground=NamedColor.RED),
         "foo",
-        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=MetaInterpretation.REVERT),
     )
     assert sequence.encoded == "\033[31mfoo\033[39m"
 
@@ -41,7 +35,7 @@ def test_encoded() -> None:
             [
                 Interpretation(background=NamedColor.BLUE),
                 Interpretation(background=NamedColor.RED),
-                Interpretation(background=InterpretationSpecial.REVERT),
+                Interpretation(background=MetaInterpretation.REVERT),
             ],
             "\033[44m",
         ),
@@ -50,7 +44,7 @@ def test_encoded() -> None:
                 Interpretation(background=NamedColor.BLUE),
                 Interpretation(calligraphy=Calligraphy.ITALIC),
                 Interpretation(background=NamedColor.RED),
-                Interpretation(background=InterpretationSpecial.REVERT),
+                Interpretation(background=MetaInterpretation.REVERT),
             ],
             "\033[44m",
         ),
@@ -79,10 +73,10 @@ def test_flatten() -> None:
     assert list(r.flatten) == [
         Interpretation(foreground=NamedColor.RED),
         "foo",
-        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=MetaInterpretation.REVERT),
         Interpretation(foreground=NamedColor.YELLOW),
         "bar",
-        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=MetaInterpretation.REVERT),
     ]
 
 
@@ -144,26 +138,26 @@ def test_resolved() -> None:
         "goodbye",
         Interpretation(calligraphy=Calligraphy.ITALIC),
         "bobby",
-        Interpretation(calligraphy=InterpretationSpecial.REVERT),
+        Interpretation(calligraphy=MetaInterpretation.REVERT),
     )
 
     child_interpretation_string = Sequence(
         Interpretation(calligraphy=Calligraphy.BLACKLETTER),
         "welcome",
-        Interpretation(calligraphy=InterpretationSpecial.REVERT),
+        Interpretation(calligraphy=MetaInterpretation.REVERT),
         "jimmy",
     )
 
     child_interpretation_interpretation = Sequence(
         Interpretation(blink=Blink.SLOW),
         "wow",
-        Interpretation(blink=InterpretationSpecial.REVERT),
+        Interpretation(blink=MetaInterpretation.REVERT),
     )
 
     sequence = Sequence(
         Interpretation(foreground=NamedColor.YELLOW),
         "woo",
-        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=MetaInterpretation.REVERT),
         "boo",
         Interpretation(weight=Weight.HEAVY),
         Interpretation(foreground=NamedColor.RED),
@@ -172,21 +166,21 @@ def test_resolved() -> None:
         child_string_string,
         "done",
         child_string_interpretation,
-        Interpretation(foreground=InterpretationSpecial.REVERT),
-        Interpretation(weight=InterpretationSpecial.REVERT),
+        Interpretation(foreground=MetaInterpretation.REVERT),
+        Interpretation(weight=MetaInterpretation.REVERT),
         child_interpretation_interpretation,
         Interpretation(background=NamedColor.CYAN),
         child_interpretation_string,
         "jar",
         "goo",
         "moo",
-        Interpretation(background=InterpretationSpecial.REVERT),
+        Interpretation(background=MetaInterpretation.REVERT),
     )
 
     assert list(sequence.resolved) == [
         Interpretation(foreground=NamedColor.YELLOW),
         "woo",
-        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=MetaInterpretation.REVERT),
         "boo",
         Interpretation(foreground=NamedColor.RED, weight=Weight.HEAVY),
         "foobarhelloworlddonegoodbye",
@@ -194,20 +188,20 @@ def test_resolved() -> None:
         "bobby",
         Interpretation(
             blink=Blink.SLOW,
-            calligraphy=InterpretationSpecial.REVERT,
-            foreground=InterpretationSpecial.REVERT,
-            weight=InterpretationSpecial.REVERT,
+            calligraphy=MetaInterpretation.REVERT,
+            foreground=MetaInterpretation.REVERT,
+            weight=MetaInterpretation.REVERT,
         ),
         "wow",
         Interpretation(
-            blink=InterpretationSpecial.REVERT,
+            blink=MetaInterpretation.REVERT,
             calligraphy=Calligraphy.BLACKLETTER,
             background=NamedColor.CYAN,
         ),
         "welcome",
-        Interpretation(calligraphy=InterpretationSpecial.REVERT),
+        Interpretation(calligraphy=MetaInterpretation.REVERT),
         "jimmyjargoomoo",
-        Interpretation(background=InterpretationSpecial.REVERT),
+        Interpretation(background=MetaInterpretation.REVERT),
     ]
 
 
@@ -215,6 +209,6 @@ def test_str() -> None:
     sequence = Sequence(
         Interpretation(foreground=NamedColor.RED),
         "foo",
-        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=MetaInterpretation.REVERT),
     )
     assert str(sequence) == "\033[31mfoo\033[39m"

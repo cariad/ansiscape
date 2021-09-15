@@ -1,6 +1,6 @@
 from typing import Union
 
-from ansiscape.enums import ColorSpecial, NamedColor
+from ansiscape.enums import MetaColor, NamedColor
 from ansiscape.types.rgba import RGBA
 
-Color = Union[ColorSpecial, RGBA, NamedColor]
+Color = Union[MetaColor, NamedColor, RGBA]

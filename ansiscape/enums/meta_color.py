@@ -2,5 +2,5 @@ from enum import IntEnum, unique
 
 
 @unique
-class ColorSpecial(IntEnum):
+class MetaColor(IntEnum):
     DEFAULT = 0

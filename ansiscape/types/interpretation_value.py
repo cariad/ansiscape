@@ -6,7 +6,7 @@ from ansiscape.enums import (
     Font,
     Frame,
     Ideogram,
-    InterpretationSpecial,
+    MetaInterpretation,
     Underline,
     Weight,
 )
@@ -20,7 +20,7 @@ InterpretableValue = Union[
     Font,
     Frame,
     Ideogram,
-    InterpretationSpecial,
+    MetaInterpretation,
     Underline,
     Weight,
 ]

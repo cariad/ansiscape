@@ -1,6 +1,6 @@
 from ansiscape.enums import (
-    ColorSpecial,
     InterpretationKey,
+    MetaColor,
     NamedColor,
     SelectGraphicRendition,
 )
@@ -12,11 +12,11 @@ class BackgroundValue(ColorInterpreter):
         super().__init__(
             key=InterpretationKey.BACKGROUND,
             lookup={
-                SelectGraphicRendition.DEFAULT: ColorSpecial.DEFAULT,
+                SelectGraphicRendition.DEFAULT: MetaColor.DEFAULT,
                 SelectGraphicRendition.BACKGROUND_BLACK: NamedColor.BLACK,
                 SelectGraphicRendition.BACKGROUND_BLUE: NamedColor.BLUE,
                 SelectGraphicRendition.BACKGROUND_CYAN: NamedColor.CYAN,
-                SelectGraphicRendition.BACKGROUND_DEFAULT: ColorSpecial.DEFAULT,
+                SelectGraphicRendition.BACKGROUND_DEFAULT: MetaColor.DEFAULT,
                 SelectGraphicRendition.BACKGROUND_GREEN: NamedColor.GREEN,
                 SelectGraphicRendition.BACKGROUND_MAGENTA: NamedColor.MAGENTA,
                 SelectGraphicRendition.BACKGROUND_RED: NamedColor.RED,

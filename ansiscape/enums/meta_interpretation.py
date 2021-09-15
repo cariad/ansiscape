@@ -2,5 +2,5 @@ from enum import IntEnum, unique
 
 
 @unique
-class InterpretationSpecial(IntEnum):
+class MetaInterpretation(IntEnum):
     REVERT = 0

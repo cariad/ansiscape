@@ -2,7 +2,7 @@ from ansiscape.enums import InterpretationKey, NamedColor, SelectGraphicRenditio
 from ansiscape.handlers import get_color_interpreter, get_interpreter_for_sgr
 from ansiscape.interpreters import register_interpreters
 from ansiscape.sequence import Sequence
-from ansiscape.types import Color, SequencePart, SequenceType
+from ansiscape.types import Color, Interpretation, SequencePart, SequenceType
 from ansiscape.version import get_version
 
 register_interpreters()
@@ -285,5 +285,6 @@ def yellow_background(*parts: SequencePart) -> SequenceType:
 
 __all__ = [
     "get_version",
+    "Interpretation",
     "Sequence",
 ]

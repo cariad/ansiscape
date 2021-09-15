@@ -1,7 +1,9 @@
+markdown_extensions:
+  - admonition
 nav:
   - index.md
-  - what.md
-  - 8-bit.md
+  - interpret.md
+  - interpretation.md
   - make-pretty.md
 site_name: ansiscape
 theme:

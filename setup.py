@@ -36,6 +36,11 @@ setup(
     author_email="cariad@cariad.io",
     classifiers=classifiers,
     description="Python package for interpreting ANSI escape codes",
+    entry_points={
+        "console_scripts": [
+            "ansiscape=ansiscape.__main__:cli_entry",
+        ],
+    },
     include_package_data=True,
     license="MIT",
     long_description=long_description,

@@ -6,7 +6,7 @@ from ansiscape.enums import (
     Font,
     Frame,
     Ideogram,
-    InterpretationSpecial,
+    MetaInterpretation,
     Underline,
     Weight,
 )
@@ -23,69 +23,69 @@ class Interpretation(TypedDict, total=False):
     """
     Background colour.
     """
-    background: Union[Color, InterpretationSpecial]
+    background: Union[Color, MetaInterpretation]
 
     """
     Blink speed.
     """
-    blink: Union[Blink, InterpretationSpecial]
+    blink: Union[Blink, MetaInterpretation]
 
     """
     Calligraphy.
     """
-    calligraphy: Union[Calligraphy, InterpretationSpecial]
+    calligraphy: Union[Calligraphy, MetaInterpretation]
 
     """
     Conceal/reveal.
     """
-    conceal: Union[bool, InterpretationSpecial]
+    conceal: Union[bool, MetaInterpretation]
 
     """
     Font.
     """
-    font: Union[Font, InterpretationSpecial]
+    font: Union[Font, MetaInterpretation]
 
     """
     Foreground colour.
     """
-    foreground: Union[Color, InterpretationSpecial]
+    foreground: Union[Color, MetaInterpretation]
 
     """
     Framing.
     """
-    frame: Union[Frame, InterpretationSpecial]
+    frame: Union[Frame, MetaInterpretation]
 
     """
     Ideogram.
     """
-    ideogram: Union[Ideogram, InterpretationSpecial]
-
-    """
-    Weight.
-    """
-    weight: Union[Weight, InterpretationSpecial]
+    ideogram: Union[Ideogram, MetaInterpretation]
 
     """
     Invert colours.
     """
-    invert: Union[bool, InterpretationSpecial]
+    invert: Union[bool, MetaInterpretation]
 
     """
     Overline.
     """
-    overline: Union[bool, InterpretationSpecial]
+    overline: Union[bool, MetaInterpretation]
 
     """
     Proportional spacing.
     """
-    proportional_spacing: Union[bool, InterpretationSpecial]
+    proportional_spacing: Union[bool, MetaInterpretation]
 
     """
     Strikethrough.
     """
-    strike: Union[bool, InterpretationSpecial]
+    strike: Union[bool, MetaInterpretation]
 
     """
     Underline.
     """
-    underline: Union[Underline, InterpretationSpecial]
+    underline: Union[Underline, MetaInterpretation]
+
+    """
+    Weight.
+    """
+    weight: Union[Weight, MetaInterpretation]
