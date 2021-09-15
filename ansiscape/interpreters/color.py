@@ -172,6 +172,6 @@ class ColorInterpreter(Interpreter[Color]):
                 must_isolate=True,
             )
 
-        # This shouldn't be possible. Only StandardColors and tuples (RGBA) are
+        # This shouldn't be possible. Only NamedColors and tuples (RGBA) are
         # expected down here.
         raise NotImplementedError()
