@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod, abstractproperty
-from typing import Iterator, Tuple, Union
+from typing import Iterator, List, Union
 
 from ansiscape.types.interpretation import Interpretation
 
@@ -21,7 +21,7 @@ class SequenceType(ABC):
         """
 
     @abstractproperty
-    def parts(self) -> Tuple[SequencePart, ...]:
+    def parts(self) -> List[SequencePart]:
         """
         Gets the internal parts of this sequence. You probably want to use
         `resolved` instead.

@@ -93,7 +93,7 @@ class Interpreter(InterpreterType[TInterpretableValue]):
         """
 
         if attrs[0] in self.lookup:
-            return self.lookup[attrs[0]], 0
+            return self.lookup[attrs[0]], 1
         return self.from_extended_attributes(attrs[1:])
 
     def from_extended_attributes(
@@ -106,6 +106,23 @@ class Interpreter(InterpreterType[TInterpretableValue]):
 
         Returns the interpreted value and the count of attributes claimed.
         """
+
+    def interpret(self, attrs: Attributes, interpretation: Interpretation) -> int:
+        """
+        Populates `interpretation` with the interpretation of the attribute at
+        the end of the stack. Further attributes will be read only if needed to
+        fullfill that attribute.
+
+        Returns the count of attributes claimed.
+        """
+
+        value, claimed = self.from_attributes(attrs)
+
+        # We can't normally push into a typed dictionary with random string
+        # keys, but we'll ask the linter to look the other way down here for
+        # performance.
+        interpretation[self.key] = value  # type: ignore
+        return claimed
 
     @cached_property
     def key(self) -> str:

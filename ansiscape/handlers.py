@@ -25,5 +25,9 @@ def get_color_interpreter(key: InterpretationKey) -> InterpreterType[Color]:
     return interpreters[key.value]
 
 
+def get_interpreter_for_sgr_int(sgr: int) -> InterpreterType[Any]:
+    return for_sgr[sgr][0]
+
+
 def get_interpreter_for_sgr(sgr: SelectGraphicRendition) -> InterpreterType[Any]:
-    return for_sgr[sgr.value][0]
+    return get_interpreter_for_sgr_int(sgr.value)

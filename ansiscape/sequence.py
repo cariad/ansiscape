@@ -1,8 +1,9 @@
-from typing import Iterator, List, Optional, Tuple, Union
+from re import finditer
+from typing import Iterator, List, Optional, Union
 
 from ansiscape.enums import InterpretationKey
 from ansiscape.enums.interpretation_special import InterpretationSpecial
-from ansiscape.handlers import get_interpreter
+from ansiscape.handlers import get_interpreter, get_interpreter_for_sgr_int
 from ansiscape.types import Attributes, Interpretation, SequencePart, SequenceType
 
 
@@ -10,7 +11,40 @@ class Sequence(SequenceType):
     """A sequence of strings, formatting interpretations and sub-sequences."""
 
     def __init__(self, *parts: SequencePart) -> None:
-        self._parts = parts
+        self._parts: List[SequencePart] = []
+
+        for part in parts:
+            if not isinstance(part, str):
+                self._parts.append(part)
+                continue
+
+            interpretation = Interpretation()
+            prev_match_end = 0
+
+            for m in finditer("\033\\[([0-9;]+)m", part):
+                if m.start() > prev_match_end:
+                    if interpretation:
+                        self._parts.append(interpretation)
+                        interpretation = Interpretation()
+                    self._parts.append(part[prev_match_end : m.start()])
+
+                attrs = [int(a) for a in m.group(1).split(";")]
+
+                while len(attrs) > 0:
+                    interpreter = get_interpreter_for_sgr_int(attrs[0])
+                    claimed = interpreter.interpret(
+                        attrs=attrs,
+                        interpretation=interpretation,
+                    )
+                    attrs = attrs[claimed:]
+
+                prev_match_end = m.end()
+
+            if interpretation:
+                self._parts.append(interpretation)
+
+            if prev_match_end < len(part):
+                self._parts.append(part[prev_match_end:])
 
     def __str__(self) -> str:
         return self.encoded
@@ -73,7 +107,7 @@ class Sequence(SequenceType):
 
     def extend(self, *parts: SequencePart) -> None:
         """Extends this sequence."""
-        self._parts = (*self._parts, *parts)
+        self._parts.extend(parts)
 
     @property
     def flatten(self) -> Iterator[Union[str, Interpretation]]:
@@ -94,7 +128,7 @@ class Sequence(SequenceType):
             index += 1
 
     @property
-    def parts(self) -> Tuple[SequencePart, ...]:
+    def parts(self) -> List[SequencePart]:
         """
         Gets the internal parts of this sequence. You probably want to use
         `resolved` instead.

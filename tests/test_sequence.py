@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 from pytest import mark
 
@@ -10,19 +10,19 @@ from ansiscape.enums import (
     NamedColor,
     Weight,
 )
-from ansiscape.types import Interpretation
+from ansiscape.types import Interpretation, SequencePart
 
 
 def test_extend() -> None:
     r = red("foo")
     y = yellow("bar")
     r.extend(y)
-    assert r.parts == (
+    assert r.parts == [
         Interpretation(foreground=NamedColor.RED),
         "foo",
         Interpretation(foreground=InterpretationSpecial.REVERT),
         y,
-    )
+    ]
 
 
 def test_encoded() -> None:
@@ -84,6 +84,54 @@ def test_flatten() -> None:
         "bar",
         Interpretation(foreground=InterpretationSpecial.REVERT),
     ]
+
+
+@mark.parametrize(
+    "parts, expect",
+    [
+        ((), []),
+        (("",), []),
+        (("foo",), ["foo"]),
+        (("\033[44m",), [Interpretation(background=NamedColor.BLUE)]),
+        (("\\033[44m",), ["\\033[44m"]),
+        (("\033[8;44m",), [Interpretation(background=NamedColor.BLUE, conceal=True)]),
+        (
+            ("\033[8m\033[44m",),
+            [Interpretation(background=NamedColor.BLUE, conceal=True)],
+        ),
+        (
+            ("\033[8mfoo\033[44m",),
+            [
+                Interpretation(conceal=True),
+                "foo",
+                Interpretation(background=NamedColor.BLUE),
+            ],
+        ),
+        (
+            ("bar\033[8mfoo\033[44m",),
+            [
+                "bar",
+                Interpretation(conceal=True),
+                "foo",
+                Interpretation(background=NamedColor.BLUE),
+            ],
+        ),
+        (
+            ("\033[8mfoo\033[44mbar",),
+            [
+                Interpretation(conceal=True),
+                "foo",
+                Interpretation(background=NamedColor.BLUE),
+                "bar",
+            ],
+        ),
+    ],
+)
+def test_init__with_codes(
+    parts: Tuple[SequencePart, ...],
+    expect: List[SequencePart],
+) -> None:
+    assert Sequence(*parts).parts == expect
 
 
 def test_resolved() -> None:

@@ -32,6 +32,15 @@ class InterpreterType(Protocol, Generic[TInterpretableValue]):
         Returns the interpreted value and the count of attributes claimed.
         """
 
+    def interpret(self, attrs: Attributes, interpretation: Interpretation) -> int:
+        """
+        Populates `interpretation` with the interpretation of the attribute at
+        the end of the stack. Further attributes will be read only if needed to
+        fullfill that attribute.
+
+        Returns the count of attributes claimed.
+        """
+
     @cached_property
     def key(self) -> str:
         """
