@@ -7,8 +7,8 @@ from ansiscape.enums.frame import Frame
 from ansiscape.enums.ideogram import Ideogram
 from ansiscape.enums.interpretation_key import InterpretationKey
 from ansiscape.enums.interpretation_special import InterpretationSpecial
+from ansiscape.enums.named_color import NamedColor
 from ansiscape.enums.select_graphic_rendition import SelectGraphicRendition
-from ansiscape.enums.standard_color import StandardColor
 from ansiscape.enums.underline import Underline
 from ansiscape.enums.weight import Weight
 
@@ -22,8 +22,8 @@ __all__ = [
     "Ideogram",
     "InterpretationKey",
     "InterpretationSpecial",
+    "NamedColor",
     "SelectGraphicRendition",
-    "StandardColor",
     "Underline",
     "Weight",
 ]

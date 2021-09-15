@@ -5,8 +5,8 @@ from typing import Dict, List, Tuple
 from ansiscape.enums import (
     ColorScheme,
     InterpretationKey,
+    NamedColor,
     SelectGraphicRendition,
-    StandardColor,
 )
 from ansiscape.exceptions import AttributeError
 from ansiscape.interpreter import Interpreter
@@ -65,7 +65,7 @@ class ColorInterpreter(Interpreter[Color]):
             raise AttributeError("Cyan-Magenta-Yellow-Black not supported", attrs)
 
         if 0 <= attrs[1] <= 15:
-            return StandardColor(attrs[1]), 2
+            return NamedColor(attrs[1]), 2
 
         if 16 <= attrs[1] <= 231:
             eight_bit_color = ColorInterpreter.get_8_bit_rgb_color(attrs[1])
@@ -151,7 +151,7 @@ class ColorInterpreter(Interpreter[Color]):
     def to_extended_attributes(self, value: Color) -> SequencerResult:
         """Interprets a colour to a complex sequence of attributes."""
 
-        if isinstance(value, StandardColor):
+        if isinstance(value, NamedColor):
             return SequencerResult(
                 attributes=[
                     self.rgb.value,

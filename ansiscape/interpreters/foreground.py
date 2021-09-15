@@ -1,8 +1,8 @@
 from ansiscape.enums import (
     ColorSpecial,
     InterpretationKey,
+    NamedColor,
     SelectGraphicRendition,
-    StandardColor,
 )
 from ansiscape.interpreters.color import ColorInterpreter
 
@@ -13,15 +13,15 @@ class ForegroundValue(ColorInterpreter):
             key=InterpretationKey.FOREGROUND,
             lookup={
                 SelectGraphicRendition.DEFAULT: ColorSpecial.DEFAULT,
-                SelectGraphicRendition.FOREGROUND_BLACK: StandardColor.BLACK,
-                SelectGraphicRendition.FOREGROUND_BLUE: StandardColor.BLUE,
-                SelectGraphicRendition.FOREGROUND_CYAN: StandardColor.CYAN,
+                SelectGraphicRendition.FOREGROUND_BLACK: NamedColor.BLACK,
+                SelectGraphicRendition.FOREGROUND_BLUE: NamedColor.BLUE,
+                SelectGraphicRendition.FOREGROUND_CYAN: NamedColor.CYAN,
                 SelectGraphicRendition.FOREGROUND_DEFAULT: ColorSpecial.DEFAULT,
-                SelectGraphicRendition.FOREGROUND_GREEN: StandardColor.GREEN,
-                SelectGraphicRendition.FOREGROUND_MAGENTA: StandardColor.MAGENTA,
-                SelectGraphicRendition.FOREGROUND_RED: StandardColor.RED,
-                SelectGraphicRendition.FOREGROUND_WHITE: StandardColor.WHITE,
-                SelectGraphicRendition.FOREGROUND_YELLOW: StandardColor.YELLOW,
+                SelectGraphicRendition.FOREGROUND_GREEN: NamedColor.GREEN,
+                SelectGraphicRendition.FOREGROUND_MAGENTA: NamedColor.MAGENTA,
+                SelectGraphicRendition.FOREGROUND_RED: NamedColor.RED,
+                SelectGraphicRendition.FOREGROUND_WHITE: NamedColor.WHITE,
+                SelectGraphicRendition.FOREGROUND_YELLOW: NamedColor.YELLOW,
             },
             rgb=SelectGraphicRendition.FOREGROUND_RGB,
         )

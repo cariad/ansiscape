@@ -2,7 +2,7 @@ from typing import List, Optional, Tuple
 
 from pytest import mark, raises
 
-from ansiscape.enums import StandardColor
+from ansiscape.enums import NamedColor
 from ansiscape.exceptions import AttributeError
 from ansiscape.interpreters.color import ColorInterpreter
 from ansiscape.interpreters.foreground import ForegroundValue
@@ -294,7 +294,7 @@ def test_get_8_bit_rgb_grey__out_of_range(attr: int) -> None:
         # 24-bit RGB colour:
         ([38, 2, 0, 0, 0], ((0, 0, 0, 1), 4)),
         # 8-bit named colour:
-        ([38, 5, 1], (StandardColor.RED, 2)),
+        ([38, 5, 1], (NamedColor.RED, 2)),
         # 8-bit RGB:
         ([38, 5, 232], ((0.04, 0.04, 0.04, 1.0), 2)),
     ],

@@ -7,10 +7,10 @@ from ansiscape.enums import (
     Blink,
     Calligraphy,
     InterpretationSpecial,
-    StandardColor,
+    NamedColor,
     Weight,
 )
-from ansiscape.types import InterpretationDict
+from ansiscape.types import Interpretation
 
 
 def test_extend() -> None:
@@ -18,18 +18,18 @@ def test_extend() -> None:
     y = yellow("bar")
     r.extend(y)
     assert r.parts == (
-        InterpretationDict(foreground=StandardColor.RED),
+        Interpretation(foreground=NamedColor.RED),
         "foo",
-        InterpretationDict(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=InterpretationSpecial.REVERT),
         y,
     )
 
 
 def test_encoded() -> None:
     sequence = Sequence(
-        InterpretationDict(foreground=StandardColor.RED),
+        Interpretation(foreground=NamedColor.RED),
         "foo",
-        InterpretationDict(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=InterpretationSpecial.REVERT),
     )
     assert sequence.encoded == "\033[31mfoo\033[39m"
 
@@ -39,27 +39,36 @@ def test_encoded() -> None:
     [
         (
             [
-                InterpretationDict(background=StandardColor.BLUE),
-                InterpretationDict(background=StandardColor.RED),
-                InterpretationDict(background=InterpretationSpecial.REVERT),
+                Interpretation(background=NamedColor.BLUE),
+                Interpretation(background=NamedColor.RED),
+                Interpretation(background=InterpretationSpecial.REVERT),
             ],
             "\033[44m",
         ),
         (
             [
-                InterpretationDict(overline=True, weight=Weight.LIGHT),
+                Interpretation(background=NamedColor.BLUE),
+                Interpretation(calligraphy=Calligraphy.ITALIC),
+                Interpretation(background=NamedColor.RED),
+                Interpretation(background=InterpretationSpecial.REVERT),
+            ],
+            "\033[44m",
+        ),
+        (
+            [
+                Interpretation(overline=True, weight=Weight.LIGHT),
             ],
             "\033[53;2m",
         ),
         (
             [
-                InterpretationDict(foreground=(1.0, 0.0, 0.0, 1), weight=Weight.LIGHT),
+                Interpretation(foreground=(1.0, 0.0, 0.0, 1), weight=Weight.LIGHT),
             ],
             "\033[2m\033[38;2;255;0;0m",
         ),
     ],
 )
-def test_encode_escape_sequence(stack: List[InterpretationDict], expect: str) -> None:
+def test_encode_escape_sequence(stack: List[Interpretation], expect: str) -> None:
     assert Sequence.encode_escape_sequence(stack=stack, index=len(stack) - 1) == expect
 
 
@@ -68,12 +77,12 @@ def test_flatten() -> None:
     y = yellow("bar")
     r.extend(y)
     assert list(r.flatten) == [
-        InterpretationDict(foreground=StandardColor.RED),
+        Interpretation(foreground=NamedColor.RED),
         "foo",
-        InterpretationDict(foreground=InterpretationSpecial.REVERT),
-        InterpretationDict(foreground=StandardColor.YELLOW),
+        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=NamedColor.YELLOW),
         "bar",
-        InterpretationDict(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=InterpretationSpecial.REVERT),
     ]
 
 
@@ -85,79 +94,79 @@ def test_resolved() -> None:
 
     child_string_interpretation = Sequence(
         "goodbye",
-        InterpretationDict(calligraphy=Calligraphy.ITALIC),
+        Interpretation(calligraphy=Calligraphy.ITALIC),
         "bobby",
-        InterpretationDict(calligraphy=InterpretationSpecial.REVERT),
+        Interpretation(calligraphy=InterpretationSpecial.REVERT),
     )
 
     child_interpretation_string = Sequence(
-        InterpretationDict(calligraphy=Calligraphy.BLACKLETTER),
+        Interpretation(calligraphy=Calligraphy.BLACKLETTER),
         "welcome",
-        InterpretationDict(calligraphy=InterpretationSpecial.REVERT),
+        Interpretation(calligraphy=InterpretationSpecial.REVERT),
         "jimmy",
     )
 
     child_interpretation_interpretation = Sequence(
-        InterpretationDict(blink=Blink.SLOW),
+        Interpretation(blink=Blink.SLOW),
         "wow",
-        InterpretationDict(blink=InterpretationSpecial.REVERT),
+        Interpretation(blink=InterpretationSpecial.REVERT),
     )
 
     sequence = Sequence(
-        InterpretationDict(foreground=StandardColor.YELLOW),
+        Interpretation(foreground=NamedColor.YELLOW),
         "woo",
-        InterpretationDict(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=InterpretationSpecial.REVERT),
         "boo",
-        InterpretationDict(weight=Weight.HEAVY),
-        InterpretationDict(foreground=StandardColor.RED),
+        Interpretation(weight=Weight.HEAVY),
+        Interpretation(foreground=NamedColor.RED),
         "foo",
         "bar",
         child_string_string,
         "done",
         child_string_interpretation,
-        InterpretationDict(foreground=InterpretationSpecial.REVERT),
-        InterpretationDict(weight=InterpretationSpecial.REVERT),
+        Interpretation(foreground=InterpretationSpecial.REVERT),
+        Interpretation(weight=InterpretationSpecial.REVERT),
         child_interpretation_interpretation,
-        InterpretationDict(background=StandardColor.CYAN),
+        Interpretation(background=NamedColor.CYAN),
         child_interpretation_string,
         "jar",
         "goo",
         "moo",
-        InterpretationDict(background=InterpretationSpecial.REVERT),
+        Interpretation(background=InterpretationSpecial.REVERT),
     )
 
     assert list(sequence.resolved) == [
-        InterpretationDict(foreground=StandardColor.YELLOW),
+        Interpretation(foreground=NamedColor.YELLOW),
         "woo",
-        InterpretationDict(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=InterpretationSpecial.REVERT),
         "boo",
-        InterpretationDict(foreground=StandardColor.RED, weight=Weight.HEAVY),
+        Interpretation(foreground=NamedColor.RED, weight=Weight.HEAVY),
         "foobarhelloworlddonegoodbye",
-        InterpretationDict(calligraphy=Calligraphy.ITALIC),
+        Interpretation(calligraphy=Calligraphy.ITALIC),
         "bobby",
-        InterpretationDict(
+        Interpretation(
             blink=Blink.SLOW,
             calligraphy=InterpretationSpecial.REVERT,
             foreground=InterpretationSpecial.REVERT,
             weight=InterpretationSpecial.REVERT,
         ),
         "wow",
-        InterpretationDict(
+        Interpretation(
             blink=InterpretationSpecial.REVERT,
             calligraphy=Calligraphy.BLACKLETTER,
-            background=StandardColor.CYAN,
+            background=NamedColor.CYAN,
         ),
         "welcome",
-        InterpretationDict(calligraphy=InterpretationSpecial.REVERT),
+        Interpretation(calligraphy=InterpretationSpecial.REVERT),
         "jimmyjargoomoo",
-        InterpretationDict(background=InterpretationSpecial.REVERT),
+        Interpretation(background=InterpretationSpecial.REVERT),
     ]
 
 
 def test_str() -> None:
     sequence = Sequence(
-        InterpretationDict(foreground=StandardColor.RED),
+        Interpretation(foreground=NamedColor.RED),
         "foo",
-        InterpretationDict(foreground=InterpretationSpecial.REVERT),
+        Interpretation(foreground=InterpretationSpecial.REVERT),
     )
     assert str(sequence) == "\033[31mfoo\033[39m"

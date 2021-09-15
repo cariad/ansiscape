@@ -1,15 +1,9 @@
-from typing import Iterator, List, Tuple, Union
+from typing import Iterator, List, Optional, Tuple, Union
 
 from ansiscape.enums import InterpretationKey
 from ansiscape.enums.interpretation_special import InterpretationSpecial
 from ansiscape.handlers import get_interpreter
-from ansiscape.types import (
-    Attributes,
-    InterpretationDict,
-    SequencePart,
-    SequenceType,
-    try_merge,
-)
+from ansiscape.types import Attributes, Interpretation, SequencePart, SequenceType
 
 
 class Sequence(SequenceType):
@@ -22,7 +16,7 @@ class Sequence(SequenceType):
         return self.encoded
 
     @staticmethod
-    def encode_escape_sequence(stack: List[InterpretationDict], index: int) -> str:
+    def encode_escape_sequence(stack: List[Interpretation], index: int) -> str:
         """
         Encodes the interpretation at `index` of `stack`.
 
@@ -66,7 +60,7 @@ class Sequence(SequenceType):
         """
 
         wip = ""
-        stack: List[InterpretationDict] = []
+        stack: List[Interpretation] = []
         for part in self.resolved:
             if isinstance(part, str):
                 wip += part
@@ -82,7 +76,7 @@ class Sequence(SequenceType):
         self._parts = (*self._parts, *parts)
 
     @property
-    def flatten(self) -> Iterator[Union[str, InterpretationDict]]:
+    def flatten(self) -> Iterator[Union[str, Interpretation]]:
         """
         Gets a flat (but not reduced) list of this sequence's and child
         sequence's parts.
@@ -109,13 +103,13 @@ class Sequence(SequenceType):
         return self._parts
 
     @property
-    def resolved(self) -> Iterator[Union[str, InterpretationDict]]:
+    def resolved(self) -> Iterator[Union[str, Interpretation]]:
         """
         Flattens child sequences and gets all strings and interpretations.
         """
 
         str_wip = ""
-        dict_wip: InterpretationDict = {}
+        dict_wip: Interpretation = {}
 
         for part in self.flatten:
 
@@ -130,7 +124,7 @@ class Sequence(SequenceType):
                     yield str_wip
                     str_wip = ""
 
-                merged = try_merge(dict_wip, part)
+                merged = self.try_merge(dict_wip, part)
 
                 if merged is None:
                     yield dict_wip
@@ -143,3 +137,39 @@ class Sequence(SequenceType):
 
         if str_wip:
             yield str_wip
+
+    @staticmethod
+    def try_merge(
+        a: Interpretation,
+        b: Interpretation,
+    ) -> Optional[Interpretation]:
+        c: Interpretation = {}
+
+        for key in InterpretationKey:
+            key_str = str(key.value)
+
+            # We can't normally pluck out of a typed dictionary with random string
+            # keys, but we'll ask the linter to look the other way down here for
+            # performance. This function gets pummelled.
+            av = a[key_str] if key_str in a else None  # type: ignore
+            bv = b[key_str] if key_str in b else None  # type: ignore
+
+            if av is None:
+                if bv is None:
+                    # Both sides are None, so don't add the key.
+                    pass
+                else:
+                    # Only B has a value, so keep B
+                    c[key_str] = bv  # type: ignore
+
+            else:
+                if bv is None:
+                    # Only A has a value, so keep B
+                    c[key_str] = av  # type: ignore
+                else:
+                    # We never want to merge two values into the same dictionary
+                    # because then we won't be able to revert the latter. Since both
+                    # dictionaries have a value for this key, we can't merge them.
+                    return None
+
+        return c

@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod, abstractproperty
 from typing import Iterator, Tuple, Union
 
-from ansiscape.types.interpretation_dict import InterpretationDict
+from ansiscape.types.interpretation import Interpretation
 
-SequencePart = Union[str, InterpretationDict, "SequenceType"]
+SequencePart = Union[str, Interpretation, "SequenceType"]
 
 
 class SequenceType(ABC):
@@ -14,7 +14,7 @@ class SequenceType(ABC):
         """Extends this sequence."""
 
     @abstractproperty
-    def flatten(self) -> Iterator[Union[str, InterpretationDict]]:
+    def flatten(self) -> Iterator[Union[str, Interpretation]]:
         """
         Gets a flat (but not reduced) list of this sequence's and child
         sequence's parts.
@@ -28,7 +28,7 @@ class SequenceType(ABC):
         """
 
     @abstractproperty
-    def resolved(self) -> Iterator[Union[str, InterpretationDict]]:
+    def resolved(self) -> Iterator[Union[str, Interpretation]]:
         """
         Flattens child sequences and gets all strings and interpretations.
         """

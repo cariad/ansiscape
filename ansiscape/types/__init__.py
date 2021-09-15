@@ -1,6 +1,6 @@
 from ansiscape.types.attributes import Attributes
 from ansiscape.types.color import Color
-from ansiscape.types.interpretation_dict import InterpretationDict, try_merge
+from ansiscape.types.interpretation import Interpretation
 from ansiscape.types.interpretation_value import InterpretableValue, TInterpretableValue
 from ansiscape.types.interpreter_type import InterpreterType
 from ansiscape.types.rgb import RGB
@@ -12,7 +12,7 @@ __all__ = [
     "Attributes",
     "Color",
     "InterpretableValue",
-    "InterpretationDict",
+    "Interpretation",
     "InterpreterType",
     "RGB",
     "RGBA",
@@ -20,5 +20,4 @@ __all__ = [
     "SequencerResult",
     "SequenceType",
     "TInterpretableValue",
-    "try_merge",
 ]

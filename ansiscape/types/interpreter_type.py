@@ -2,7 +2,7 @@ from functools import cached_property
 from typing import Generic, List, Protocol, Tuple
 
 from ansiscape.types.attributes import Attributes
-from ansiscape.types.interpretation_dict import InterpretationDict
+from ansiscape.types.interpretation import Interpretation
 from ansiscape.types.interpretation_value import TInterpretableValue
 from ansiscape.types.sequence_type import SequencePart, SequenceType
 from ansiscape.types.sequencer_result import SequencerResult
@@ -15,7 +15,7 @@ class InterpreterType(Protocol, Generic[TInterpretableValue]):
 
     def find_reversion(
         self,
-        stack: List[InterpretationDict],
+        stack: List[Interpretation],
         index: int,
     ) -> SequencerResult:
         """

@@ -9,7 +9,7 @@ from ansiscape.enums import (
 from ansiscape.sequence import Sequence
 from ansiscape.types import (
     Attributes,
-    InterpretationDict,
+    Interpretation,
     InterpreterType,
     SequencePart,
     SequencerResult,
@@ -39,7 +39,7 @@ class Interpreter(InterpreterType[TInterpretableValue]):
 
     def find_reversion(
         self,
-        stack: List[InterpretationDict],
+        stack: List[Interpretation],
         index: int,
     ) -> SequencerResult:
         """
@@ -56,6 +56,9 @@ class Interpreter(InterpreterType[TInterpretableValue]):
         while index >= 0:
             top = stack[index]
             index -= 1
+
+            if key not in top:
+                continue
 
             # We can't normally pluck out of a typed dictionary with random
             # string keys, but we'll ask the linter to look the other way down
@@ -128,9 +131,9 @@ class Interpreter(InterpreterType[TInterpretableValue]):
             value, _ = self.from_attributes([value.value])
 
         return Sequence(
-            cast(InterpretationDict, {self.key: value}),
+            cast(Interpretation, {self.key: value}),
             *parts,
-            cast(InterpretationDict, {self.key: InterpretationSpecial.REVERT}),
+            cast(Interpretation, {self.key: InterpretationSpecial.REVERT}),
         )
 
     @property

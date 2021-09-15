@@ -1,4 +1,4 @@
-from ansiscape.enums import InterpretationKey, SelectGraphicRendition, StandardColor
+from ansiscape.enums import InterpretationKey, NamedColor, SelectGraphicRendition
 from ansiscape.handlers import get_color_interpreter, get_interpreter_for_sgr
 from ansiscape.interpreters import register_interpreters
 from ansiscape.sequence import Sequence
@@ -70,67 +70,67 @@ def blue_background(*parts: SequencePart) -> SequenceType:
 
 
 def bright_black(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.BRIGHT_BLACK, *parts)
+    return foreground(NamedColor.BRIGHT_BLACK, *parts)
 
 
 def bright_black_background(*parts: SequencePart) -> SequenceType:
-    return background(StandardColor.BRIGHT_BLACK, *parts)
+    return background(NamedColor.BRIGHT_BLACK, *parts)
 
 
 def bright_blue(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.BRIGHT_BLUE, *parts)
+    return foreground(NamedColor.BRIGHT_BLUE, *parts)
 
 
 def bright_blue_background(*parts: SequencePart) -> SequenceType:
-    return background(StandardColor.BRIGHT_BLUE, *parts)
+    return background(NamedColor.BRIGHT_BLUE, *parts)
 
 
 def bright_cyan(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.BRIGHT_CYAN, *parts)
+    return foreground(NamedColor.BRIGHT_CYAN, *parts)
 
 
 def bright_cyan_background(*parts: SequencePart) -> SequenceType:
-    return background(StandardColor.BRIGHT_CYAN, *parts)
+    return background(NamedColor.BRIGHT_CYAN, *parts)
 
 
 def bright_green(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.BRIGHT_GREEN, *parts)
+    return foreground(NamedColor.BRIGHT_GREEN, *parts)
 
 
 def bright_green_background(*parts: SequencePart) -> SequenceType:
-    return background(StandardColor.BRIGHT_GREEN, *parts)
+    return background(NamedColor.BRIGHT_GREEN, *parts)
 
 
 def bright_magenta(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.BRIGHT_MAGENTA, *parts)
+    return foreground(NamedColor.BRIGHT_MAGENTA, *parts)
 
 
 def bright_magenta_background(*parts: SequencePart) -> SequenceType:
-    return background(StandardColor.BRIGHT_MAGENTA, *parts)
+    return background(NamedColor.BRIGHT_MAGENTA, *parts)
 
 
 def bright_red(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.BRIGHT_RED, *parts)
+    return foreground(NamedColor.BRIGHT_RED, *parts)
 
 
 def bright_red_background(*parts: SequencePart) -> SequenceType:
-    return background(StandardColor.BRIGHT_RED, *parts)
+    return background(NamedColor.BRIGHT_RED, *parts)
 
 
 def bright_white(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.BRIGHT_WHITE, *parts)
+    return foreground(NamedColor.BRIGHT_WHITE, *parts)
 
 
 def bright_white_background(*parts: SequencePart) -> SequenceType:
-    return background(StandardColor.BRIGHT_WHITE, *parts)
+    return background(NamedColor.BRIGHT_WHITE, *parts)
 
 
 def bright_yellow(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.BRIGHT_YELLOW, *parts)
+    return foreground(NamedColor.BRIGHT_YELLOW, *parts)
 
 
 def bright_yellow_background(*parts: SequencePart) -> SequenceType:
-    return background(StandardColor.BRIGHT_YELLOW, *parts)
+    return background(NamedColor.BRIGHT_YELLOW, *parts)
 
 
 def circle(*parts: SequencePart) -> SequenceType:
@@ -142,7 +142,7 @@ def conceal(*parts: SequencePart) -> SequenceType:
 
 
 def cyan(*parts: SequencePart) -> SequenceType:
-    return foreground(StandardColor.CYAN, *parts)
+    return foreground(NamedColor.CYAN, *parts)
 
 
 def cyan_background(*parts: SequencePart) -> SequenceType:
