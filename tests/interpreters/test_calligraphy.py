@@ -14,15 +14,19 @@ def test_key() -> None:
     [
         (
             Calligraphy.BLACKLETTER,
-            SequencerResult(sgr=SelectGraphicRendition.CALLIGRAPHY_BLACKLETTER),
+            SequencerResult(
+                attributes=[SelectGraphicRendition.CALLIGRAPHY_BLACKLETTER.value]
+            ),
         ),
         (
             Calligraphy.ITALIC,
-            SequencerResult(sgr=SelectGraphicRendition.CALLIGRAPHY_ITALIC),
+            SequencerResult(
+                attributes=[SelectGraphicRendition.CALLIGRAPHY_ITALIC.value]
+            ),
         ),
         (
             Calligraphy.NONE,
-            SequencerResult(sgr=SelectGraphicRendition.CALLIGRAPHY_NONE),
+            SequencerResult(attributes=[SelectGraphicRendition.CALLIGRAPHY_NONE.value]),
         ),
     ],
 )

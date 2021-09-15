@@ -1,10 +1,10 @@
 from math import floor
 
 import ansiscape as a
-from ansiscape.types import SequenceProtocol
+from ansiscape.types import SequenceType
 
 
-def make_example() -> SequenceProtocol:
+def make_example() -> SequenceType:
 
     foreground_rgb = a.sequence()
     background_rgb = a.sequence()

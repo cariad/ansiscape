@@ -15,7 +15,7 @@ from ansiscape.example import make_example
 def test_example() -> None:
     example = make_example()
 
-    assert list(example.parts) == [
+    assert list(example.resolved) == [
         {
             "underline": Underline.DOUBLE,
             "weight": Weight.HEAVY,

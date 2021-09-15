@@ -14,15 +14,15 @@ def test_key() -> None:
     [
         (
             Blink.FAST,
-            SequencerResult(sgr=SelectGraphicRendition.BLINK_FAST),
+            SequencerResult(attributes=[SelectGraphicRendition.BLINK_FAST.value]),
         ),
         (
             Blink.SLOW,
-            SequencerResult(sgr=SelectGraphicRendition.BLINK_SLOW),
+            SequencerResult(attributes=[SelectGraphicRendition.BLINK_SLOW.value]),
         ),
         (
             Blink.NONE,
-            SequencerResult(sgr=SelectGraphicRendition.BLINK_NONE),
+            SequencerResult(attributes=[SelectGraphicRendition.BLINK_NONE.value]),
         ),
     ],
 )

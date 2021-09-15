@@ -4,10 +4,10 @@ from ansiscape.enums import (
     SelectGraphicRendition,
     StandardColor,
 )
-from ansiscape.interpreters.color_value import ColorValue
+from ansiscape.interpreters.color import ColorInterpreter
 
 
-class ForegroundValue(ColorValue):
+class ForegroundValue(ColorInterpreter):
     def __init__(self) -> None:
         super().__init__(
             key=InterpretationKey.FOREGROUND,

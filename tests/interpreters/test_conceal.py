@@ -14,11 +14,11 @@ def test_key() -> None:
     [
         (
             True,
-            SequencerResult(sgr=SelectGraphicRendition.CONCEAL_ON),
+            SequencerResult(attributes=[SelectGraphicRendition.CONCEAL_ON.value]),
         ),
         (
             False,
-            SequencerResult(sgr=SelectGraphicRendition.CONCEAL_OFF),
+            SequencerResult(attributes=[SelectGraphicRendition.CONCEAL_OFF.value]),
         ),
     ],
 )

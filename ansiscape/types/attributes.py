@@ -1,3 +1,4 @@
 from typing import List
 
-Attributes = List[int]
+Attribute = int
+Attributes = List[Attribute]

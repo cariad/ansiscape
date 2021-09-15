@@ -1,5 +1,5 @@
 from ansiscape.enums import InterpretationKey, SelectGraphicRendition, Underline
-from ansiscape.interpreters.interpreter import Interpreter
+from ansiscape.interpreter import Interpreter
 
 
 class UnderlineValue(Interpreter[Underline]):

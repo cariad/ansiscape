@@ -1,5 +1,5 @@
 from ansiscape.enums import Blink, InterpretationKey, SelectGraphicRendition
-from ansiscape.interpreters.interpreter import Interpreter
+from ansiscape.interpreter import Interpreter
 
 
 class BlinkValue(Interpreter[Blink]):

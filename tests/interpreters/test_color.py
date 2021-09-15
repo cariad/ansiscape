@@ -1,17 +1,16 @@
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 from pytest import mark, raises
 
 from ansiscape.enums import StandardColor
 from ansiscape.exceptions import AttributeError
-from ansiscape.interpreters.color_value import ColorValue
+from ansiscape.interpreters.color import ColorInterpreter
 from ansiscape.interpreters.foreground import ForegroundValue
 from ansiscape.types import RGB, Attributes, Color
 
 
-@mark.parametrize(
-    "attr, expect",
-    [
+def eight_bit_colors() -> List[Tuple[int, RGB]]:
+    return [
         (16, (0.0, 0.0, 0.0)),
         (17, (0.0, 0.0, 0.2)),
         (18, (0.0, 0.0, 0.4)),
@@ -228,10 +227,24 @@ from ansiscape.types import RGB, Attributes, Color
         (229, (1.0, 1.0, 0.6)),
         (230, (1.0, 1.0, 0.8)),
         (231, (1.0, 1.0, 1.0)),
-    ],
-)
-def test_get_8_bit_color(attr: int, expect: RGB) -> None:
-    assert ColorValue.get_8_bit_rgb_color(attr) == expect
+    ]
+
+
+@mark.parametrize("attr, expect", eight_bit_colors())
+def test_from_extended_attributes(attr: int, expect: RGB) -> None:
+    cv = ForegroundValue()
+    assert cv.from_extended_attributes([5, attr]) == ((*expect, 1), 2)
+
+
+@mark.parametrize("attr, expect", eight_bit_colors())
+def test_get_8_bit_rgb_color(attr: int, expect: RGB) -> None:
+    assert ColorInterpreter.get_8_bit_rgb_color(attr) == expect
+
+
+@mark.parametrize("attr", [15, 232])
+def test_get_8_bit_rgb_color__out_of_range(attr: int) -> None:
+    with raises(AttributeError):
+        ColorInterpreter.get_8_bit_rgb_color(attr)
 
 
 @mark.parametrize(
@@ -264,7 +277,13 @@ def test_get_8_bit_color(attr: int, expect: RGB) -> None:
     ],
 )
 def test_get_8_bit_rgb_grey(attr: int, expect: RGB) -> None:
-    assert ColorValue.get_8_bit_rgb_grey(attr) == expect
+    assert ColorInterpreter.get_8_bit_rgb_grey(attr) == expect
+
+
+@mark.parametrize("attr", [231, 256])
+def test_get_8_bit_rgb_grey__out_of_range(attr: int) -> None:
+    with raises(AttributeError):
+        ColorInterpreter.get_8_bit_rgb_grey(attr)
 
 
 @mark.parametrize(
@@ -307,7 +326,7 @@ def test_value__invalid(attrs: Attributes, expect: str) -> None:
     ],
 )
 def test_get_24_bit_rgb(attrs: Attributes, expect: RGB) -> None:
-    assert ColorValue.get_24_bit_rgb(attrs) == expect
+    assert ColorInterpreter.get_24_bit_rgb(attrs) == expect
 
 
 @mark.parametrize(
@@ -321,5 +340,5 @@ def test_get_24_bit_rgb(attrs: Attributes, expect: RGB) -> None:
 )
 def test_get_24_bit_rgb__fail(attrs: Attributes, expect: str) -> None:
     with raises(AttributeError) as ex:
-        ColorValue.get_24_bit_rgb(attrs)
+        ColorInterpreter.get_24_bit_rgb(attrs)
     assert str(ex.value) == f"{expect} (attributes={attrs})"

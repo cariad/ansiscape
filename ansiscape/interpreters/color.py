@@ -1,3 +1,4 @@
+from functools import cached_property
 from math import floor
 from typing import Dict, List, Tuple
 
@@ -8,25 +9,39 @@ from ansiscape.enums import (
     StandardColor,
 )
 from ansiscape.exceptions import AttributeError
-from ansiscape.interpreters.interpreter import Interpreter
+from ansiscape.interpreter import Interpreter
 from ansiscape.types import RGB, Attributes, Color, SequencerResult
 
 
-class ColorValue(Interpreter[Color]):
+class ColorInterpreter(Interpreter[Color]):
+    """
+    Handles interpreration and translation of colour values.
+
+    Arguments:
+        key:    Key of `InterpretationDict` that this interpreter handles
+
+        lookup: Dictionary of Select Graphic Rendition codes and known colours
+                to return for each
+
+        rgb:    Select Graphic Rendition code that represents RGB colour
+    """
+
     def __init__(
         self,
         key: InterpretationKey,
         lookup: Dict[SelectGraphicRendition, Color],
         rgb: SelectGraphicRendition,
     ) -> None:
-        super().__init__(key, lookup)
+        super().__init__(key=key, lookup=lookup)
         self.rgb = rgb
 
-    @property
-    def supported_codes(self) -> List[SelectGraphicRendition]:
-        return [*super().supported_codes, self.rgb]
-
     def from_extended_attributes(self, attrs: Attributes) -> Tuple[Color, int]:
+        """
+        Interprets a complex sequence of attributes.
+
+        Returns the interpreted value and the count of attributes claimed.
+        """
+
         scheme = ColorScheme(attrs[0])
 
         if scheme == ColorScheme.IMPLEMENTATION_DEFINED:
@@ -40,7 +55,7 @@ class ColorValue(Interpreter[Color]):
             # support. We'll play cautious and assume that the entire sequence
             # is ours for the plucking, and no other interpreters will get a
             # look-in after us.
-            tfb = ColorValue.get_24_bit_rgb(attrs[1:])
+            tfb = ColorInterpreter.get_24_bit_rgb(attrs[1:])
             return (tfb[0], tfb[1], tfb[2], 1), len(attrs)
 
         if scheme == ColorScheme.CMY:
@@ -53,42 +68,19 @@ class ColorValue(Interpreter[Color]):
             return StandardColor(attrs[1]), 2
 
         if 16 <= attrs[1] <= 231:
-            eight_bit_color = ColorValue.get_8_bit_rgb_color(attrs[1])
+            eight_bit_color = ColorInterpreter.get_8_bit_rgb_color(attrs[1])
         else:
-            eight_bit_color = ColorValue.get_8_bit_rgb_grey(attrs[1])
+            eight_bit_color = ColorInterpreter.get_8_bit_rgb_grey(attrs[1])
 
         return (eight_bit_color[0], eight_bit_color[1], eight_bit_color[2], 1), 2
-
-    def get_extended_code(self, value: Color) -> SequencerResult:
-        if isinstance(value, StandardColor):
-            return SequencerResult(
-                sgr=self.rgb,
-                additional=[ColorScheme.EIGHT_BIT.value, value.value],
-            )
-
-        if isinstance(value, tuple):
-            return SequencerResult(
-                sgr=self.rgb,
-                additional=[
-                    ColorScheme.RGB.value,
-                    floor(value[0] * 255),
-                    floor(value[1] * 255),
-                    floor(value[2] * 255),
-                ],
-            )
-
-        raise NotImplementedError()
 
     @staticmethod
     def get_8_bit_rgb_color(attr: int) -> RGB:
         """
-        Converts an ANSI escape code to an 8-bit colour.
+        Converts attribute to an 8-bit colour.
 
-        `code` is taken from the third attribute in, for example, "38;5;<code>m".
+        `attr` is taken from the third attribute in, for example, "38;5;<code>m".
         """
-
-        if not 16 <= attr <= 232:
-            raise AttributeError("invalid 8-bit RGB color sequence", attr)
 
         for r in range(0, 6):
             for g in range(0, 6):
@@ -100,6 +92,15 @@ class ColorValue(Interpreter[Color]):
 
     @staticmethod
     def get_8_bit_rgb_grey(attr: int) -> RGB:
+        """
+        Converts an attribute to a shade of grey.
+
+        Note that 232 is intentionally not black (use "?;5;16" instead) and 255
+        is intentionally not white (use "?;5;231" instead). Duplicating the
+        ability to generate those colours reduces the variety of grays that can
+        fit between 232-255.
+        """
+
         if not 232 <= attr <= 255:
             raise AttributeError("invalid 8-bit RGB grey sequence", attr)
         grey = (attr - 231) * (1 / 25)
@@ -139,3 +140,38 @@ class ColorValue(Interpreter[Color]):
         # Assumption: "...;<colour-space>;<r>;<g>;<b>;<more-unsupported>;..."
         # We don't support colour spaces.
         raise AttributeError("color spaces are not supported", attrs)
+
+    @cached_property
+    def supported_codes(self) -> List[int]:
+        """
+        Gets the Select Graphic Rendition codes that this interpreter handles.
+        """
+        return [*super().supported_codes, self.rgb.value]
+
+    def to_extended_attributes(self, value: Color) -> SequencerResult:
+        """Interprets a colour to a complex sequence of attributes."""
+
+        if isinstance(value, StandardColor):
+            return SequencerResult(
+                attributes=[
+                    self.rgb.value,
+                    ColorScheme.EIGHT_BIT.value,
+                    value.value,
+                ],
+            )
+
+        if isinstance(value, tuple):
+            return SequencerResult(
+                attributes=[
+                    self.rgb.value,
+                    ColorScheme.RGB.value,
+                    floor(value[0] * 255),
+                    floor(value[1] * 255),
+                    floor(value[2] * 255),
+                ],
+                must_isolate=True,
+            )
+
+        # This shouldn't be possible. Only StandardColors and tuples (RGBA) are
+        # expected down here.
+        raise NotImplementedError()

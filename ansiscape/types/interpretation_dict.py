@@ -1,4 +1,4 @@
-from typing import Dict, Optional, TypedDict, Union
+from typing import Optional, TypedDict, Union
 
 from ansiscape.enums import (
     Blink,
@@ -12,9 +12,10 @@ from ansiscape.enums import (
 )
 from ansiscape.enums.interpretation_key import InterpretationKey
 from ansiscape.types.color import Color
-from ansiscape.types.interpretation_value import InterpretableValue
 
-UntypedInterpretation = Dict[str, InterpretableValue]
+# from ansiscape.types.interpretation_value import InterpretableValue
+
+# UntypedInterpretation = Dict[str, InterpretableValue]
 
 
 class InterpretationDict(TypedDict, total=False):
@@ -123,19 +124,19 @@ class InterpretationDict(TypedDict, total=False):
 
 
 def try_merge(
-    a: UntypedInterpretation,
-    b: UntypedInterpretation,
-) -> Optional[UntypedInterpretation]:
-    c: UntypedInterpretation = {}
+    a: InterpretationDict,
+    b: InterpretationDict,
+) -> Optional[InterpretationDict]:
+    c: InterpretationDict = {}
 
     for key in InterpretationKey:
         key_str = str(key.value)
 
-        # av = a.get(key_str, None)
-        # bv = b.get(key_str, None)
-
-        av = a[key_str] if key_str in a else None
-        bv = b[key_str] if key_str in b else None
+        # We can't normally pluck out of a typed dictionary with random string
+        # keys, but we'll ask the linter to look the other way down here for
+        # performance. This function gets pummelled.
+        av = a[key_str] if key_str in a else None  # type: ignore
+        bv = b[key_str] if key_str in b else None  # type: ignore
 
         if av is None:
             if bv is None:
@@ -143,12 +144,12 @@ def try_merge(
                 pass
             else:
                 # Only B has a value, so keep B
-                c[key_str] = bv
+                c[key_str] = bv  # type: ignore
 
         else:
             if bv is None:
                 # Only A has a value, so keep B
-                c[key_str] = av
+                c[key_str] = av  # type: ignore
             else:
                 # We never want to merge two values into the same dictionary
                 # because then we won't be able to revert the latter. Since both
