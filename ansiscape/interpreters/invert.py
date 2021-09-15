@@ -1,7 +1,14 @@
-from ansiscape.enums import InterpretationKey
-from ansiscape.interpreters.single_value import SingleValue
+from ansiscape.enums import InterpretationKey, SelectGraphicRendition
+from ansiscape.interpreter import Interpreter
 
 
-class InvertValue(SingleValue[bool]):
-    def __init__(self, value: bool) -> None:
-        super().__init__(InterpretationKey.INVERT, value)
+class InvertValue(Interpreter[bool]):
+    def __init__(self) -> None:
+        super().__init__(
+            key=InterpretationKey.INVERT,
+            lookup={
+                SelectGraphicRendition.DEFAULT: False,
+                SelectGraphicRendition.INVERT_ON: True,
+                SelectGraphicRendition.INVERT_OFF: False,
+            },
+        )

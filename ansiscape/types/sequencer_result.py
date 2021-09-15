@@ -1,10 +1,11 @@
 from typing import Optional, TypedDict
 
-from ansiscape.enums import SelectGraphicRendition
 from ansiscape.types.attributes import Attributes
 
 
-class SequencerResult(TypedDict, total=False):
-    sgr: SelectGraphicRendition
-    additional: Optional[Attributes]
+class SelectGraphicRenditionResult(TypedDict):
+    attributes: Attributes
+
+
+class SequencerResult(SelectGraphicRenditionResult, total=False):
     must_isolate: Optional[bool]
