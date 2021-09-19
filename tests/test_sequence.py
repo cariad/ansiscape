@@ -56,6 +56,12 @@ def test_encoded() -> None:
         ),
         (
             [
+                Interpretation(foreground=(1.0, 0.0, 0.0, 1)),
+            ],
+            "\033[38;2;255;0;0m",
+        ),
+        (
+            [
                 Interpretation(foreground=(1.0, 0.0, 0.0, 1), weight=Weight.LIGHT),
             ],
             "\033[2m\033[38;2;255;0;0m",

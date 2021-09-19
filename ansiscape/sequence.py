@@ -83,8 +83,14 @@ class Sequence(SequenceType):
             else:
                 sequences[0].extend(result["attributes"])
 
-        code = "".join([f"\033[{';'.join([str(a) for a in s])}m" for s in sequences])
-        return code
+        codes = ""
+
+        for sequence in sequences:
+            if not sequence:
+                continue
+            codes += f"\033[{';'.join([str(attr) for attr in sequence])}m"
+
+        return codes
 
     @property
     def encoded(self) -> str:
