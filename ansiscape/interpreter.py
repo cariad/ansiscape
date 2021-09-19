@@ -94,7 +94,9 @@ class Interpreter(InterpreterType[TInterpretableValue]):
 
         if attrs[0] in self.lookup:
             return self.lookup[attrs[0]], 1
-        return self.from_extended_attributes(attrs[1:])
+
+        value, claimed = self.from_extended_attributes(attrs[1:])
+        return (value, claimed + 1)
 
     def from_extended_attributes(
         self,
