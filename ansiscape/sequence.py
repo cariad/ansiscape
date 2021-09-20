@@ -1,5 +1,6 @@
+from json import dumps
 from re import finditer
-from typing import Iterator, List, Optional, Union
+from typing import Iterator, List, Optional, TextIO, Union
 
 from ansiscape.enums import InterpretationKey, MetaInterpretation
 from ansiscape.handlers import get_interpreter, get_interpreter_for_sgr_int
@@ -212,3 +213,16 @@ class Sequence(SequenceType):
                     return None
 
         return c
+
+    def write_json(self, writeable: TextIO) -> None:
+        """Writes this sequence to a JSON string."""
+
+        writeable.write("[")
+        is_first = True
+        for r in self.resolved:
+            if is_first:
+                is_first = False
+            else:
+                writeable.write(",")
+            writeable.write(dumps(r, sort_keys=True))
+        writeable.write("]\n")

@@ -6563,5 +6563,5 @@ def test_example() -> None:
         {"ideogram": Ideogram.STRESS},
         "stress",
         {"ideogram": MetaInterpretation.REVERT},
-        " ideograms.\n\nNot all terminals support all codes, so please don't be too sad if some of the examples didn't work for you.",
+        " ideograms.\n\nNot all terminals support all codes, so please don't be too sad if some of the examples didn't work for you.\n\n",
     ]

@@ -2,9 +2,10 @@ markdown_extensions:
   - admonition
 nav:
   - index.md
-  - interpret.md
+  - cli.md
+  - make.md
+  - read.md
   - interpretation.md
-  - make-pretty.md
 site_name: ansiscape
 theme:
   name: readthedocs

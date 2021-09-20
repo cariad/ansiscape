@@ -158,5 +158,5 @@ def make_example() -> SequenceType:
         " and ",
         a.stress("stress"),
         " ideograms.\n\nNot all terminals support all codes, so please don't ",
-        "be too sad if some of the examples didn't work for you.",
+        "be too sad if some of the examples didn't work for you.\n\n",
     )
