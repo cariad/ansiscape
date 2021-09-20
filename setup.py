@@ -35,7 +35,7 @@ setup(
     author="Cariad Eccleston",
     author_email="cariad@cariad.io",
     classifiers=classifiers,
-    description="Python package for interpreting ANSI escape codes",
+    description="Python package and CLI tool for creating and interpreting ANSI escape codes",
     entry_points={
         "console_scripts": [
             "ansiscape=ansiscape.__main__:cli_entry",

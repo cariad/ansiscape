@@ -1,56 +1,27 @@
 # Introduction
 
-`ansiscape` is a Python package for interpreting and creating ANSI escape codes.
+`ansiscape` is a Python package and CLI tool for creating and interpreting ANSI escape codes.
 
-## Highlights
-
-Create formatted text, with **support for nested colours** and **custom RGB**:
-
-```python
-from ansiscape import Sequence, green, foreground
-
-text = Sequence(
-    green("This is ", foreground((1.0, 0.5, 0.0, 1.0), "heavy"), ", Doc,"),
-    " said Marty.",
-)
-print(text)
-```
-
-Convert a string with embedded escape codes into a list of strings and **explanatory dictionaries**:
-
-```python
-from ansiscape import Sequence
-
-Sequence("Hello world, and \033[3myou\033[23m in particular!").resolved
-```
-
-```python
-[
-  "Hello world, and ",
-  {"calligraphy": Calligraphy.ITALIC},
-  "you",
-  {"calligraphy": Calligraphy.NONE},
-  " in particular!",
-]
-```
+- Support for **named**, **8-bit** and **24-bit colours**.
+- Create formatted strings with **nested sequences** and **property reversions**.
+- Convert embedded escape codes into **explanatory dictionaries**.
+- Write sequences as **fully resolved strings** and **explanatory JSON**.
 
 ## Installation
 
-`ansiscape` requires Python 3.8 or later.
+`ansiscape` requires **Python 3.8 or later**.
 
 ```bash
 pip install ansiscape
 ```
 
-## Discovering terminal support
+## Feedback
 
-To see examples of the formatting supported by your terminal, run:
+Please raise bugs, request features and ask questions at [github.com/cariad/ansiscape/issues](https://github.com/cariad/ansiscape/issues).
 
-```bash
-ansiscape
-```
+Mention if you're a [sponsor](https://github.com/sponsors/cariad) to ensure I respond as a priority. Thank you!
 
-## The project
+## Project
 
 The source for `ansiscape` is available at [github.com/cariad/ansiscape](https://github.com/cariad/ansiscape) under the MIT licence.
 

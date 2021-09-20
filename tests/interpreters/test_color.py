@@ -290,13 +290,13 @@ def test_get_8_bit_rgb_grey__out_of_range(attr: int) -> None:
     "attrs, expect",
     [
         # Transparent:
-        ([38, 1], ((0, 0, 0, 0), 1)),
+        ([38, 1], ((0, 0, 0, 0), 2)),
         # 24-bit RGB colour:
-        ([38, 2, 0, 0, 0], ((0, 0, 0, 1), 4)),
+        ([38, 2, 0, 0, 0], ((0, 0, 0, 1), 5)),
         # 8-bit named colour:
-        ([38, 5, 1], (NamedColor.RED, 2)),
+        ([38, 5, 1], (NamedColor.RED, 3)),
         # 8-bit RGB:
-        ([38, 5, 232], ((0.04, 0.04, 0.04, 1.0), 2)),
+        ([38, 5, 232], ((0.04, 0.04, 0.04, 1.0), 3)),
     ],
 )
 def test_value(attrs: Attributes, expect: Tuple[Optional[Color], int]) -> None:

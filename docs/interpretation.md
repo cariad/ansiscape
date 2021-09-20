@@ -1,4 +1,4 @@
-# Interpretation dictionary
+# Interpretation dictionary and enums
 
 The `ansiscape.Interpretation` dictionary describes an interpretation of one or more ANSI escape codes.
 

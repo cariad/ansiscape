@@ -1,5 +1,6 @@
+from json import dumps
 from re import finditer
-from typing import Iterator, List, Optional, Union
+from typing import Iterator, List, Optional, TextIO, Union
 
 from ansiscape.enums import InterpretationKey, MetaInterpretation
 from ansiscape.handlers import get_interpreter, get_interpreter_for_sgr_int
@@ -83,8 +84,14 @@ class Sequence(SequenceType):
             else:
                 sequences[0].extend(result["attributes"])
 
-        code = "".join([f"\033[{';'.join([str(a) for a in s])}m" for s in sequences])
-        return code
+        codes = ""
+
+        for sequence in sequences:
+            if not sequence:
+                continue
+            codes += f"\033[{';'.join([str(attr) for attr in sequence])}m"
+
+        return codes
 
     @property
     def encoded(self) -> str:
@@ -206,3 +213,16 @@ class Sequence(SequenceType):
                     return None
 
         return c
+
+    def write_json(self, writeable: TextIO) -> None:
+        """Writes this sequence to a JSON string."""
+
+        writeable.write("[")
+        is_first = True
+        for r in self.resolved:
+            if is_first:
+                is_first = False
+            else:
+                writeable.write(",")
+            writeable.write(dumps(r, sort_keys=True))
+        writeable.write("]\n")

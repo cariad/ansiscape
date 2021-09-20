@@ -1,15 +1,88 @@
-# Making pretty text
+# Making Sequences
 
-## Basic formatting
+The `ansiscape.Sequence` class is the workhorse of the `ansiscape` package. An instance of `Sequence` describes a set of text and its formatting.
 
-Each of these functions returns a `Sequence` that wraps your text in the appropriate codes to begin and end a particular type of formatting.
+## Initialising
 
-You can pass in:
+A `Sequence` is initialised with a list containing any or all of:
 
-- Plain strings
-- Strings with embedded escape codes
-- [`Interpretation`](interpretation.md) dictionaries
+- Plain text
+- Text with escape codes
+- [`Interpretation`](interpretation.md) dictionary
 - Other `Sequence` instances
+
+For example, to create a sequence describing `"Hello, world!"` in bold, you _could_ write:
+
+```python
+from ansiscape import Sequence
+
+sequence = Sequence("\033[1mHello, world!\033[22m")
+```
+
+...but a more readable example might be:
+
+```python
+from ansiscape import Interpretation, Sequence
+from ansiscape.enums import MetaInterpretation, Weight
+
+sequence = Sequence(
+    Interpretation(weight=Weight.HEAVY),
+    "Hello, world!",
+    Interpretation(weight=MetaInterpretation.REVERT),
+)
+```
+
+## Extending
+
+A `Sequence` can be extended with further strings, [`Interpretation`](interpretation.md) dictionaries and `Sequence` instances via the `extend()` function.
+
+```python
+from ansiscape import Interpretation, Sequence
+from ansiscape.enums import MetaInterpretation, Weight
+
+sequence = Sequence(
+    Interpretation(weight=Weight.HEAVY),
+    "Hello, ",
+)
+sequence.extend("world!")
+sequence.extend(Interpretation(weight=MetaInterpretation.REVERT))
+```
+
+## Reverting
+
+`Sequence` is aware of its internal stack and property reversions, so formatting can be nested.
+
+For example, to create a sequence of numbers where `2`-`4` are coloured green and `3` is coloured yellow:
+
+```python
+from ansiscape import Interpretation, Sequence
+from ansiscape.enums import MetaInterpretation, NamedColor
+
+sequence = Sequence(
+    "1 ",
+    Interpretation(foreground=NamedColor.GREEN),
+    "2 ",
+    Interpretation(foreground=NamedColor.YELLOW),
+    "3 ",
+    Interpretation(foreground=MetaInterpretation.REVERT),
+    "4 ",
+    Interpretation(foreground=MetaInterpretation.REVERT),
+    "5",
+)
+```
+
+## Formatting helpers
+
+`ansiscape` provides a library of functions that return pre-configured `Sequence` instances for given types of formatting.
+
+Like the `Sequence` class, you can pass in any of all of:
+
+- Plain text
+- Text with escape codes
+- [`Interpretation`](interpretation.md) dictionary
+- Other `Sequence` instances
+
+These helper functions all terminate themselves with an appropriate reversion, so they can be nested.
 
 Key                            | Description
 ------------------------------ | -----------
@@ -75,66 +148,8 @@ Key                            | Description
 `yellow()`                     | Set the foreground colour to yellow
 `yellow_background()`          | Set the background colour to yellow
 
-## Custom colours
+## Custom RGB
 
 To specify specific RGBA values for the foreground or background, use the `foreground()` or `background()` function.
 
 These accept the same arguments as the functions above, plus a [`Color`](interpretation.md#color).
-
-## Custom formatting
-
-In addition to the functions above, you can pass [`Interpretation`](interpretation.md) dictionaries into `Sequence` to build specific custom formatting.
-
-For example, to make text heavy and italic in one call:
-
-```python
-from ansiscape import Interpretation, Sequence
-from ansiscape.enums import Calligraphy, MetaInterpretation, Weight
-
-text = Sequence(
-    Interpretation(
-        calligraphy=Calligraphy.ITALIC,
-        weight=Weight.HEAVY,
-    ),
-    "Whoa.",
-    Interpretation(
-        calligraphy=MetaInterpretation.REVERT,
-        weight=MetaInterpretation.REVERT,
-    ),
-)
-print(text)
-```
-
-!!! danger
-    You **must** revert all the properties you change by passing
-    `MetaInterpretation.REVERT` otherwise the changes will persist in the
-    terminal beyond the lifetime of your script.
-
-## Examples
-
-To print a bold string:
-
-```python
-from ansiscape import heavy
-
-text = heavy("This is heavy, Doc.")
-print(text)
-```
-
-To make a bold substring:
-
-```python
-from ansiscape import Sequence, heavy
-
-text = Sequence("This is ", heavy("heavy"), ", Doc.")
-print(text)
-```
-
-You can nest sequences to, for example, nest colours:
-
-```python
-from ansiscape import Sequence, green, yellow
-
-text = Sequence(green("This is ", yellow("heavy"), ", Doc,"), " said Marty.")
-print(text)
-```

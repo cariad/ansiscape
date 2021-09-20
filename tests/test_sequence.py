@@ -1,3 +1,4 @@
+from io import StringIO
 from typing import List, Tuple
 
 from pytest import mark
@@ -53,6 +54,12 @@ def test_encoded() -> None:
                 Interpretation(overline=True, weight=Weight.LIGHT),
             ],
             "\033[53;2m",
+        ),
+        (
+            [
+                Interpretation(foreground=(1.0, 0.0, 0.0, 1)),
+            ],
+            "\033[38;2;255;0;0m",
         ),
         (
             [
@@ -212,3 +219,14 @@ def test_str() -> None:
         Interpretation(foreground=MetaInterpretation.REVERT),
     )
     assert str(sequence) == "\033[31mfoo\033[39m"
+
+
+def test_write_json() -> None:
+    sequence = Sequence(
+        Interpretation(foreground=NamedColor.RED),
+        "foo",
+        Interpretation(foreground=MetaInterpretation.REVERT),
+    )
+    json_io = StringIO()
+    sequence.write_json(json_io)
+    assert json_io.getvalue() == '[{"foreground": 1},"foo",{"foreground": -2}]\n'
