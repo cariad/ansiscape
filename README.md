@@ -1,59 +1,93 @@
 # ansiscape
 
-[![CircleCI](https://circleci.com/gh/cariad/ansiscape/tree/main.svg?style=shield)](https://circleci.com/gh/cariad/ansiscape/tree/main) [![codecov](https://codecov.io/gh/cariad/ansiscape/branch/main/graph/badge.svg?token=cn6UnSvD8u)](https://codecov.io/gh/cariad/ansiscape)
+[![CircleCI](https://circleci.com/gh/cariad/ansiscape/tree/main.svg?style=shield)](https://circleci.com/gh/cariad/ansiscape/tree/main) [![codecov](https://codecov.io/gh/cariad/ansiscape/branch/main/graph/badge.svg?token=cn6UnSvD8u)](https://codecov.io/gh/cariad/ansiscape) [![Documentation Status](https://readthedocs.org/projects/ansiscape/badge/?version=latest)](https://ansiscape.readthedocs.io/en/latest/?badge=latest)
 
-`ansiscape` is a Python package for interpreting and creating ANSI escape codes.
+`ansiscape` is a Python package and CLI tool for creating and interpreting ANSI escape codes.
 
-## Highlights
+- Support for **named**, **8-bit** and **24-bit colours**.
+- Create formatted strings with **nested sequences** and **property reversions**.
+- Convert embedded escape codes into **explanatory dictionaries**.
+- Write sequences as **fully resolved strings** and **explanatory JSON**.
 
-Create formatted text, with **support for nested colours** and **custom RGB**:
-
-```python
-from ansiscape import Sequence, green, foreground
-
-text = Sequence(
-    green("This is ", foreground((1.0, 0.5, 0.0, 1.0), "heavy"), ", Doc,"),
-    " said Marty.",
-)
-print(text)
-```
-
-Convert a string with embedded escape codes into a list of strings and **explanatory dictionaries**:
-
-```python
-from ansiscape import Sequence
-
-Sequence("Hello world, and \033[3myou\033[23m in particular!").resolved
-```
-
-```python
-[
-  "Hello world, and ",
-  {"calligraphy": Calligraphy.ITALIC},
-  "you",
-  {"calligraphy": Calligraphy.NONE},
-  " in particular!",
-]
-```
+Full documentation is published at [ansiscape.readthedocs.io](https://ansiscape.readthedocs.io).
 
 ## Installation
 
-`ansiscape` requires Python 3.8 or later.
+`ansiscape` requires **Python 3.8 or later**.
 
 ```bash
 pip install ansiscape
 ```
 
-## Discovering terminal support
-
-To see examples of the formatting supported by your terminal, run:
+## Basic CLI usage
 
 ```bash
-ansiscape
+APP | ansiscape
 ```
 
-## The project
+For example:
 
-The source for `ansiscape` is available at [github.com/cariad/ansiscape](https://github.com/cariad/ansiscape) under the MIT licence.
+```bash
+ls --color | ansiscape
+```
 
-And, **hello!** I'm [Cariad Eccleston](https://cariad.io) and I'm an independent/freelance software engineer. If my work has value to you, please consider [sponsoring](https://github.com/sponsors/cariad/).
+```json
+[
+  {
+    "background": -1,
+    "foreground": 4,
+    "weight": 1
+  },
+  "ansiscape",
+  {
+    "background": -1
+  },
+  "\n",
+  {
+    "foreground": 4,
+    "weight": 1
+  },
+  "ansiscape.egg-info",
+  {
+    "background": -1
+  },
+  "\n",
+  {
+    "foreground": 2,
+    "weight": 1
+  },
+  "build.sh",
+  ...
+]
+```
+
+Full documentation is published at [ansiscape.readthedocs.io](https://ansiscape.readthedocs.io).
+
+```python
+from ansiscape import Interpretation, Sequence, heavy
+from ansiscape.enums import MetaInterpretation, Weight
+
+sequence = Sequence(
+    Interpretation(weight=Weight.HEAVY),
+    "Hello, world!",
+    Interpretation(weight=MetaInterpretation.REVERT),
+)
+
+# or:
+
+sequence = heavy("Hello, world!")
+
+print(sequence)
+```
+
+```text
+\033[1mHello, world!\033[22m
+```
+
+Full documentation is published at [ansiscape.readthedocs.io](https://ansiscape.readthedocs.io).
+
+## 👋 Hello!
+
+**Hello!** I'm [Cariad Eccleston](https://cariad.io) and I'm an independent/freelance software engineer. If my work has value to you, please consider [sponsoring](https://github.com/sponsors/cariad/).
+
+If you ever raise a bug, request a feature or ask a question then mention that you're a sponsor and I'll respond as a priority. Thank you!
