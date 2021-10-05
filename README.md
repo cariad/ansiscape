@@ -21,9 +21,7 @@ pip install ansiscape
 
 ## Basic CLI usage
 
-```bash
-APP | ansiscape
-```
+`ansiscape` on the command line will read from stdin and emit a JSON document describing the text and its escape codes.
 
 For example:
 
@@ -63,6 +61,24 @@ ls --color | ansiscape
 
 Full documentation is published at [ansiscape.readthedocs.io](https://ansiscape.readthedocs.io).
 
+## Basic Python usage
+
+`ansiscape` provides a library of functions for formatting text.
+
+For example, to make text bold:
+
+```python
+from ansiscape import heavy
+
+print(heavy("Hello, world!"))
+```
+
+```text
+\033[1mHello, world!\033[22m
+```
+
+These functions can be nested to create complex formatted strings. Specific instructions can also be embedded:
+
 ```python
 from ansiscape import Interpretation, Sequence, heavy
 from ansiscape.enums import MetaInterpretation, Weight
@@ -72,10 +88,6 @@ sequence = Sequence(
     "Hello, world!",
     Interpretation(weight=MetaInterpretation.REVERT),
 )
-
-# or:
-
-sequence = heavy("Hello, world!")
 
 print(sequence)
 ```
