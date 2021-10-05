@@ -1,12 +1,13 @@
+from argparse import ArgumentParser
 from sys import argv, stdin, stdout
 from typing import List, TextIO
 
-from ansiscape import Sequence
+from ansiscape import Sequence, get_version
 from ansiscape.example import make_example
 
 
 def cli_entry(
-    args: List[str] = argv,
+    cli_args: List[str] = argv,
     in_pipe: TextIO = stdin,
     out_pipe: TextIO = stdout,
 ) -> None:
@@ -19,8 +20,22 @@ def cli_entry(
         out_pipe: "stdout" or other pipe to write to
     """
 
-    if len(args) > 1:
+    parser = ArgumentParser(
+        description="Describes ANSI escape codes read from stdin.",
+        epilog="Made with love by Cariad Eccleston: https://github.com/cariad/ansiscape",
+    )
+
+    parser.add_argument("--example", action="store_true", help="print an example")
+    parser.add_argument("--version", action="store_true", help="print the version")
+
+    args = parser.parse_args(cli_args[1:])
+
+    if args.example:
         out_pipe.write(str(make_example()))
+        return
+
+    if args.version:
+        out_pipe.write(str(get_version()) + "\n")
         return
 
     Sequence(in_pipe.read().strip()).write_json(out_pipe)
