@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/python:3.9.6
+      - image: cimg/python:3.10.0
     environment:
       PIPENV_VENV_IN_PROJECT: true
     resource_class: small
@@ -14,12 +14,12 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - pipenv-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-            - pipenv-{{ .Branch }}-
-            - pipenv-
+            - pipenv-3100-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+            - pipenv-3100-{{ .Branch }}-
+            - pipenv-3100-
       - run: pipenv sync --dev
       - save_cache:
-          key: pipenv-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          key: pipenv-3100-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
             - .venv
       - run: pipenv run ./lint.sh
