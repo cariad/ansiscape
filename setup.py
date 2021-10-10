@@ -16,6 +16,7 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Utilities",
     "Typing :: Typed",
 ]
@@ -33,9 +34,9 @@ classifiers.sort()
 
 setup(
     author="Cariad Eccleston",
-    author_email="cariad@cariad.io",
+    author_email="cariad@cariad.earth",
     classifiers=classifiers,
-    description="Python package and CLI tool for creating and interpreting ANSI escape codes",
+    description="Create and interpret ANSI escape codes",
     entry_points={
         "console_scripts": [
             "ansiscape=ansiscape.__main__:cli_entry",
