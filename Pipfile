@@ -7,7 +7,7 @@ name = "pypi"
 
 [dev-packages]
 black = "==21.8b0"
-dinject = "~=1.0.3"
+dinject = "~=1.0.4"
 flake8 = "*"
 isort = "*"
 mkdocs = "*"
