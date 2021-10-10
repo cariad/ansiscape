@@ -20,13 +20,17 @@ for part in sequence.resolved:
     print(part)
 ```
 
-```python
-"Hello world, and "
-{"calligraphy": Calligraphy.ITALIC}
-"you"
-{"calligraphy": Calligraphy.NONE}
-" in particular!"
+<!--dinject as=markdown host=shell range=start-->
+
+```text
+Hello world, and 
+{'calligraphy': <Calligraphy.ITALIC: 2>}
+you
+{'calligraphy': <Calligraphy.NONE: 0>}
+ in particular!
 ```
+
+<!--dinject range=end-->
 
 Note that strings with embedded escape codes can be passed into the `Sequence` initialiser, but these will be converted to sub-sequences of plain strings and [`Interpretation`](interpretation.md) dictionaries. The `resolved` property will never return strings with embedded escape codes.
 
@@ -42,19 +46,13 @@ sequence = Sequence("Hello world, and \033[3myou\033[23m in particular!")
 sequence.write_json(stdout)
 ```
 
-```json
-[
-    "Hello world, and ",
-    {
-        "calligraphy": 2
-    },
-    "you",
-    {
-        "calligraphy": 0
-    },
-    " in particular!"
-]
+<!--dinject as=markdown host=shell range=start-->
+
+```text
+["Hello world, and ",{"calligraphy": 2},"you",{"calligraphy": 0}," in particular!"]
 ```
+
+<!--dinject range=end-->
 
 !!! question
     **Why not just provide the JSON as a plain string property?** Because it can be _huge_. Chances are, if you want JSON then you want to write it somewhere, and using TextIO can fulfil that while minimising memory usage.

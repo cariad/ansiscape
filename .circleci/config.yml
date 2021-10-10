@@ -23,7 +23,7 @@ jobs:
           paths:
             - .venv
       - run: pipenv run ./lint.sh
-      - run: pipenv run pytest
+      - run: pipenv run ./test.sh
       - codecov/upload:
           file: coverage.xml
       - run: pipenv run ./build.sh
