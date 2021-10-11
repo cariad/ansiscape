@@ -3,6 +3,7 @@ markdown_extensions:
 nav:
   - index.md
   - cli.md
+  - checks.md
   - make.md
   - read.md
   - interpretation.md
