@@ -3,6 +3,7 @@ from sys import argv, stdin, stdout
 from typing import List, TextIO
 
 from ansiscape import Sequence, get_version
+from ansiscape.checks import should_emit_codes
 from ansiscape.example import make_example
 
 
@@ -25,10 +26,23 @@ def cli_entry(
         epilog="Made with love by Cariad Eccleston: https://github.com/cariad/ansiscape",
     )
 
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="checks if codes should be emitted",
+    )
+
     parser.add_argument("--example", action="store_true", help="print an example")
     parser.add_argument("--version", action="store_true", help="print the version")
 
     args = parser.parse_args(cli_args[1:])
+
+    if args.check:
+        if should_emit_codes():
+            out_pipe.write("yes\n")
+        else:
+            out_pipe.write("no\n")
+        return
 
     if args.example:
         out_pipe.write(str(make_example()))
