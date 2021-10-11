@@ -10,6 +10,12 @@ class SequenceType(ABC):
     """A sequence of strings, formatting interpretations and sub-sequences."""
 
     @abstractmethod
+    def encoded(self) -> str:
+        """
+        Encodes the sequence into a single string with embedded escape codes.
+        """
+
+    @abstractmethod
     def extend(self, *parts: SequencePart) -> None:
         """Extends this sequence."""
 
