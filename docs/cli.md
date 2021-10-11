@@ -44,7 +44,7 @@ ls --color | ansiscape
 <!--dinject as=markdown host=shell range=start-->
 
 ```text
-[{"background": -1, "foreground": 4, "weight": 1},"ansiscape",{"background": -1},"\n",{"foreground": 4, "weight": 1},"ansiscape.egg-info",{"background": -1},"\n",{"foreground": 2, "weight": 1},"build.sh",{"background": -1},"\ncoverage.xml\n",{"foreground": 4, "weight": 1},"dist",{"background": -1},"\n",{"foreground": 4, "weight": 1},"docs",{"background": -1},"\n",{"foreground": 4, "weight": 1},"htmlcov",{"background": -1},"\nLICENSE\n",{"foreground": 2, "weight": 1},"lint.sh",{"background": -1},"\nMANIFEST.in\nmkdocs.yml\nmypy.ini\nPipfile\nPipfile.lock\npyproject.toml\nREADME.md\nsetup.py\n",{"foreground": 4, "weight": 1},"tests",{"background": -1},"\n",{"foreground": 2, "weight": 1},"test.sh",{"background": -1}]
+[{"background": -1, "foreground": 4, "weight": 1},"ansiscape",{"background": -1},"\n",{"foreground": 4, "weight": 1},"ansiscape.egg-info",{"background": -1},"\n",{"foreground": 2, "weight": 1},"build.sh",{"background": -1},"\ncoverage.xml\n",{"foreground": 4, "weight": 1},"dist",{"background": -1},"\n",{"foreground": 4, "weight": 1},"docs",{"background": -1},"\n",{"foreground": 4, "weight": 1},"htmlcov",{"background": -1},"\nLICENSE\n",{"foreground": 2, "weight": 1},"lint.sh",{"background": -1},"\nMANIFEST.in\nmkdocs.yml\nmypy.ini\nPipfile\nPipfile.lock\npyproject.toml\nREADME.md\nsetup.py\n",{"foreground": 2, "weight": 1},"test-cli.sh",{"background": -1},"\n",{"foreground": 4, "weight": 1},"tests",{"background": -1},"\n",{"foreground": 2, "weight": 1},"test.sh",{"background": -1}]
 ```
 
 <!--dinject range=end-->
