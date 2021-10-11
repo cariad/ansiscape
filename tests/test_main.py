@@ -3,6 +3,12 @@ from io import StringIO
 from ansiscape.__main__ import cli_entry
 
 
+def test_cli_entry__check() -> None:
+    stdout = StringIO()
+    cli_entry(cli_args=["ansiscape", "--check"], out_pipe=stdout)
+    assert stdout.getvalue() == "no\n"
+
+
 def test_cli_entry__example() -> None:
     stdout = StringIO()
     cli_entry(cli_args=["ansiscape", "--example"], out_pipe=stdout)
