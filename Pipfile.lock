@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "293ad1483c62911aab401e3e48de26831683e6e3fb44bbf6f3ce23b8c66ef2db"
+            "sha256": "11ead1c2e1ee5e96031dea5c95afac5f1a3adc1654d4d1f59b38f793013b926b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -214,11 +214,11 @@
         },
         "flake8": {
             "hashes": [
-                "sha256:124554bfd067e04d891258c0208a764b512ca3a94c8a3c06bea56af539dd74db",
-                "sha256:b52d27e627676b015340c3b1c72bc9259a6cacc9341712fb8f01ddfaaa2c651a"
+                "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d",
+                "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"
             ],
             "index": "pypi",
-            "version": "==4.0.0"
+            "version": "==4.0.1"
         },
         "ghp-import": {
             "hashes": [
@@ -413,7 +413,7 @@
             "hashes": [
                 "sha256:127235a0ecd8f2e5db97a271732d9ce41299f7f6d59b258e1c63d306cdb1ae35"
             ],
-            "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==1.0.1"
         },
         "packaging": {
