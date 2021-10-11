@@ -11,6 +11,6 @@ assert() {
   exit 1
 }
 
-assert "$(ansiscape --version)"                  "${CIRCLE_TAG:-"-1.-1.-1"}"
-assert "$(ansiscape --check)"                    "no"
-assert "$(python -m naughtty ansiscape --check)" $'yes\r'
+assert "$(ansiscape --version)"                             "${CIRCLE_TAG:-"-1.-1.-1"}"
+assert "$(ansiscape --check)"                               "no"
+assert "$(pipenv run python -m naughtty ansiscape --check)" $'yes\r'
