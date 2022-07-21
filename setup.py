@@ -49,6 +49,7 @@ setup(
     name="ansiscape",
     packages=[
         "ansiscape",
+        "ansiscape.checks",
         "ansiscape.enums",
         "ansiscape.exceptions",
         "ansiscape.interpreters",

@@ -5,13 +5,13 @@ find . -name "*.sh" -not -path "*/.venv/*" -exec shellcheck -o all --severity st
 
 yamllint --strict .
 
-if [ "${CI:=}" == "true" ]; then
+if [[ "${CI:=}" == "true" ]]; then
   isort . --check-only --diff
 else
   isort .
 fi
 
-if [ "${CI:=}" == "true" ]; then
+if [[ "${CI:=}" == "true" ]]; then
   black . --check --diff
 else
   black .

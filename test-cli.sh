@@ -11,6 +11,11 @@ assert() {
   exit 1
 }
 
+# shellcheck disable=SC2312
 assert "$(ansiscape --version)"        "${CIRCLE_TAG:-"-1.-1.-1"}"
+
+# shellcheck disable=SC2312
 assert "$(ansiscape --check)"          "no"
+
+# shellcheck disable=SC2312
 assert "$(naughtty ansiscape --check)" $'yes\r'
