@@ -58,6 +58,7 @@ setup(
     ],
     package_data={
         "ansiscape": ["py.typed"],
+        "ansiscape.checks": ["py.typed"],
         "ansiscape.enums": ["py.typed"],
         "ansiscape.exceptions": ["py.typed"],
         "ansiscape.interpreters": ["py.typed"],
