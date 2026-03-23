@@ -1,0 +1,31 @@
+name: pull-request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          cache: pipenv
+          python-version: "3.10"
+
+      - name: Lint
+        run: pipenv run ./lint.sh
+
+      - name: Unit test
+        run: pipenv run ./test.sh
+
+      - name: CLI test
+        run: |
+          pipenv run ./build.sh
+          pip install naughtty
+          pip install dist/*
+          ./test-cli.sh
