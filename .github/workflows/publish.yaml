@@ -1,9 +1,9 @@
-name: Pull Request
+name: Publish
 
 on:  # yamllint disable-line rule:truthy
-  pull_request:
-    branches:
-      - main
+  release:
+    types:
+      - published
 
 jobs:
   validate:
@@ -23,16 +23,12 @@ jobs:
       - name: Install dependencies
         run: pipenv sync --dev
 
-      - name: Lint
-        run: pipenv run ./lint.sh
-
-      - name: Unit test
-        run: pipenv run ./test.sh
-
-      - name: CLI test
+      - name: Release
+        env:
+          TAG_NAME: ${{ github.ref_name }}
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: |
           pipenv run pip install wheel
           pipenv run ./build.sh
-          pip install naughtty
-          pip install dist/*
-          ./test-cli.sh
+          pipenv run twine upload dist/*
