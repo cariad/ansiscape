@@ -4,10 +4,10 @@ set -euo pipefail
 
 if [[ -n ${1:-} ]]; then
   version=${1}
-elif [[ -n ${CIRCLE_TAG:-} ]]; then
-  version=${CIRCLE_TAG}
+elif [[ -n ${TAG_NAME:-} ]]; then
+  version=${TAG_NAME}
 else
-  version="-1.-1.-1"
+  version="1.0.0"
 fi
 
 echo "${version}" > ansiscape/version/VERSION
