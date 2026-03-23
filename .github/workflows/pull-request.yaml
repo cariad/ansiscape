@@ -31,7 +31,7 @@ jobs:
 
       - name: CLI test
         run: |
-          pip install wheel
+          pipenv run pip install wheel
           pipenv run ./build.sh
           pip install naughtty
           pip install dist/*
