@@ -17,6 +17,9 @@ jobs:
           cache: pipenv
           python-version: "3.10"
 
+      - name: Install pipenv
+        run: pip install pipenv
+
       - name: Lint
         run: pipenv run ./lint.sh
 
